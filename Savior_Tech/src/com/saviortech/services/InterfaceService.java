@@ -14,9 +14,9 @@ public interface InterfaceService<T> {
 
     public void ajouter(T o);
 
-    public void modifier(T o);
-
-    public void supprimer(T o);
-
-    public List<T> afficher();
+//    public void modifier(T o);
+//
+//    public void supprimer(T o);
+//
+//    public List<T> afficher();
 }
