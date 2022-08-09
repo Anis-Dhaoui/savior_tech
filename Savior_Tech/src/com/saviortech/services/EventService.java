@@ -77,22 +77,21 @@ public class EventService implements InterfaceService<Events> {
 //        }
 //    }
 //
-//    @Override
-//    public List<Events> afficher() {
-//        List<Events> personnes = new ArrayList<>();
-//        
-//        try {
-//            String req = "SELECT * FROM personne";
-//            PreparedStatement pst = cnx.prepareStatement(req);
-//            ResultSet res = pst.executeQuery();
-//            while(res.next()) {
-//                personnes.add(new Events(res.getInt(1), res.getString(2), res.getString("prenom")));
-//            }
-//            System.out.println("Personnes récupérées !");
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        
-//        return personnes;
-//    }
+    @Override
+    public List<Events> afficher() {
+        List<Events> events = new ArrayList<>();
+        
+        try {
+            String req = "SELECT * FROM events";
+            PreparedStatement pst = cnx.prepareStatement(req);
+            ResultSet res = pst.executeQuery();
+            while(res.next()) {
+                events.add(new Events(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6), res.getDate(7), res.getString(8), res.getString(9), res.getInt(10), res.getString(11), res.getInt(12), res.getInt(13)));
+            }
+            System.out.println("Events récupérées !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return events;
+    }
 }

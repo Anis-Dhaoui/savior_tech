@@ -165,7 +165,7 @@ public class Events {
 
     @Override
     public String toString() {
-        return "Events{" + "event_id=" + event_id + ", event_title=" + event_title + ", event_image=" + event_image + ", event_category=" + event_category + ", event_description=" + event_description + ", event_start_date=" + event_start_date + ", event_end_date=" + event_end_date + ", event_status=" + event_status + ", event_location=" + event_location + ", event_price=" + event_price + ", event_orgoniser=" + event_orgoniser + ", event_nb_participant=" + event_nb_participant + ", event_max_participant=" + event_max_participant + '}';
+        return "Events{" + "\nevent_id=" + event_id + ", event_title=" + event_title + ", event_image=" + event_image + ", event_category=" + event_category + ", event_description=" + event_description + ", event_start_date=" + event_start_date + ", event_end_date=" + event_end_date + ", event_status=" + event_status + ", event_location=" + event_location + ", event_price=" + event_price + ", event_orgoniser=" + event_orgoniser + ", event_nb_participant=" + event_nb_participant + ", event_max_participant=" + event_max_participant + '}'+"\n";
     }
 
 }
