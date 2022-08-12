@@ -29,12 +29,12 @@ public class EventCardController implements Initializable {
     private Label nb_part;
     @FXML
     private Label date;
-    Events events;
+    
+    private Events events;
 
     public void setData (Events events){
         this.events = events;
         titre.setText(events.getEvent_title());
-        
     }
     /**
      * Initializes the controller class.

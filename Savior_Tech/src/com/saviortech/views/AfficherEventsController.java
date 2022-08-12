@@ -9,6 +9,7 @@ import com.saviortech.services.EventService;
 import java.awt.Insets;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,25 +32,26 @@ public class AfficherEventsController implements Initializable {
     @FXML
     private GridPane grid;
 
-   
-    
     /**
      * Initializes the controller class.
      */
+
+    List<Events> es = new EventService().afficher();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-       int column = 0;
+        int column = 0;
         int row = 1;
         try {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 3; i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("EventCard.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-
-             //   EventCardController itemController = fxmlLoader.getController();
-             
-
+                
+                EventCardController itemController = fxmlLoader.getController();
+                itemController.setData(es.get(i));
+                //   EventCardController itemController = fxmlLoader.getController();
                 if (column == 1) {
                     column = 0;
                     row++;
@@ -67,13 +69,11 @@ public class AfficherEventsController implements Initializable {
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
 
                 GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
-                
-                
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    
+
 }
