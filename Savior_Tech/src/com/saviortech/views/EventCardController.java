@@ -5,12 +5,22 @@
 package com.saviortech.views;
 
 import com.saviortech.models.Events;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  * FXML Controller class
@@ -29,20 +39,32 @@ public class EventCardController implements Initializable {
     private Label nb_part;
     @FXML
     private Label date;
-    
+
     private Events events;
 
-    public void setData (Events events){
+    public void setData(Events events) throws IOException {
         this.events = events;
+
+        // Path imageFile = Paths.get("https://cdn1-production-images-kly.akamaized.net/xj1PwZa4DD8EnlsRe_H8pa5UpUs=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/16756/original/steve-job-131010c.jpg");
+//        Icon icon = new ImageIcon(getClass().getResource(events.getEvent_image()));
+
+        BufferedImage deck = ImageIO.read(new URL(events.getEvent_image()));
+        BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
+        WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
+        image.setImage(card);
+
         titre.setText(events.getEvent_title());
+        categorie.setText(events.getEvent_category());
+        nb_part.setText(String.valueOf(events.getEvent_nb_participant()));
+        date.setText(String.valueOf(events.getEvent_start_date()));
     }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         // TODO
-    }    
-    
+    }
+
 }

@@ -35,23 +35,22 @@ public class AfficherEventsController implements Initializable {
     /**
      * Initializes the controller class.
      */
-
     List<Events> es = new EventService().afficher();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         int column = 0;
         int row = 1;
         try {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < es.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("EventCard.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-                
+
                 EventCardController itemController = fxmlLoader.getController();
                 itemController.setData(es.get(i));
-                //   EventCardController itemController = fxmlLoader.getController();
+
                 if (column == 1) {
                     column = 0;
                     row++;
