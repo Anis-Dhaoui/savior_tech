@@ -31,7 +31,6 @@ public class AfficherEventsController implements Initializable {
     private ScrollPane scrol;
     @FXML
     private GridPane grid;
-
     /**
      * Initializes the controller class.
      */
@@ -39,7 +38,8 @@ public class AfficherEventsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+//scrol.setPrefSize( 1500, 2000 );
+//scrol.setPrefSize( Double.MAX_VALUE, Double.MAX_VALUE );
         int column = 0;
         int row = 1;
         try {
@@ -51,7 +51,7 @@ public class AfficherEventsController implements Initializable {
                 EventCardController itemController = fxmlLoader.getController();
                 itemController.setData(es.get(i));
 
-                if (column == 1) {
+                if (column == 3) {
                     column = 0;
                     row++;
                 }

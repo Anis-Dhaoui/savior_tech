@@ -45,9 +45,6 @@ public class EventCardController implements Initializable {
     public void setData(Events events) throws IOException {
         this.events = events;
 
-        // Path imageFile = Paths.get("https://cdn1-production-images-kly.akamaized.net/xj1PwZa4DD8EnlsRe_H8pa5UpUs=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/16756/original/steve-job-131010c.jpg");
-//        Icon icon = new ImageIcon(getClass().getResource(events.getEvent_image()));
-
         BufferedImage deck = ImageIO.read(new URL(events.getEvent_image()));
         BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
         WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
