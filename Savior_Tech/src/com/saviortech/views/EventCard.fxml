@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="299.0" prefWidth="354.0" style="-fx-background-color: #7FFFD4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.views.EventCardController">
+<AnchorPane id="AnchorPane" prefHeight="299.0" prefWidth="354.0" style="-fx-background-color: #7FFFD4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.EventCardController">
     <children>
         <ImageView fx:id="image" fitHeight="186.0" fitWidth="359.0" layoutX="5.0" pickOnBounds="true" smooth="false" AnchorPane.rightAnchor="0.0">
             <image>

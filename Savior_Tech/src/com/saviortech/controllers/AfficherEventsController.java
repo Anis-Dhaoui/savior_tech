@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.saviortech.views;
+package com.saviortech.controllers;
 
 import com.saviortech.models.Events;
 import com.saviortech.services.EventService;
@@ -28,13 +28,13 @@ import javafx.scene.layout.Region;
 public class AfficherEventsController implements Initializable {
 
     @FXML
-    private ScrollPane scrol;
-    @FXML
     private GridPane grid;
     /**
      * Initializes the controller class.
      */
     List<Events> es = new EventService().afficher();
+    @FXML
+    private ScrollPane scrol;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,7 +45,7 @@ public class AfficherEventsController implements Initializable {
         try {
             for (int i = 0; i < es.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("EventCard.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("../views/EventCard.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 EventCardController itemController = fxmlLoader.getController();
