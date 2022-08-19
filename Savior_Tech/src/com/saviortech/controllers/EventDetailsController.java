@@ -4,7 +4,9 @@
  */
 package com.saviortech.controllers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,6 +49,7 @@ public class EventDetailsController implements Initializable {
     @FXML
     private HBox eventId;
 
+    private EventCardController bufferImg = new EventCardController();
     /**
      * Initializes the controller class.
      */
@@ -59,7 +62,18 @@ public class EventDetailsController implements Initializable {
     private void participate(ActionEvent event) {
     }
     
-        void setLabel(String title){
+        void setLabel(String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int nbPart, int maxPart) throws IOException{
         phTitle.setText(title);
+        phImage.setImage(bufferImg.implementImage(image));
+        phCategory.setText(category);
+        phDescription.setText(description);
+        phStartDate.setText(String.valueOf(sd));
+        phEndDate.setText(String.valueOf(ed));
+        phStatus.setText(status);
+        phLocation.setText(location);
+        phPrice.setText(String.valueOf(price));
+        phOrgonizer.setText(orgoniser);
+        phNbPart.setText(String.valueOf(nbPart));
+        phMaxPart.setText(String.valueOf(maxPart));
     }
 }
