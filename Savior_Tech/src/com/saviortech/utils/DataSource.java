@@ -20,6 +20,9 @@ public class DataSource {
     private final String URL = "jdbc:mysql://localhost:3306/savior_tech_db?useTimezone=true&serverTimezone=UTC";
     private final String USERNAME = "root";
     private final String PASSWORD = "";
+//    private final String URL = "jdbc:mysql://db4free.net/:3306/savior_tech_db?useTimezone=true&serverTimezone=UTC";
+//    private final String USERNAME = "saviortech";
+//    private final String PASSWORD = "stpassword";
 
     private DataSource() {
         try {

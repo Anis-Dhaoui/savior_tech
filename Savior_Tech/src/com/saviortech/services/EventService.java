@@ -5,6 +5,7 @@
 package com.saviortech.services;
 
 import com.saviortech.models.Events;
+import com.saviortech.models.Participant;
 import com.saviortech.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -93,5 +94,10 @@ public class EventService implements InterfaceService<Events> {
             System.out.println(ex.getMessage());
         }
         return events;
+    }
+    
+    @Override
+    public void participer(Events o){
+        
     }
 }
