@@ -73,7 +73,7 @@ public class EventCardController implements Initializable {
         //Show Event details when click on the card
         image.setOnMouseClicked((MouseEvent event) -> {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../views/EventDetails.fxml"));
+            loader.setLocation(getClass().getResource("../views/events/EventDetails.fxml"));
 
             try {
                 loader.load();

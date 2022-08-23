@@ -6,7 +6,6 @@ package com.saviortech.controllers.events;
 
 import com.saviortech.models.Events;
 import com.saviortech.services.EventService;
-import java.awt.Insets;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -45,7 +43,7 @@ public class AfficherEventsController implements Initializable {
         try {
             for (int i = 0; i < es.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../views/EventCard.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("../views/events/EventCard.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 EventCardController itemController = fxmlLoader.getController();
