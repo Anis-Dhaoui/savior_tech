@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="370.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hightech.views.EditUserController">
+<AnchorPane id="AnchorPane" prefHeight="370.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.Jamila.EditUserController">
        <children>
       <Label fx:id="tfull" layoutX="21.0" layoutY="25.0" text="FullName" />
       <Label fx:id="tuser" layoutX="21.0" layoutY="60.0" text="UserName" />

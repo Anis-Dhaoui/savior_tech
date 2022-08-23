@@ -120,7 +120,7 @@ public class ShowUsersController implements Initializable {
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
                             user = userTable.getSelectionModel().getSelectedItem();
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("../views/EditUser.fxml"));
+                            loader.setLocation(getClass().getResource("../views/jamila/EditUser.fxml"));
                             try {
                                 loader.load();
                             } catch (IOException ex) {
