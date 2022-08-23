@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.saviortech.controllers;
+package com.saviortech.controllers.events;
 
 import com.saviortech.models.Events;
 import com.saviortech.services.EventService;
@@ -32,7 +32,7 @@ public class AfficherEventsController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    List<Events> es = new EventService().afficher();
+    List<Events> es = new EventService().ISEvents().afficher();
     @FXML
     private ScrollPane scrol;
 
