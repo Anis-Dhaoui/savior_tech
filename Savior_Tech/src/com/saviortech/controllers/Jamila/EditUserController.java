@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.saviortech.controllers;
+package com.saviortech.controllers.Jamila;
 
 
+import com.saviortech.controllers.Jamila.ShowUsersController;
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
 import java.net.URL;

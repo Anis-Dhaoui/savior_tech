@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.saviortech.controllers;
+package com.saviortech.controllers.Jamila;
 
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
@@ -120,7 +120,7 @@ public class ShowUsersController implements Initializable {
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
                             user = userTable.getSelectionModel().getSelectedItem();
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("EditUser.fxml"));
+                            loader.setLocation(getClass().getResource("../views/EditUser.fxml"));
                             try {
                                 loader.load();
                             } catch (IOException ex) {
