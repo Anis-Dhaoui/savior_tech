@@ -43,7 +43,7 @@ public class AfficherEventsController implements Initializable {
         try {
             for (int i = 0; i < es.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../views/events/EventCard.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("../../views/events/EventCard.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 EventCardController itemController = fxmlLoader.getController();

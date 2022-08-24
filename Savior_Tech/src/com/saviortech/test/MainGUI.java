@@ -23,7 +23,7 @@ public class MainGUI extends Application {
         primaryStage.setMaximized(true);
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("../views/jamila/ShowUsers.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../views/jamila/AfficherEvents.fxml"));
 
             Scene scene = new Scene(root);
 
