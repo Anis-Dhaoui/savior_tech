@@ -107,7 +107,7 @@ public class ShowUsersController implements Initializable {
                             user = userTable.getSelectionModel().getSelectedItem();
                             System.out.println(user);
                             int dialogButton = JOptionPane.YES_NO_OPTION;
-                            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this user", "Confirm", dialogButton);
+                            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this user","Confirm", dialogButton);
                             if (dialogResult == 0) {
                                 new ServiceUtilisateur().supprimer(user);
                                 refrechUserList();
@@ -120,7 +120,7 @@ public class ShowUsersController implements Initializable {
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
                             user = userTable.getSelectionModel().getSelectedItem();
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("../views/jamila/EditUser.fxml"));
+                            loader.setLocation(getClass().getResource("../../views/jamila/EditUser.fxml"));
                             try {
                                 loader.load();
                             } catch (IOException ex) {
