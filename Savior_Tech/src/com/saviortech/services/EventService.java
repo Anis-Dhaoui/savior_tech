@@ -89,11 +89,11 @@ public class EventService {
                     List<Participant> participants = new ArrayList<>();
 
                     try {
-                        String req = "SELECT us.* FROM user us INNER JOIN participant part ON part.user_id = us.user_id AND part.event_id = 1;";
+                        String req = "SELECT us.* FROM user us INNER JOIN participant part ON part.user_id = us.user_id AND part.event_id = 3;";
                         PreparedStatement pst = cnx.prepareStatement(req);
                         ResultSet res = pst.executeQuery();
                         while (res.next()) {
-                            //participants.add(new Participant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4)));
+                            participants.add(new Participant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4)));
                         }
                         System.out.println("Participants récupérées !");
                     } catch (SQLException ex) {

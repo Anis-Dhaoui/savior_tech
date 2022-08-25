@@ -60,6 +60,7 @@ public class EventDetailsController implements Initializable {
 
     @FXML
     private void participate(ActionEvent event) {
+        System.out.println("user participated");
     }
     
         void setLabel(String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int nbPart, int maxPart) throws IOException{
