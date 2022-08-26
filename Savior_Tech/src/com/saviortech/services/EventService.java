@@ -30,7 +30,7 @@ public class EventService {
                 try {
                     String req = "INSERT INTO events ("
                         + "event_title, event_image, event_category, event_description, event_start_date, event_end_date,"
-                        + "event_status, event_location, event_price,event_orgoniser, event_nb_participant, event_max_participant) "
+                        + "event_status, event_location, event_price,event_orgoniser, event_nb_participant, event_max_participant)"
                         + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
 
@@ -80,7 +80,16 @@ public class EventService {
         return new InterfaceService<Participant>() {
             @Override
             public void ajouter(Participant o) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                try {
+                    String req = "INSERT INTO participant (user_id, event_id) VALUES (?,?)";
+                    PreparedStatement pst = cnx.prepareStatement(req);
+                    pst.setInt(1, o.getUser_id());
+                    pst.setInt(2, o.getEvent_id());
+                    pst.executeUpdate();
+                    System.out.println("User participated successfully!");
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
 
             @Override
@@ -89,11 +98,11 @@ public class EventService {
                     List<Participant> participants = new ArrayList<>();
 
                     try {
-                        String req = "SELECT us.* FROM user us INNER JOIN participant part ON part.user_id = us.user_id AND part.event_id = 3;";
+                        String req = "SELECT us.* FROM user us INNER JOIN participant part ON part.user_id = us.user_id AND part.event_id = 3";
                         PreparedStatement pst = cnx.prepareStatement(req);
                         ResultSet res = pst.executeQuery();
                         while (res.next()) {
-                            participants.add(new Participant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4)));
+                            //participants.add(new Participant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4)));
                         }
                         System.out.println("Participants récupérées !");
                     } catch (SQLException ex) {
