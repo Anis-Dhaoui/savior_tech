@@ -4,6 +4,8 @@
  */
 package com.saviortech.controllers.events;
 
+import com.saviortech.models.Participant;
+import com.saviortech.services.EventService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -49,20 +51,31 @@ public class EventDetailsController implements Initializable {
     @FXML
     private HBox eventId;
 
+    private int ev_id;
+    EventService eveSer = new EventService();
+
     private EventCardController bufferImg = new EventCardController();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void participate(ActionEvent event) {
+        System.out.println("user participated");
+        eveSer.ISParticipant().ajouter(new Participant(3, ev_id));
+        System.out.println(ev_id);
     }
-    
-        void setLabel(String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int nbPart, int maxPart) throws IOException{
+
+    void setLabel(int id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int nbPart, int maxPart) throws IOException {
+
+        //purpose of getting event id is just to use it in participate method
+        ev_id = id;
+
         phTitle.setText(title);
         phImage.setImage(bufferImg.implementImage(image));
         phCategory.setText(category);
