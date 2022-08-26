@@ -81,12 +81,14 @@ public class EventCardController implements Initializable {
                 Logger.getLogger(EventDetailsController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            EventDetailsController ev = loader.getController();
             try {
-                ev.setLabel(events.getEvent_title(), events.getEvent_image(), events.getEvent_category(), events.getEvent_description(), events.getEvent_start_date(), events.getEvent_end_date(), events.getEvent_status(), events.getEvent_location(), events.getEvent_price(), events.getEvent_orgoniser(), events.getEvent_nb_participant(), events.getEvent_max_participant());
+                EventDetailsController ev = loader.getController();
+
+                ev.setLabel(events.getEvent_id(), events.getEvent_title(), events.getEvent_image(), events.getEvent_category(), events.getEvent_description(), events.getEvent_start_date(), events.getEvent_end_date(), events.getEvent_status(), events.getEvent_location(), events.getEvent_price(), events.getEvent_orgoniser(), events.getEvent_nb_participant(), events.getEvent_max_participant());
             } catch (IOException ex) {
                 Logger.getLogger(EventCardController.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             Parent parent = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
