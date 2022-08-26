@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.Jamila.loginController">
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="238.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="248.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../../../../../../1_PJp6uLe8RBeuJY9Vo4h1Og.jpeg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="360.0" style="-fx-background-color: #ECECE7;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="147.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../téléchargement.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="41.0" layoutY="168.0" text="Username" />
+            <Label layoutX="41.0" layoutY="212.0" text="Password" />
+            <TextField fx:id="tfusername" layoutX="114.0" layoutY="165.0" />
+            <TextField fx:id="tfpassword" layoutX="116.0" layoutY="209.0" />
+            <Label layoutX="56.0" layoutY="258.0" prefHeight="18.0" prefWidth="268.0" text="         Invalide login. Please try again" />
+            <Button fx:id="submitButton" layoutX="65.0" layoutY="292.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="251.0" text="Login" AnchorPane.bottomAnchor="78.0" />
+            <Button layoutX="64.0" layoutY="341.0" mnemonicParsing="false" onAction="#closing" prefHeight="29.0" prefWidth="252.0" text="close" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
