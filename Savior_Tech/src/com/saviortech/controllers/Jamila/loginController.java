@@ -57,7 +57,7 @@ public class loginController implements Initializable {
 
         if (tfusername.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your email id");
+                    "Please enter your username");
             return;
         }
         if (tfpassword.getText().isEmpty()) {
@@ -73,7 +73,7 @@ public class loginController implements Initializable {
         boolean flag = auth.validate(username, password);
 
         if (!flag) {
-            infoBox("Please enter correct Email and Password", null, "Failed");
+            infoBox("Please enter correct usename and Password", null, "Failed");
         } else {
             infoBox("Login Successful!", null, "Failed");
         }
