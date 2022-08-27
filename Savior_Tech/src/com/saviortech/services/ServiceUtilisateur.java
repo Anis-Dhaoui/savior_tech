@@ -123,7 +123,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         // try-with-resource statement will auto close the connection.
         
         try {
-            String req = "SELECT id from utilisisateur where username = ? AND password = ?";
+            String req = "SELECT * from utilisateur where username = ? AND password = ?";
             PreparedStatement pst = cnx.prepareStatement(req);
             // Step 2:Create a statement using connection object
 

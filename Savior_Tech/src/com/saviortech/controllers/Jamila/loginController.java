@@ -7,6 +7,7 @@ package com.saviortech.controllers.Jamila;
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
 import com.saviortech.utils.PasswordHash;
+import static com.saviortech.utils.PasswordHash.getMd5;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -66,7 +67,7 @@ public class loginController implements Initializable {
         }
 
         String username = tfusername.getText();
-        String password = tfpassword.getText();
+        String password = getMd5(tfpassword.getText());
 
         ServiceUtilisateur auth = new ServiceUtilisateur();
         boolean flag = auth.validate(username, password);
