@@ -6,6 +6,7 @@ package com.saviortech.controllers.events;
 
 import com.saviortech.models.Participant;
 import com.saviortech.services.EventService;
+import com.saviortech.services.InterfaceService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -87,5 +88,8 @@ public class EventDetailsController implements Initializable {
         phPrice.setText(String.valueOf(price));
         phOrgonizer.setText(orgoniser);
         phMaxPart.setText(String.valueOf(maxPart));
+
+        InterfaceService nbPart = new EventService().ISParticipant();
+        phNbPart.setText(String.valueOf(nbPart.participantNumber(ev_id)));
     }
 }
