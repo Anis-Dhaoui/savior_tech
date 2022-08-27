@@ -115,6 +115,14 @@ public class Utilisateur {
         this.speciality = speciality;
     }
 
+    public Utilisateur(String fullname, String role, String speciality) {
+        this.fullname = fullname;
+        this.role = role;
+        this.speciality = speciality;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Utilisateur{" + "id=" + id + ", fullname=" + fullname + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", domain=" + domain + ", interest=" + interest + ", speciality=" + speciality + "}\n";
