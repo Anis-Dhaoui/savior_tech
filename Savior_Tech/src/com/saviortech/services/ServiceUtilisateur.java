@@ -4,9 +4,9 @@
  */
 package com.saviortech.services;
 
-
 import com.saviortech.models.Utilisateur;
 import com.saviortech.utils.DataSource;
+import com.saviortech.utils.PasswordHash;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -94,4 +94,71 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         return userList;
     }
 
+    /*
+    public void auth(Utilisateur o) {
+        boolean isAuthenticated = false;
+
+        try {
+            String req = "SELECT id from utilisisateur where username = ? AND password = ?";
+            PreparedStatement pst = cnx.prepareStatement(req);
+
+            pst.setString(1, o.getUsername());
+            pst.setString(2, o.getPassword());
+
+            ResultSet res = pst.executeQuery();
+
+            System.out.println(res);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("*************TESTING****************");
+    }
+*/
+    
+    public boolean validate(String username, String password) throws SQLException {
+
+        // Step 1: Establishing a Connection and 
+        // try-with-resource statement will auto close the connection.
+        
+        try {
+            String req = "SELECT * from utilisateur where username = ? AND password = ?";
+            PreparedStatement pst = cnx.prepareStatement(req);
+            // Step 2:Create a statement using connection object
+
+            pst.setString(1, username);
+            pst.setString(2, password);
+
+            ResultSet res = pst.executeQuery();
+
+            System.out.println(pst);
+
+            if (res.next()) {
+                return true;
+            }
+
+
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+        return false;
+    }
+    
+        public static void printSQLException(SQLException ex) {
+        for (Throwable e: ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
+    }
 }

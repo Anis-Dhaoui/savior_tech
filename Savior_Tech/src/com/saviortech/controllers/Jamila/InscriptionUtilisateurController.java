@@ -6,6 +6,7 @@ package com.saviortech.controllers.Jamila;
 
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
+import com.saviortech.utils.PasswordHash;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -46,10 +47,13 @@ public class InscriptionUtilisateurController implements Initializable {
         // TODO
     }    
 
+    
+       // String hashedPass = "aaaaaaaaaaaa";
     @FXML
     private void SignupUser(ActionEvent event){
         ServiceUtilisateur su = new ServiceUtilisateur();
-        su.ajouter(new Utilisateur(labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), labelPassword.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
+        String hashedPass = new PasswordHash().getMd5(labelPassword.getText());
+        su.ajouter(new Utilisateur(labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), hashedPass, labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
         JOptionPane.showMessageDialog(null, "Merci pour votre inscription!");
     }
     

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/test/Main.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/events/EventDetailsController.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/test/MainGUI.java</file>
@@ -11,6 +12,10 @@
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/events/EventCardController.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/models/Participant.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/services/InterfaceService.java</file>
+=======
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/images/149071.png</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/images/User-icon-512x330.png</file>
+>>>>>>> b5e6ef9100d1656824da43aec70ce2caf0870cee
         </group>
     </open-files>
 </project-private>
