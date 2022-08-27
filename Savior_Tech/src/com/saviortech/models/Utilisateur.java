@@ -115,23 +115,15 @@ public class Utilisateur {
         this.speciality = speciality;
     }
 
-<<<<<<< HEAD
     public Utilisateur(String fullname, String role, String speciality) {
         this.fullname = fullname;
         this.role = role;
         this.speciality = speciality;
-=======
-    public Utilisateur(String username, String password) {
-        this.username = username;
-        this.password = password;
->>>>>>> b5e6ef9100d1656824da43aec70ce2caf0870cee
     }
-    
-    
 
     @Override
     public String toString() {
         return "Utilisateur{" + "id=" + id + ", fullname=" + fullname + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", domain=" + domain + ", interest=" + interest + ", speciality=" + speciality + "}\n";
     }
 
-    }
+}
