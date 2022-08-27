@@ -71,7 +71,7 @@ public class EventDetailsController implements Initializable {
         System.out.println(ev_id);
     }
 
-    void setLabel(int id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int nbPart, int maxPart) throws IOException {
+    void setLabel(int id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int maxPart) throws IOException {
 
         //purpose of getting event id is just to use it in participate method
         ev_id = id;
@@ -86,7 +86,6 @@ public class EventDetailsController implements Initializable {
         phLocation.setText(location);
         phPrice.setText(String.valueOf(price));
         phOrgonizer.setText(orgoniser);
-        phNbPart.setText(String.valueOf(nbPart));
         phMaxPart.setText(String.valueOf(maxPart));
     }
 }

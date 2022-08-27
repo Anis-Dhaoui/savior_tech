@@ -23,10 +23,9 @@ public class Events {
     private String event_location;
     private int event_price;
     private String event_orgoniser;
-    private int event_nb_participant;
     private int event_max_participant;
 
-    public Events(String event_title, String event_image, String event_category, String event_description, Date event_start_date, Date event_end_date, String event_status, String event_location, int event_price, String event_orgoniser, int event_nb_participant, int event_max_participant) {
+    public Events(String event_title, String event_image, String event_category, String event_description, Date event_start_date, Date event_end_date, String event_status, String event_location, int event_price, String event_orgoniser, int event_max_participant) {
         this.event_title = event_title;
         this.event_image = event_image;
         this.event_category = event_category;
@@ -37,11 +36,10 @@ public class Events {
         this.event_location = event_location;
         this.event_price = event_price;
         this.event_orgoniser = event_orgoniser;
-        this.event_nb_participant = event_nb_participant;
         this.event_max_participant = event_max_participant;
     }
 
-    public Events(int event_id, String event_title, String event_image, String event_category, String event_description, Date event_start_date, Date event_end_date, String event_status, String event_location, int event_price, String event_orgoniser, int event_nb_participant, int event_max_participant) {
+    public Events(int event_id, String event_title, String event_image, String event_category, String event_description, Date event_start_date, Date event_end_date, String event_status, String event_location, int event_price, String event_orgoniser, int event_max_participant) {
         this.event_id = event_id;
         this.event_title = event_title;
         this.event_image = event_image;
@@ -53,7 +51,6 @@ public class Events {
         this.event_location = event_location;
         this.event_price = event_price;
         this.event_orgoniser = event_orgoniser;
-        this.event_nb_participant = event_nb_participant;
         this.event_max_participant = event_max_participant;
     }
 
@@ -61,8 +58,6 @@ public class Events {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
-    
     public int getEvent_id() {
         return event_id;
     }
@@ -151,14 +146,6 @@ public class Events {
         this.event_orgoniser = event_orgoniser;
     }
 
-    public int getEvent_nb_participant() {
-        return event_nb_participant;
-    }
-
-    public void setEvent_nb_participant(int event_nb_participant) {
-        this.event_nb_participant = event_nb_participant;
-    }
-
     public int getEvent_max_participant() {
         return event_max_participant;
     }
@@ -169,7 +156,7 @@ public class Events {
 
     @Override
     public String toString() {
-        return "Events{" + "event_id=" + event_id + ", event_title=" + event_title + ", event_image=" + event_image + ", event_category=" + event_category + ", event_description=" + event_description + ", event_start_date=" + event_start_date + ", event_end_date=" + event_end_date + ", event_status=" + event_status + ", event_location=" + event_location + ", event_price=" + event_price + ", event_orgoniser=" + event_orgoniser + ", event_nb_participant=" + event_nb_participant + ", event_max_participant=" + event_max_participant + '}'+"\n";
+        return "Events{" + "event_id=" + event_id + ", event_title=" + event_title + ", event_image=" + event_image + ", event_category=" + event_category + ", event_description=" + event_description + ", event_start_date=" + event_start_date + ", event_end_date=" + event_end_date + ", event_status=" + event_status + ", event_location=" + event_location + ", event_price=" + event_price + ", event_orgoniser=" + event_orgoniser + ", event_max_participant=" + event_max_participant + '}' + "\n";
     }
 
     public Events get(int j) {

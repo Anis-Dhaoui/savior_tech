@@ -67,7 +67,7 @@ public class EventCardController implements Initializable {
         image.setImage(implementImage(events.getEvent_image()));
         titre.setText(events.getEvent_title());
         categorie.setText(events.getEvent_category());
-        nb_part.setText(String.valueOf(events.getEvent_nb_participant()));
+//        nb_part.setText(String.valueOf(events.getEvent_nb_participant()));
         date.setText(String.valueOf(events.getEvent_start_date()));
 
         //Show Event details when click on the card
@@ -84,7 +84,7 @@ public class EventCardController implements Initializable {
             try {
                 EventDetailsController ev = loader.getController();
 
-                ev.setLabel(events.getEvent_id(), events.getEvent_title(), events.getEvent_image(), events.getEvent_category(), events.getEvent_description(), events.getEvent_start_date(), events.getEvent_end_date(), events.getEvent_status(), events.getEvent_location(), events.getEvent_price(), events.getEvent_orgoniser(), events.getEvent_nb_participant(), events.getEvent_max_participant());
+                ev.setLabel(events.getEvent_id(), events.getEvent_title(), events.getEvent_image(), events.getEvent_category(), events.getEvent_description(), events.getEvent_start_date(), events.getEvent_end_date(), events.getEvent_status(), events.getEvent_location(), events.getEvent_price(), events.getEvent_orgoniser(), events.getEvent_max_participant());
             } catch (IOException ex) {
                 Logger.getLogger(EventCardController.class.getName()).log(Level.SEVERE, null, ex);
             }

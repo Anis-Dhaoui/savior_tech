@@ -30,8 +30,8 @@ public class EventService {
                 try {
                     String req = "INSERT INTO events ("
                         + "event_title, event_image, event_category, event_description, event_start_date, event_end_date,"
-                        + "event_status, event_location, event_price,event_orgoniser, event_nb_participant, event_max_participant)"
-                        + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                        + "event_status, event_location, event_price,event_orgoniser, event_max_participant)"
+                        + " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
 
                     pst.setString(1, o.getEvent_title());
@@ -44,8 +44,7 @@ public class EventService {
                     pst.setString(8, o.getEvent_location());
                     pst.setInt(9, o.getEvent_price());
                     pst.setString(10, o.getEvent_orgoniser());
-                    pst.setInt(11, o.getEvent_nb_participant());
-                    pst.setInt(12, o.getEvent_max_participant());
+                    pst.setInt(11, o.getEvent_max_participant());
 
                     pst.executeUpdate();
                     System.out.println("Event ajoutée !");
@@ -63,7 +62,7 @@ public class EventService {
                     PreparedStatement pst = cnx.prepareStatement(req);
                     ResultSet res = pst.executeQuery();
                     while (res.next()) {
-                        events.add(new Events(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6), res.getDate(7), res.getString(8), res.getString(9), res.getInt(10), res.getString(11), res.getInt(12), res.getInt(13)));
+                        events.add(new Events(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6), res.getDate(7), res.getString(8), res.getString(9), res.getInt(10), res.getString(11), res.getInt(12)));
                     }
                     System.out.println("Events récupérées !");
                 } catch (SQLException ex) {
