@@ -76,6 +76,9 @@ public class AddEventController implements Initializable {
         );
         
         JOptionPane.showMessageDialog(null, "Nouveau evennement ajouté");
+        
+        title.clear(); image.clear(); category.clear(); description.clear(); start_dte.setValue(null);
+        end_dte.setValue(null); status_evt.clear(); local.clear(); price_event.clear(); organiser_evet.clear(); nbr_max.clear();
     }
 
 }

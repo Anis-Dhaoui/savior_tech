@@ -19,4 +19,5 @@ public interface InterfaceService<T> {
 //    public void supprimer(T o);
 //
     public List<T> afficher();
+    public int participantNumber(int x);
 }

@@ -5,6 +5,9 @@
 package com.saviortech.controllers.events;
 
 import com.saviortech.models.Events;
+import com.saviortech.models.Participant;
+import com.saviortech.services.EventService;
+import com.saviortech.services.InterfaceService;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -67,7 +70,10 @@ public class EventCardController implements Initializable {
         image.setImage(implementImage(events.getEvent_image()));
         titre.setText(events.getEvent_title());
         categorie.setText(events.getEvent_category());
-//        nb_part.setText(String.valueOf(events.getEvent_nb_participant()));
+        
+        InterfaceService nbPart = new EventService().ISParticipant();
+        nb_part.setText(String.valueOf(nbPart.participantNumber(events.getEvent_id())));
+        
         date.setText(String.valueOf(events.getEvent_start_date()));
 
         //Show Event details when click on the card

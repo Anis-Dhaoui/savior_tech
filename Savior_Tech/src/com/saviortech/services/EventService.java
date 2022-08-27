@@ -70,10 +70,14 @@ public class EventService {
                 }
                 return events;
             }
+
+            @Override
+            public int participantNumber(int nb) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
         };
     }
 
-    
     //Participant Service
     public InterfaceService<Participant> ISParticipant() {
         return new InterfaceService<Participant>() {
@@ -108,6 +112,27 @@ public class EventService {
                         System.out.println(ex.getMessage());
                     }
                     return participants;
+                }
+            }
+
+            @Override
+            public int participantNumber(int nb) {
+                {
+                    int part_nb = 0;
+                    try {
+                        String req = "SELECT COUNT(*) FROM user us INNER JOIN participant part ON part.user_id = us.user_id AND part.event_id = ?";
+                        PreparedStatement pst = cnx.prepareStatement(req);
+                        pst.setInt(1, nb);
+                        ResultSet res = pst.executeQuery();
+                        while (res.next()) {
+                            System.out.println(res.getInt(1));
+                            part_nb = res.getInt(1);
+                        }
+
+                    } catch (SQLException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                    return part_nb;
                 }
             }
         };
