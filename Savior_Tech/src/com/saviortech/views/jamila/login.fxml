@@ -14,7 +14,7 @@
          <children>
             <ImageView fitHeight="400.0" fitWidth="248.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../../../../../1_PJp6uLe8RBeuJY9Vo4h1Og.jpeg" />
+                  <Image url="@../../images/1_PJp6uLe8RBeuJY9Vo4h1Og.jpeg" />
                </image>
             </ImageView>
          </children>
@@ -25,7 +25,7 @@
          <children>
             <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="147.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../téléchargement.png" />
+                  <Image url="@../../images/téléchargement.png" />
                </image>
             </ImageView>
             <Label layoutX="41.0" layoutY="168.0" text="Username" />
