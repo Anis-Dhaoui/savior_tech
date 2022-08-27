@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author aissa
+ * @author LENOVO
  */
 public interface IService<T> {
 

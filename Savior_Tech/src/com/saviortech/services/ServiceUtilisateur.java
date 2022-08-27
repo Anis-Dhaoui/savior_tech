@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author aissa
+ * @author LENOVO
  */
 public class ServiceUtilisateur implements IService<Utilisateur> {
 

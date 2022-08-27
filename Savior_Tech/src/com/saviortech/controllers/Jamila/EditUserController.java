@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 /**
  * FXML Controller class
  *
- * @author freec
+ * @author Lenovo
  */
 public class EditUserController implements Initializable {
 
