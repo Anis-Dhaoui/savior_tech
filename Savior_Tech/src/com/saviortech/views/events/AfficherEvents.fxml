@@ -10,25 +10,19 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.events.AfficherEventsController">
-    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-        <children>
-            <ScrollPane fx:id="scrol" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" HBox.hgrow="ALWAYS">
-                <content>
-                    <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
-                        <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                        </rowConstraints>
-                    </GridPane>
-                </content>
-                <HBox.margin>
-                    <Insets top="10.0" />
-                </HBox.margin>
-            </ScrollPane>
-        </children>
-    </HBox>
+<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.events.AfficherEventsController">
+      <ScrollPane fx:id="scrol" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+          <content>
+              <GridPane fx:id="grid" prefHeight="87.0" prefWidth="105.0">
+                  <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  </rowConstraints>
+            <padding>
+               <Insets bottom="5.0" left="117.0" right="5.0" top="5.0" />
+            </padding>
+              </GridPane>
+          </content>
+      </ScrollPane>
 </AnchorPane>

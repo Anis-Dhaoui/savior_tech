@@ -5,13 +5,9 @@
         <group>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/test/Main.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/models/Events.java</file>
-            <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/events/EventDetailsController.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/test/MainGUI.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/events/AfficherEventsController.java</file>
-            <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/views/events/AddEvent.fxml</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/services/EventService.java</file>
-            <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/models/Participant.java</file>
-            <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/views/events/AddEventController.java</file>
         </group>
     </open-files>
 </project-private>
