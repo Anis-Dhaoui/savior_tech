@@ -162,7 +162,7 @@
                         <Text fx:id="phMaxPart" fill="#868282" layoutX="63.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" wrappingWidth="194.298828125" />
                         <FontAwesomeIconView fill="#ffbf10" glyphName="GROUP" layoutX="16.0" layoutY="456.0" size="25.0" />
                         <Separator layoutX="17.0" layoutY="473.0" prefHeight="3.0" prefWidth="246.0" />
-                        <Text fill="#07a7e1" layoutX="155.0" layoutY="410.0" onMouseClicked="#showParticipants" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: HAND;" text="Show Participants" wrappingWidth="98.13671875" />
+                        <Text fx:id="phShowPart" fill="#07a7e1" layoutX="155.0" layoutY="410.0" onMouseClicked="#showParticipants" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: HAND;" text="Show Participants" wrappingWidth="98.13671875" />
                      </children>
                   </AnchorPane>
                </children>

@@ -4,6 +4,8 @@
  */
 package com.saviortech.controllers.events;
 
+import com.saviortech.controllers.Jamila.EditUserController;
+import com.saviortech.controllers.Jamila.ShowUsersController;
 import com.saviortech.models.Participant;
 import com.saviortech.services.EventService;
 import com.saviortech.services.InterfaceService;
@@ -11,13 +13,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -52,6 +61,8 @@ public class EventDetailsController implements Initializable {
     private Text phMaxPart;
     @FXML
     private HBox eventId;
+    @FXML
+    private Text phShowPart;
 
     private int ev_id;
     EventService eveSer = new EventService();
@@ -96,5 +107,18 @@ public class EventDetailsController implements Initializable {
 
     @FXML
     private void showParticipants(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../../views/events/ShowParticipants.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(ShowUsersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
     }
 }
