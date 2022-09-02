@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
@@ -91,5 +92,9 @@ public class EventDetailsController implements Initializable {
 
         InterfaceService nbPart = new EventService().ISParticipant();
         phNbPart.setText(String.valueOf(nbPart.participantNumber(ev_id)));
+    }
+
+    @FXML
+    private void showParticipants(MouseEvent event) {
     }
 }
