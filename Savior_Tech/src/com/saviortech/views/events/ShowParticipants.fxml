@@ -4,10 +4,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="206.0" prefWidth="535.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.saviortech.controllers.events.ShowParticipantsController">
+<AnchorPane id="AnchorPane" prefHeight="206.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.events.ShowParticipantsController">
    <children>
-      <TableView prefHeight="205.0" prefWidth="535.0" style="-fx-background-color: moccasin;">
+      <TableView fx:id="partTable" prefHeight="205.0" prefWidth="535.0" style="-fx-background-color: moccasin;">
         <columns>
           <TableColumn fx:id="colFullName" prefWidth="198.0" text="Full Name" />
           <TableColumn fx:id="colRole" prefWidth="160.0" text="Role" />

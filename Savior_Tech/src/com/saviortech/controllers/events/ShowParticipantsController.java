@@ -4,11 +4,16 @@
  */
 package com.saviortech.controllers.events;
 
+import com.saviortech.models.Utilisateur;
+import com.saviortech.services.EventService;
+import com.saviortech.services.ServiceUtilisateur;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -18,18 +23,23 @@ import javafx.scene.control.TableColumn;
 public class ShowParticipantsController implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> colFullName;
+    private TableColumn<Utilisateur, String> colFullName;
     @FXML
-    private TableColumn<?, ?> colRole;
+    private TableColumn<Utilisateur, String> colRole;
     @FXML
-    private TableColumn<?, ?> colSpeciality;
+    private TableColumn<Utilisateur, String> colSpeciality;
+    @FXML
+    private TableView<Utilisateur> partTable;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
+    Utilisateur partList = null;
+    EventDetailsController evId = new EventDetailsController();
+
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        partTable.setItems(new EventService().ISParticipant().getParticipants(evId.ev_id));
+
+        colFullName.setCellValueFactory(new PropertyValueFactory<>("fullname"));
+        colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
+        colSpeciality.setCellValueFactory(new PropertyValueFactory<>("speciality"));
+    }
+
 }

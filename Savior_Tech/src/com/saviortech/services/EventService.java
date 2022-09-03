@@ -6,6 +6,7 @@ package com.saviortech.services;
 
 import com.saviortech.models.Events;
 import com.saviortech.models.Participant;
+import com.saviortech.models.Utilisateur;
 import com.saviortech.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,13 +14,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author freec
  */
 public class EventService {
-
+    
     private Connection cnx = DataSource.getIstance().getCnx();
 
     //Events Service
@@ -33,7 +36,7 @@ public class EventService {
                         + "event_status, event_location, event_price,event_orgoniser, event_max_participant)"
                         + " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
-
+                    
                     pst.setString(1, o.getEvent_title());
                     pst.setString(2, o.getEvent_image());
                     pst.setString(3, o.getEvent_category());
@@ -45,18 +48,18 @@ public class EventService {
                     pst.setInt(9, o.getEvent_price());
                     pst.setString(10, o.getEvent_orgoniser());
                     pst.setInt(11, o.getEvent_max_participant());
-
+                    
                     pst.executeUpdate();
                     System.out.println("Event ajoutée !");
                 } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
                 }
             }
-
+            
             @Override
             public List<Events> afficher() {
                 List<Events> events = new ArrayList<>();
-
+                
                 try {
                     String req = "SELECT * FROM events";
                     PreparedStatement pst = cnx.prepareStatement(req);
@@ -70,9 +73,14 @@ public class EventService {
                 }
                 return events;
             }
-
+            
             @Override
             public int participantNumber(int nb) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+            
+            @Override
+            public ObservableList<Utilisateur> getParticipants(int id) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };
@@ -94,33 +102,13 @@ public class EventService {
                     System.out.println(ex.getMessage());
                 }
             }
-
-            @Override
-            public List<Participant> afficher() {
-                {
-                    List<Participant> participants = new ArrayList<>();
-
-                    try {
-                        String req = "SELECT us.* FROM user us INNER JOIN participant part ON part.user_id = us.user_id AND part.event_id = 3";
-                        PreparedStatement pst = cnx.prepareStatement(req);
-                        ResultSet res = pst.executeQuery();
-                        while (res.next()) {
-                            //participants.add(new Participant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4)));
-                        }
-                        System.out.println("Participants récupérées !");
-                    } catch (SQLException ex) {
-                        System.out.println(ex.getMessage());
-                    }
-                    return participants;
-                }
-            }
-
+            
             @Override
             public int participantNumber(int nb) {
                 {
                     int part_nb = 0;
                     try {
-                        String req = "SELECT COUNT(*) FROM user us INNER JOIN participant part ON part.user_id = us.user_id AND part.event_id = ?";
+                        String req = "SELECT COUNT(*) FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id = ?";
                         PreparedStatement pst = cnx.prepareStatement(req);
                         pst.setInt(1, nb);
                         ResultSet res = pst.executeQuery();
@@ -128,12 +116,37 @@ public class EventService {
                             System.out.println(res.getInt(1));
                             part_nb = res.getInt(1);
                         }
-
+                        
                     } catch (SQLException ex) {
                         System.out.println(ex.getMessage());
                     }
                     return part_nb;
                 }
+            }
+            
+            @Override
+            public ObservableList<Utilisateur> getParticipants(int id) {
+                ObservableList<Utilisateur> participantList = FXCollections.observableArrayList();
+                
+                try {
+                    String req = "SELECT fullname, role, speciality FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id = ?";
+                    PreparedStatement pst = cnx.prepareStatement(req);
+                    pst.setInt(1, id);
+                    ResultSet res = pst.executeQuery();
+                    while (res.next()) {
+                        System.out.println(res.getString(1));
+                        participantList.add(new Utilisateur(res.getString(1), res.getString(2), res.getString(3)));
+                    }
+                    System.out.println("Participants récupérées !");
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                return participantList;
+            }
+            
+            @Override
+            public List<Participant> afficher() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };
     }

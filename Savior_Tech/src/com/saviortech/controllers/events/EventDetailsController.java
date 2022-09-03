@@ -64,7 +64,7 @@ public class EventDetailsController implements Initializable {
     @FXML
     private Text phShowPart;
 
-    private int ev_id;
+    public static int ev_id;
     EventService eveSer = new EventService();
 
     private EventCardController bufferImg = new EventCardController();
