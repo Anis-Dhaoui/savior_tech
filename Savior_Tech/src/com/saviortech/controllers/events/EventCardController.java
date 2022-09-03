@@ -6,7 +6,7 @@ package com.saviortech.controllers.events;
 
 import com.saviortech.models.Events;
 import com.saviortech.models.Participant;
-import com.saviortech.services.EventService;
+import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -71,7 +71,7 @@ public class EventCardController implements Initializable {
         titre.setText(events.getEvent_title());
         categorie.setText(events.getEvent_category());
         
-        InterfaceService nbPart = new EventService().ISParticipant();
+        InterfaceService nbPart = new EventPartService().ISParticipant();
         nb_part.setText(String.valueOf(nbPart.participantNumber(events.getEvent_id())));
         
         date.setText(String.valueOf(events.getEvent_start_date()));

@@ -7,7 +7,7 @@ package com.saviortech.controllers.events;
 import com.saviortech.controllers.Jamila.EditUserController;
 import com.saviortech.controllers.Jamila.ShowUsersController;
 import com.saviortech.models.Participant;
-import com.saviortech.services.EventService;
+import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
 import java.io.IOException;
 import java.net.URL;
@@ -65,7 +65,7 @@ public class EventDetailsController implements Initializable {
     private Text phShowPart;
 
     public static int ev_id;
-    EventService eveSer = new EventService();
+    EventPartService eveSer = new EventPartService();
 
     private EventCardController bufferImg = new EventCardController();
 
@@ -101,7 +101,7 @@ public class EventDetailsController implements Initializable {
         phOrgonizer.setText(orgoniser);
         phMaxPart.setText(String.valueOf(maxPart));
 
-        InterfaceService nbPart = new EventService().ISParticipant();
+        InterfaceService nbPart = new EventPartService().ISParticipant();
         phNbPart.setText(String.valueOf(nbPart.participantNumber(ev_id)));
     }
 

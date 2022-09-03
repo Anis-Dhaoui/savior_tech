@@ -5,7 +5,7 @@
 package com.saviortech.views.events;
 
 import com.saviortech.models.Events;
-import com.saviortech.services.EventService;
+import com.saviortech.services.EventPartService;
 import java.net.URL;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -59,7 +59,7 @@ public class AddEventController implements Initializable {
 
     @FXML
     private void AddEvent(ActionEvent event) {
-        EventService es = new EventService();
+        EventPartService es = new EventPartService();
         Instant instant_s = Instant.from(start_dte.getValue().atStartOfDay(ZoneId.systemDefault()));
         Date s_date = Date.from(instant_s);
 

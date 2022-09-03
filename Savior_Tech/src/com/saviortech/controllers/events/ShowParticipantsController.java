@@ -5,7 +5,7 @@
 package com.saviortech.controllers.events;
 
 import com.saviortech.models.Utilisateur;
-import com.saviortech.services.EventService;
+import com.saviortech.services.EventPartService;
 import com.saviortech.services.ServiceUtilisateur;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,7 +35,7 @@ public class ShowParticipantsController implements Initializable {
     EventDetailsController evId = new EventDetailsController();
 
     public void initialize(URL url, ResourceBundle rb) {
-        partTable.setItems(new EventService().ISParticipant().getParticipants(evId.ev_id));
+        partTable.setItems(new EventPartService().ISParticipant().getParticipants(evId.ev_id));
 
         colFullName.setCellValueFactory(new PropertyValueFactory<>("fullname"));
         colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
