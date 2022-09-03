@@ -83,7 +83,8 @@ public class EventDetailsController implements Initializable {
     @FXML
     private void participate(ActionEvent event) {
         System.out.println("user participated");
-        partBtn.setText("hahahaha");
+        partBtn.setText("Participé");
+        partBtn.setDisable(true);
 //        eveSer.ISParticipant().ajouter(new Participant(3, ev_id));
 //        System.out.println(ev_id);
     }
