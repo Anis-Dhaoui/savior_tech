@@ -1,6 +1,2 @@
-Savior_Tech/
-+ build/
-+ src/com/saviortech/test/
-
-#Ignoring vscode setting folder
-.vscode/
+Savior_Tech/build/
+Savior_Tech/src/com/saviortech/test/
