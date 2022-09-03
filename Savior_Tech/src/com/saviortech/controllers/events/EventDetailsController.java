@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -68,6 +69,8 @@ public class EventDetailsController implements Initializable {
     EventPartService eveSer = new EventPartService();
 
     private EventCardController bufferImg = new EventCardController();
+    @FXML
+    private Button partBtn;
 
     /**
      * Initializes the controller class.
@@ -80,8 +83,9 @@ public class EventDetailsController implements Initializable {
     @FXML
     private void participate(ActionEvent event) {
         System.out.println("user participated");
-        eveSer.ISParticipant().ajouter(new Participant(3, ev_id));
-        System.out.println(ev_id);
+        partBtn.setText("hahahaha");
+//        eveSer.ISParticipant().ajouter(new Participant(3, ev_id));
+//        System.out.println(ev_id);
     }
 
     void setLabel(int id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int maxPart) throws IOException {
