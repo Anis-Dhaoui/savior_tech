@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
@@ -44,6 +45,12 @@ public class EditUserController implements Initializable {
      */
     int userId;
     private ShowUsersController suc = new ShowUsersController();
+    @FXML
+    private Label tfull;
+    @FXML
+    private Label tuser;
+    @FXML
+    private Button buttonchange;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

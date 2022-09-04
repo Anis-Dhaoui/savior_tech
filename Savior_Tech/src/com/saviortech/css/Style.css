@@ -15,3 +15,26 @@
     -fx-background-color:beige;
     -fx-cursor:hand;
 }
+.login-pane{
+    -fx-background-color:beige;
+}
+.submitButton:hover{
+    -fx-background-color:#2E64E8 !important;
+    -fx-cursor:hand;
+
+}
+.submitclosing:hover{
+    -fx-background-color:#F02222;
+    -fx-cursor:hand;
+}
+
+.buttonchange{
+    -fx-background-color:#FFFFFF;
+   
+    -fx-border-radius: 7px;
+    -fx-font-size: 1.4em;
+    -fx-cursor: hand;  
+}
+.buttonchange:hover{
+  -fx-background-color :red;
+}
