@@ -4,6 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -12,7 +14,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.Jamila.ShowUsersController">
        <children>
-      <TableView fx:id="userTable" fixedCellSize="0.0" layoutX="11.0" layoutY="128.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="237.0" prefWidth="761.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="125.0">
+     
+      <TableView fx:id="userTable" fixedCellSize="0.0" layoutX="61.0" layoutY="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="237.0" prefWidth="761.0" style="-fx-background-color: transprent;" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="121.0">
         <columns>
           <TableColumn fx:id="colId" maxWidth="70.0" prefWidth="25.0" text="ID" />
           <TableColumn fx:id="colFullname" maxWidth="100.0" prefWidth="89.0" text="FullName" />
