@@ -6,7 +6,7 @@ package com.saviortech.controllers.events;
 
 import com.saviortech.models.Events;
 import com.saviortech.services.EventPartService;
-import com.saviortech.utils.CheckingErrors;
+import com.saviortech.utils.PopupMessage;
 import java.net.URL;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -79,7 +79,7 @@ public class AddEventController implements Initializable {
             || start_dte.getValue() == null || end_dte.getValue() == null || status_evt.getText().isEmpty() || local.getText().isEmpty()
             || price_event.getText().isEmpty() || organiser_evet.getText().isEmpty() || nbr_max.getText().isEmpty()) {
             
-            CheckingErrors.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "All fields are required!");
+            PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "All fields are required!");
             
         } else {
             Instant instant_s = Instant.from(start_dte.getValue().atStartOfDay(ZoneId.systemDefault()));
@@ -98,7 +98,7 @@ public class AddEventController implements Initializable {
                 organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
             );
 
-            CheckingErrors.infoBox("Event Added Successfully!", null, "Success");
+            PopupMessage.infoBox("Event Added Successfully!", null, "Success");
 
             title.clear();
             image.clear();

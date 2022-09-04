@@ -9,6 +9,7 @@ import com.saviortech.controllers.Jamila.ShowUsersController;
 import com.saviortech.models.Participant;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
+import com.saviortech.utils.PopupMessage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -64,31 +65,37 @@ public class EventDetailsController implements Initializable {
     private HBox eventId;
     @FXML
     private Text phShowPart;
-
+    @FXML
+    private Button partBtn;
+    
     public static int ev_id;
     EventPartService eveSer = new EventPartService();
 
     private EventCardController bufferImg = new EventCardController();
-    @FXML
-    private Button partBtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        System.out.println(eveSer.ISParticipant().checkIfParticipated(3, ev_id));
+        
+        if (eveSer.ISParticipant().checkIfParticipated(3, ev_id)) {
+            partBtn.setText("Participé");
+            partBtn.setDisable(true);
+        }
     }
 
     @FXML
     private void participate(ActionEvent event) {
         System.out.println("user participated");
+        eveSer.ISParticipant().ajouter(new Participant(3, ev_id));
         partBtn.setText("Participé");
         partBtn.setDisable(true);
-//        eveSer.ISParticipant().ajouter(new Participant(3, ev_id));
-//        System.out.println(ev_id);
+        PopupMessage.infoBox("Participé avec succés!", null, "Success");
     }
-
+    
     void setLabel(int id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int maxPart) throws IOException {
 
         //purpose of getting event id is just to use it in participate method

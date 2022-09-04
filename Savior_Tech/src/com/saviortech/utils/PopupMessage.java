@@ -11,7 +11,7 @@ import javafx.stage.Window;
  *
  * @author freec
  */
-public class CheckingErrors {
+public class PopupMessage {
 
     public static void infoBox(String infoMessage, String headerText, String title) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
