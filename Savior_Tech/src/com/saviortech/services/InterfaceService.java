@@ -25,4 +25,5 @@ public interface InterfaceService<T> {
     public int participantNumber(int x);
     
     public ObservableList<Utilisateur> getParticipants(int id);
+    public boolean checkIfParticipated(int userId, int eventId);
 }

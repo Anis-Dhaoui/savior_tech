@@ -22,7 +22,7 @@ import javafx.collections.ObservableList;
  * @author freec
  */
 public class EventPartService {
-    
+
     private Connection cnx = DataSource.getIstance().getCnx();
 
     //Events Service
@@ -36,7 +36,7 @@ public class EventPartService {
                         + "event_status, event_location, event_price,event_orgoniser, event_max_participant)"
                         + " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
-                    
+
                     pst.setString(1, o.getEvent_title());
                     pst.setString(2, o.getEvent_image());
                     pst.setString(3, o.getEvent_category());
@@ -48,18 +48,18 @@ public class EventPartService {
                     pst.setInt(9, o.getEvent_price());
                     pst.setString(10, o.getEvent_orgoniser());
                     pst.setInt(11, o.getEvent_max_participant());
-                    
+
                     pst.executeUpdate();
                     System.out.println("Event ajoutée !");
                 } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
                 }
             }
-            
+
             @Override
             public List<Events> afficher() {
                 List<Events> events = new ArrayList<>();
-                
+
                 try {
                     String req = "SELECT * FROM events";
                     PreparedStatement pst = cnx.prepareStatement(req);
@@ -73,14 +73,19 @@ public class EventPartService {
                 }
                 return events;
             }
-            
+
             @Override
             public int participantNumber(int nb) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
-            
+
             @Override
             public ObservableList<Utilisateur> getParticipants(int id) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public boolean checkIfParticipated(int userId, int eventId) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };
@@ -102,7 +107,7 @@ public class EventPartService {
                     System.out.println(ex.getMessage());
                 }
             }
-            
+
             @Override
             public int participantNumber(int nb) {
                 {
@@ -113,28 +118,26 @@ public class EventPartService {
                         pst.setInt(1, nb);
                         ResultSet res = pst.executeQuery();
                         while (res.next()) {
-                            System.out.println(res.getInt(1));
                             part_nb = res.getInt(1);
                         }
-                        
+
                     } catch (SQLException ex) {
                         System.out.println(ex.getMessage());
                     }
                     return part_nb;
                 }
             }
-            
+
             @Override
             public ObservableList<Utilisateur> getParticipants(int id) {
                 ObservableList<Utilisateur> participantList = FXCollections.observableArrayList();
-                
+
                 try {
                     String req = "SELECT fullname, role, speciality FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id = ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
                     pst.setInt(1, id);
                     ResultSet res = pst.executeQuery();
                     while (res.next()) {
-                        System.out.println(res.getString(1));
                         participantList.add(new Utilisateur(res.getString(1), res.getString(2), res.getString(3)));
                     }
                     System.out.println("Participants récupérées !");
@@ -143,7 +146,26 @@ public class EventPartService {
                 }
                 return participantList;
             }
-            
+
+            @Override
+            public boolean checkIfParticipated(int userId, int eventId) {
+                try {
+                    String req = "SELECT * FROM participant WHERE user_id = ? and event_id = ?";
+                    PreparedStatement pst = cnx.prepareStatement(req);
+                    pst.setInt(1, userId);
+                    pst.setInt(2, eventId);
+                    ResultSet res = pst.executeQuery();
+
+                    if (res.next()) {
+                        return true;
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+
+                return false;
+            }
+
             @Override
             public List<Participant> afficher() {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
