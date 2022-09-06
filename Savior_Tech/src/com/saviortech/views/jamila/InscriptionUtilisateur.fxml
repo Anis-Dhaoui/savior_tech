@@ -55,7 +55,7 @@
       <TextField fx:id="labelDomain" layoutX="96.0" layoutY="308.0" />
       <TextField fx:id="labelInterest" layoutX="96.0" layoutY="337.0" />
       <TextField fx:id="labelSpeciality" layoutX="96.0" layoutY="367.0" />
-      <Button layoutX="291.0" layoutY="217.0" mnemonicParsing="false" onAction="#SignupUser" prefHeight="37.0" prefWidth="123.0" style="-fx-background-color: orange;" text="S'inscrire">
+      <Button fx:id="inscription" layoutX="291.0" layoutY="217.0" mnemonicParsing="false" onAction="#SignupUser" prefHeight="37.0" prefWidth="123.0" style="-fx-background-color: orange;" styleClass="inscription" stylesheets="@../../css/Style.css" text="S'inscrire">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>

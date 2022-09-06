@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 
@@ -38,6 +39,8 @@ public class InscriptionUtilisateurController implements Initializable {
     private TextField labelInterest;
     @FXML
     private TextField labelSpeciality;
+    @FXML
+    private Button inscription;
 
     /**
      * Initializes the controller class.
