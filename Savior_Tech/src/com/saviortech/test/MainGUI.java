@@ -20,11 +20,11 @@ public class MainGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setMaximized(true);
+//        primaryStage.setMaximized(true);
         try {
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("../views/jamila/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../views/events/EventCard.fxml"));
 
             Scene scene = new Scene(root);
 

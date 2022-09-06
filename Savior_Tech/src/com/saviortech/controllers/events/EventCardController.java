@@ -8,6 +8,8 @@ import com.saviortech.models.Events;
 import com.saviortech.models.Participant;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -19,13 +21,18 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
@@ -70,10 +77,10 @@ public class EventCardController implements Initializable {
         image.setImage(implementImage(events.getEvent_image()));
         titre.setText(events.getEvent_title());
         categorie.setText(events.getEvent_category());
-        
+
         InterfaceService nbPart = new EventPartService().ISParticipant();
         nb_part.setText(String.valueOf(nbPart.participantNumber(events.getEvent_id())));
-        
+
         date.setText(String.valueOf(events.getEvent_start_date()));
 
         //Show Event details when click on the card
@@ -81,7 +88,7 @@ public class EventCardController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../../views/events/EventDetails.fxml"));
-            
+
             try {
                 loader.load();
             } catch (IOException ex) {
@@ -90,7 +97,7 @@ public class EventCardController implements Initializable {
 
             try {
                 EventDetailsController ev = loader.getController();
-                
+
                 ev.setLabel(events.getEvent_id(), events.getEvent_title(), events.getEvent_image(), events.getEvent_category(), events.getEvent_description(), events.getEvent_start_date(), events.getEvent_end_date(), events.getEvent_status(), events.getEvent_location(), events.getEvent_price(), events.getEvent_orgoniser(), events.getEvent_max_participant());
             } catch (IOException ex) {
                 Logger.getLogger(EventCardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,6 +120,31 @@ public class EventCardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        if (true) {
+            FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
+            FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+
+            //Styling delete and edit buttons
+            deleteIcon.setStyle(
+                " -fx-cursor: hand;"
+                + "-glyph-size:28px;"
+                + "-fx-fill:#ff1744;"
+            );
+            editIcon.setStyle(
+                " -fx-cursor: hand;"
+                + "-glyph-size:28px;"
+                + "-fx-fill:#00E676;"
+            );
+
+            //adding buttons inside an Hbox and styling them
+            HBox delEditBtn = new HBox(editIcon, deleteIcon);
+            delEditBtn.setStyle("-fx-alignment:center");
+            HBox.setMargin(deleteIcon, new javafx.geometry.Insets(2, 2, 0, 3));
+            HBox.setMargin(editIcon, new javafx.geometry.Insets(2, 3, 0, 2));
+            cardId.getChildren().add(delEditBtn);
+            delEditBtn.setLayoutX(295);
+            delEditBtn.setLayoutY(265);
+        }
     }
 
 }

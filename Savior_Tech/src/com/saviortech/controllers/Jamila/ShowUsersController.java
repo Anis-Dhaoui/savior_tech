@@ -80,7 +80,7 @@ public class ShowUsersController implements Initializable {
             final TableCell<Utilisateur, String> cell = new TableCell<Utilisateur, String>() {
                 @Override
                 public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
+
                     //that cell created only on non-empty rows
                     if (empty) {
                         setGraphic(null);
