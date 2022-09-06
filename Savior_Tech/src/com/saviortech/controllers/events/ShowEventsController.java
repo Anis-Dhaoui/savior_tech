@@ -30,14 +30,22 @@ public class ShowEventsController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    List<Events> es = new EventPartService().ISEvents().afficher();
+    private List<Events> es = new EventPartService().ISEvents().afficher();
+
+    public void setEs(List<Events> es) {
+        this.es = es;
+    }
+    
     @FXML
     private ScrollPane scrol;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//scrol.setPrefSize( 1500, 2000 );
-//scrol.setPrefSize( Double.MAX_VALUE, Double.MAX_VALUE );
+        renderCards();
+    }
+    
+    public void renderCards(){
+        System.out.println("RenderCards rendered......................");
         int column = 0;
         int row = 1;
         try {

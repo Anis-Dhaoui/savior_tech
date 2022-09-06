@@ -5,7 +5,6 @@
 package com.saviortech.controllers.events;
 
 import com.saviortech.models.Events;
-import com.saviortech.models.Participant;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -21,12 +20,8 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -36,6 +31,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -58,12 +54,21 @@ public class EventCardController implements Initializable {
     private AnchorPane cardId;
 
     private Events events;
+    ShowEventsController sec = new ShowEventsController();
 
     //Image is a generic concept and BufferedImage is the concrete implementation of the generic concept
+    //if there is an exception with imageIO.read so it will use an image from saved in the localhost
     public WritableImage implementImage(String imgUrl) throws MalformedURLException, IOException {
-        BufferedImage deck = ImageIO.read(new URL(imgUrl));
+        BufferedImage deck;
+        try {
+            //deck = ImageIO.read(new URL(imgUrl));
+            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
+        } catch (Exception e) {
+            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
+        }
         BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
         WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
+
         return card;
     }
 
@@ -144,6 +149,22 @@ public class EventCardController implements Initializable {
             cardId.getChildren().add(delEditBtn);
             delEditBtn.setLayoutX(295);
             delEditBtn.setLayoutY(265);
+
+            //Delete Event
+            deleteIcon.setOnMouseClicked((MouseEvent event) -> {
+                System.out.println("Event ID: " + events.getEvent_id());
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(null, "Etes vous sure?", "Confirm", dialogButton);
+                if (dialogResult == 0) {
+                    //Remove event from database
+                    new EventPartService().ISEvents().supprimer(events.getEvent_id());
+                    sec.setEs(new EventPartService().ISEvents().afficher());
+                    
+
+                } else {
+                    System.out.println("Delete Canceled");
+                }
+            });
         }
     }
 
