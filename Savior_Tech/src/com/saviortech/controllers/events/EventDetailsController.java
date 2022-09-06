@@ -81,23 +81,23 @@ public class EventDetailsController implements Initializable {
     }
 
     private void checkParticipateBtn() {
-        System.out.println(eveSer.ISParticipant().checkIfParticipated(3, ev_id));
+        System.out.println(eveSer.ISParticipant().checkIfParticipated(2, ev_id));
 
-        if (eveSer.ISParticipant().checkIfParticipated(3, ev_id)) {
+        if (eveSer.ISParticipant().checkIfParticipated(2, ev_id)) {
             partBtn.setText("Participé");
             partBtn.setDisable(true);
-           partBtn.setStyle("-fx-background-color: #0c0d0d; -fx-text-fill: #13fa02; -fx-font-size: 1em; -fx-opacity: 0.8;");
+            partBtn.setStyle("-fx-background-color: #0c0d0d; -fx-text-fill: #13fa02; -fx-font-size: 1em; -fx-opacity: 0.8;");
         }
     }
 
     @FXML
     private void participate(ActionEvent event) {
         System.out.println("user participated");
-        eveSer.ISParticipant().ajouter(new Participant(3, ev_id));
+        eveSer.ISParticipant().ajouter(new Participant(2, ev_id));
         partBtn.setText("Participé");
         partBtn.setDisable(true);
         PopupMessage.infoBox("Participé avec succés!", null, "Success");
-         partBtn.setStyle("-fx-background-color: #0c0d0d; -fx-text-fill: #13fa02; -fx-font-size: 1em; -fx-opacity: 0.8;");
+        partBtn.setStyle("-fx-background-color: #0c0d0d; -fx-text-fill: #13fa02; -fx-font-size: 1em; -fx-opacity: 0.8;");
     }
 
     void setLabel(int id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int maxPart) throws IOException {
@@ -119,7 +119,7 @@ public class EventDetailsController implements Initializable {
 
         InterfaceService nbPart = new EventPartService().ISParticipant();
         phNbPart.setText(String.valueOf(nbPart.participantNumber(ev_id)));
-        
+
         //Check if the authenticated user is already particpated to a specific event
         checkParticipateBtn();
     }
