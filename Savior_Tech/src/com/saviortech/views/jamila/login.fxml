@@ -3,13 +3,14 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="238.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.Jamila.loginController">
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.Jamila.loginController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <left>
@@ -34,10 +35,12 @@
                   <Label layoutX="41.0" layoutY="168.0" text="Username" />
                   <Label layoutX="41.0" layoutY="212.0" text="Password" />
                   <TextField fx:id="tfusername" layoutX="114.0" layoutY="165.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                  <TextField fx:id="tfpassword" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                  <javafx.scene.control.PasswordField fx:id="tfpassword" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                   <Label layoutX="56.0" layoutY="258.0" prefHeight="18.0" prefWidth="268.0" text="         Invalide login. Please try again" />
                   <Button fx:id="submitButton" layoutX="65.0" layoutY="292.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="251.0" styleClass="submitButton" stylesheets="@../../css/Style.css" text="Login" AnchorPane.bottomAnchor="78.0" />
                   <Button fx:id="submitclosing" layoutX="64.0" layoutY="341.0" mnemonicParsing="false" onAction="#closing" prefHeight="29.0" prefWidth="252.0" styleClass="submitclosing" stylesheets="@../../css/Style.css" text="close" />
+                  <Button fx:id="shp" layoutX="279.0" layoutY="210.0" mnemonicParsing="false" onAction="#ShowHidePassword" text="Show" />
+                  <TextField fx:id="pass_text" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                </children>
                <stylesheets>
                   <URL value="@../../css/Style.css" />

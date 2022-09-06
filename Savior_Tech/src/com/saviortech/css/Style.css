@@ -18,23 +18,59 @@
 .login-pane{
     -fx-background-color:beige;
 }
-.submitButton:hover{
-    -fx-background-color:#2E64E8 !important;
+.submitButton:hover {
+    -fx-background-color : #2E64E8 !important;
     -fx-cursor:hand;
-
+    
 }
+
 .submitclosing:hover{
-    -fx-background-color:#F02222;
+    -fx-background-color:#F02222 !important;
     -fx-cursor:hand;
 }
 
 .buttonchange{
-    -fx-background-color:#FFFFFF;
-   
+
     -fx-border-radius: 7px;
-    -fx-font-size: 1.4em;
-    -fx-cursor: hand;  
-}
+    -fx-font-size: 1.4em;}
+    
 .buttonchange:hover{
-  -fx-background-color :red;
+    -fx-background-color :#FFFFFF !important;
+    -fx-cursor: hand;
 }
+.inscription:hover{
+   -fx-background-color: orchid !important;
+      -fx-cursor:hand;
+    
+}
+.colId:hover{
+  -fx-background-color: gray !important;  
+}
+.userTable{
+    background-color: red;   
+}
+.FullName :hover{
+  -fx-background-color: gray !important;  
+}
+.UserName :hover{
+      -fx-background-color: gray !important;  
+}
+.Email :hover{
+      -fx-background-color: gray !important;  
+}
+.Password :hover{
+      -fx-background-color: gray !important;  
+}
+.role :hover{
+      -fx-background-color: gray !important;  
+}
+.Domain :hover{
+      -fx-background-color: gray !important;  
+}
+.Interest :hover{
+      -fx-background-color: gray !important;  
+}
+.Speciality :hover{
+      -fx-background-color: gray !important;  
+}
+

@@ -23,12 +23,14 @@ public class MainGUI extends Application {
         primaryStage.setMaximized(true);
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("../views/events/ShowEvents.fxml"));
+
+            Parent root = FXMLLoader.load(getClass().getResource("../views/jamila/login.fxml"));
+
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Savior Tech - Accueil");
-//            primaryStage.setResizable(false);
+            //primaryStage.setResizable(false);
             primaryStage.show();
 
         } catch (IOException ex) {

@@ -13,17 +13,17 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.Jamila.ShowUsersController">
        <children>
      
-      <TableView fx:id="userTable" fixedCellSize="0.0" layoutX="61.0" layoutY="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="237.0" prefWidth="761.0" style="-fx-background-color: transprent;" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="121.0">
+      <TableView fx:id="userTable" fixedCellSize="0.0" layoutX="61.0" layoutY="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="237.0" prefWidth="761.0" style="-fx-background-color: transprent;" styleClass="userTable" stylesheets="@../../css/Style.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="121.0">
         <columns>
           <TableColumn id="colId" fx:id="colId" maxWidth="70.0" prefWidth="25.0" styleClass="colId" text="ID" />
-          <TableColumn fx:id="colFullname" maxWidth="100.0" prefWidth="89.0" text="FullName" />
-            <TableColumn fx:id="colUsername" maxWidth="100.0" prefWidth="99.0" text="UserName" />
-            <TableColumn fx:id="colEmail" maxWidth="139.0" prefWidth="73.0" text="Email" />
-            <TableColumn fx:id="colPassword" maxWidth="144.0" prefWidth="84.0" text="Password" />
-            <TableColumn fx:id="colRole" maxWidth="124.0" prefWidth="46.0" text="role" />
-            <TableColumn fx:id="colDomain" maxWidth="155.0" text="Domain" />
-            <TableColumn fx:id="colInterest" maxWidth="133.0" prefWidth="66.0" text="Interest" />
-            <TableColumn fx:id="colSpeciality" maxWidth="117.0" minWidth="0.0" text="Speciality" />
+          <TableColumn id="FullName" fx:id="colFullname" maxWidth="100.0" prefWidth="89.0" styleClass="FullName" text="FullName" />
+            <TableColumn id="UserName" fx:id="colUsername" maxWidth="100.0" prefWidth="99.0" styleClass="UserName" text="UserName" />
+            <TableColumn id="Email" fx:id="colEmail" maxWidth="139.0" prefWidth="73.0" styleClass="Email" text="Email" />
+            <TableColumn id="Password" fx:id="colPassword" maxWidth="144.0" prefWidth="84.0" styleClass="Password" text="Password" />
+            <TableColumn id="role" fx:id="colRole" maxWidth="124.0" prefWidth="46.0" styleClass="role" text="role" />
+            <TableColumn id="Domain" fx:id="colDomain" maxWidth="155.0" styleClass="Domain" text="Domain" />
+            <TableColumn id="Interest" fx:id="colInterest" maxWidth="133.0" prefWidth="66.0" styleClass="Interest" text="Interest" />
+            <TableColumn id="Speciality" fx:id="colSpeciality" maxWidth="117.0" minWidth="0.0" styleClass="Speciality" text="Speciality" />
             <TableColumn fx:id="colEdit" maxWidth="166.0" prefWidth="166.0" text="Edit/Delete" />
         </columns>
          <columnResizePolicy>

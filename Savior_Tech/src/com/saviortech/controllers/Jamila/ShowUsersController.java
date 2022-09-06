@@ -107,7 +107,7 @@ public class ShowUsersController implements Initializable {
                             user = userTable.getSelectionModel().getSelectedItem();
                             System.out.println(user);
                             int dialogButton = JOptionPane.YES_NO_OPTION;
-                            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this user","Confirm", dialogButton);
+                            int dialogResult = JOptionPane.showConfirmDialog(null, "Confirmer la suppression","Confirm", dialogButton);
                             if (dialogResult == 0) {
                                 new ServiceUtilisateur().supprimer(user);
                                 refrechUserList();
