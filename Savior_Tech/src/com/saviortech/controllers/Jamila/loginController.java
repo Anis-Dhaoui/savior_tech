@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
@@ -31,19 +32,25 @@ public class loginController implements Initializable {
     @FXML
     private TextField tfusername;
     @FXML
-    private TextField tfpassword;
+    private PasswordField tfpassword;
     @FXML
     private Button submitButton;
     @FXML
     private AnchorPane loginpane;
     @FXML
     private Button submitclosing;
+    @FXML
+    private Button shp;
+    @FXML
+    private TextField pass_text;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        pass_text.setVisible(false);
+        System.out.println(shp.getText());
         // TODO
     }
 
@@ -103,5 +110,20 @@ public class loginController implements Initializable {
 
     @FXML
     private void closing(ActionEvent event) {
+    }
+
+    @FXML
+    private void ShowHidePassword(ActionEvent event) {
+        if ("Show".equals(shp.getText())) {
+            pass_text.setText(tfpassword.getText());
+            pass_text.setVisible(true);
+            tfpassword.setVisible(false);
+            shp.setText("Hide");
+        } else {
+            tfpassword.setText(pass_text.getText());
+            tfpassword.setVisible(true);
+            pass_text.setVisible(false);
+            shp.setText("Show");
+        }
     }
 }

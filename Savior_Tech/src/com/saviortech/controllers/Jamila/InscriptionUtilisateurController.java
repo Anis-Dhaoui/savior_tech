@@ -51,7 +51,7 @@ public class InscriptionUtilisateurController implements Initializable {
     }    
 
     
-       // String hashedPass = "aaaaaaaaaaaa";
+
     @FXML
     private void SignupUser(ActionEvent event){
         ServiceUtilisateur su = new ServiceUtilisateur();
