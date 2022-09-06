@@ -78,9 +78,10 @@ public class EventCardController implements Initializable {
 
         //Show Event details when click on the card
         image.setOnMouseClicked((MouseEvent event) -> {
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../../views/events/EventDetails.fxml"));
-
+            
             try {
                 loader.load();
             } catch (IOException ex) {
@@ -89,7 +90,7 @@ public class EventCardController implements Initializable {
 
             try {
                 EventDetailsController ev = loader.getController();
-
+                
                 ev.setLabel(events.getEvent_id(), events.getEvent_title(), events.getEvent_image(), events.getEvent_category(), events.getEvent_description(), events.getEvent_start_date(), events.getEvent_end_date(), events.getEvent_status(), events.getEvent_location(), events.getEvent_price(), events.getEvent_orgoniser(), events.getEvent_max_participant());
             } catch (IOException ex) {
                 Logger.getLogger(EventCardController.class.getName()).log(Level.SEVERE, null, ex);

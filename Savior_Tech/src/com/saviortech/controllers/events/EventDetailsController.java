@@ -67,7 +67,7 @@ public class EventDetailsController implements Initializable {
     private Text phShowPart;
     @FXML
     private Button partBtn;
-    
+
     public static int ev_id;
     EventPartService eveSer = new EventPartService();
 
@@ -78,12 +78,15 @@ public class EventDetailsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+    }
+
+    private void checkParticipateBtn() {
         System.out.println(eveSer.ISParticipant().checkIfParticipated(3, ev_id));
-        
+
         if (eveSer.ISParticipant().checkIfParticipated(3, ev_id)) {
             partBtn.setText("Participé");
             partBtn.setDisable(true);
+           partBtn.setStyle("-fx-background-color: #0c0d0d; -fx-text-fill: #13fa02; -fx-font-size: 1em; -fx-opacity: 0.8;");
         }
     }
 
@@ -94,8 +97,9 @@ public class EventDetailsController implements Initializable {
         partBtn.setText("Participé");
         partBtn.setDisable(true);
         PopupMessage.infoBox("Participé avec succés!", null, "Success");
+         partBtn.setStyle("-fx-background-color: #0c0d0d; -fx-text-fill: #13fa02; -fx-font-size: 1em; -fx-opacity: 0.8;");
     }
-    
+
     void setLabel(int id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int maxPart) throws IOException {
 
         //purpose of getting event id is just to use it in participate method
@@ -115,6 +119,9 @@ public class EventDetailsController implements Initializable {
 
         InterfaceService nbPart = new EventPartService().ISParticipant();
         phNbPart.setText(String.valueOf(nbPart.participantNumber(ev_id)));
+        
+        //Check if the authenticated user is already particpated to a specific event
+        checkParticipateBtn();
     }
 
     @FXML

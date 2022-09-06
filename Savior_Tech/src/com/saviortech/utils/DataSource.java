@@ -27,7 +27,7 @@ public class DataSource {
     private DataSource() {
         try {
             cnx = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.println("Connecting !");
+            System.out.println("Connected to MySQL DB Successfully !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -41,8 +41,7 @@ public class DataSource {
     }
 
     public Connection getCnx() {
-        System.out.println(cnx);
-        System.out.println(instance);
+        System.out.println("LOADING...");
         return cnx;
     }
 }
