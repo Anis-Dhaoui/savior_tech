@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -14,7 +15,6 @@
       <TextField fx:id="image" layoutX="465.0" layoutY="92.0" prefHeight="25.0" prefWidth="166.0" />
       <TextField fx:id="category" layoutX="465.0" layoutY="132.0" prefHeight="25.0" prefWidth="166.0" />
       <TextField fx:id="price_event" layoutX="459.0" layoutY="507.0" prefHeight="25.0" prefWidth="174.0" />
-      <TextField fx:id="status_evt" layoutX="459.0" layoutY="438.0" prefHeight="25.0" prefWidth="174.0" />
       <TextField fx:id="local" layoutX="459.0" layoutY="474.0" prefHeight="25.0" prefWidth="174.0" />
       <TextField fx:id="organiser_evet" layoutX="459.0" layoutY="542.0" prefHeight="25.0" prefWidth="174.0" />
       <TextField fx:id="nbr_max" layoutX="459.0" layoutY="579.0" prefHeight="25.0" prefWidth="174.0" />
@@ -73,8 +73,8 @@
             <Font name="Cambria Bold" size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="start_dte" layoutX="462.0" layoutY="366.0" />
-      <DatePicker fx:id="end_dte" layoutX="462.0" layoutY="399.0" prefHeight="25.0" prefWidth="174.0" />
+      <DatePicker fx:id="start_dte" layoutX="461.0" layoutY="365.0" />
+      <DatePicker fx:id="end_dte" layoutX="459.0" layoutY="398.0" prefHeight="25.0" prefWidth="174.0" />
       <Button fx:id="addBtn" layoutX="221.0" layoutY="604.0" mnemonicParsing="false" onAction="#AddEvent" prefHeight="36.0" prefWidth="206.0" text="Ajouter" />
       <Label layoutX="115.0" layoutY="14.0" prefHeight="51.0" prefWidth="336.0" text="Ajouter Nouveau Evenement" textFill="WHITE">
          <font>
@@ -82,5 +82,6 @@
          </font>
       </Label>
       <TextArea fx:id="description" layoutX="21.0" layoutY="190.0" prefHeight="159.0" prefWidth="614.0" />
+      <ComboBox fx:id="status_evt" layoutX="459.0" layoutY="435.0" prefHeight="29.0" prefWidth="174.0" />
    </children>
 </AnchorPane>

@@ -30,22 +30,29 @@ public class ShowEventsController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private List<Events> es = new EventPartService().ISEvents().afficher();
+    private static List<Events> es = new EventPartService().ISEvents().afficher();
 
-    public void setEs(List<Events> es) {
-        this.es = es;
-    }
-    
     @FXML
     private ScrollPane scrol;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         renderCards();
+        System.out.println("************************* INITIALIZE *************************");
     }
-    
-    public void renderCards(){
+
+    public void removeFromList(int id) {
+        System.out.println("List Size BEFORE remove: " + es.size());
+        es.removeIf(item -> item.getEvent_id() == id);
+        System.out.println("List Size AFTER remove: " + es.size());
+        renderCards();
+    }
+
+    public void renderCards() {
         System.out.println("RenderCards rendered......................");
+        System.out.println(es.size());
+        System.out.println("RenderCards rendered......................");
+
         int column = 0;
         int row = 1;
         try {

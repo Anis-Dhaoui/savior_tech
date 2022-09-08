@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,7 +55,7 @@ public class EventCardController implements Initializable {
     private AnchorPane cardId;
 
     private Events events;
-    ShowEventsController sec = new ShowEventsController();
+   // ShowEventsController sec = new ShowEventsController();
 
     //Image is a generic concept and BufferedImage is the concrete implementation of the generic concept
     //if there is an exception with imageIO.read so it will use an image from saved in the localhost
@@ -157,8 +158,12 @@ public class EventCardController implements Initializable {
                 int dialogResult = JOptionPane.showConfirmDialog(null, "Etes vous sure?", "Confirm", dialogButton);
                 if (dialogResult == 0) {
                     //Remove event from database
-                    new EventPartService().ISEvents().supprimer(events.getEvent_id());
-                    sec.setEs(new EventPartService().ISEvents().afficher());
+                    //new EventPartService().ISEvents().supprimer(events.getEvent_id());
+                    Platform.runLater(() ->{
+                        new ShowEventsController().removeFromList(events.getEvent_id());
+                    });
+                    
+                    
                     
 
                 } else {

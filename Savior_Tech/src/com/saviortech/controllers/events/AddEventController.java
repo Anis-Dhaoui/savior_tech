@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -40,7 +41,7 @@ public class AddEventController implements Initializable {
     @FXML
     private TextField price_event;
     @FXML
-    private TextField status_evt;
+    private ComboBox<String> status_evt;
     @FXML
     private TextField local;
     @FXML
@@ -64,10 +65,12 @@ public class AddEventController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         Stage stage = new Stage();
         stage.setResizable(false);
         System.out.println(stage.getClass());
+
+        status_evt.getItems().addAll("Activé", "Désactivé");
     }
 
     @FXML
@@ -76,11 +79,11 @@ public class AddEventController implements Initializable {
         Window onAjouterClicked = addBtn.getScene().getWindow();
 
         if (title.getText().isEmpty() || image.getText().isEmpty() || category.getText().isEmpty() || description.getText().isEmpty()
-            || start_dte.getValue() == null || end_dte.getValue() == null || status_evt.getText().isEmpty() || local.getText().isEmpty()
+            || start_dte.getValue() == null || end_dte.getValue() == null || status_evt.getItems().isEmpty() || local.getText().isEmpty()
             || price_event.getText().isEmpty() || organiser_evet.getText().isEmpty() || nbr_max.getText().isEmpty()) {
-            
+
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "All fields are required!");
-            
+
         } else {
             Instant instant_s = Instant.from(start_dte.getValue().atStartOfDay(ZoneId.systemDefault()));
             Date s_date = Date.from(instant_s);
@@ -94,7 +97,7 @@ public class AddEventController implements Initializable {
             es.ISEvents().ajouter(new Events(
                 title.getText(), image.getText(), category.getText(),
                 description.getText(), startDate, endDate,
-                status_evt.getText(), local.getText(), Integer.parseInt(price_event.getText()),
+                status_evt.getValue(), local.getText(), Integer.parseInt(price_event.getText()),
                 organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
             );
 
@@ -106,7 +109,7 @@ public class AddEventController implements Initializable {
             description.clear();
             start_dte.setValue(null);
             end_dte.setValue(null);
-            status_evt.clear();
+            status_evt.valueProperty().set(null);
             local.clear();
             price_event.clear();
             organiser_evet.clear();
