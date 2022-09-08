@@ -17,19 +17,19 @@ import javafx.stage.Stage;
  */
 public class MainGUI extends Application {
 
-    @Override
+    @Override 
     public void start(Stage primaryStage) {
-        primaryStage.setMaximized(true);
+        //primaryStage.setMaximized(true);
         try {
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("../views/jamila/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../views/jamila/InscriptionUtilisateur.fxml"));
 
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Savior Tech - Accueil");
-            //primaryStage.setResizable(false);
+            primaryStage.setResizable(false);
             primaryStage.show();
 
         } catch (IOException ex) {
@@ -37,9 +37,7 @@ public class MainGUI extends Application {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         launch(args);
     }

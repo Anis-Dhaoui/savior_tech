@@ -38,7 +38,6 @@
                   <javafx.scene.control.PasswordField fx:id="tfpassword" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                   <Label layoutX="56.0" layoutY="258.0" prefHeight="18.0" prefWidth="268.0" text="         Invalide login. Please try again" />
                   <Button fx:id="submitButton" layoutX="65.0" layoutY="292.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="251.0" styleClass="submitButton" stylesheets="@../../css/Style.css" text="Login" AnchorPane.bottomAnchor="78.0" />
-                  <Button fx:id="submitclosing" layoutX="64.0" layoutY="341.0" mnemonicParsing="false" onAction="#closing" prefHeight="29.0" prefWidth="252.0" styleClass="submitclosing" stylesheets="@../../css/Style.css" text="close" />
                   <Button fx:id="shp" layoutX="279.0" layoutY="210.0" mnemonicParsing="false" onAction="#ShowHidePassword" text="Show" />
                   <TextField fx:id="pass_text" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                </children>

@@ -15,13 +15,14 @@
     -fx-background-color:beige;
     -fx-cursor:hand;
 }
+/*******************************************USERSTYLE***********************************************************/
 .login-pane{
     -fx-background-color:beige;
 }
 .submitButton:hover {
     -fx-background-color : #2E64E8 !important;
     -fx-cursor:hand;
-    
+
 }
 
 .submitclosing:hover{
@@ -32,45 +33,66 @@
 .buttonchange{
 
     -fx-border-radius: 7px;
-    -fx-font-size: 1.4em;}
-    
+    -fx-font-size: 1.4em;
+}
+
 .buttonchange:hover{
     -fx-background-color :#FFFFFF !important;
     -fx-cursor: hand;
 }
 .inscription:hover{
-   -fx-background-color: orchid !important;
-      -fx-cursor:hand;
-    
+    -fx-background-color: #42AEA1 !important;
+    -fx-cursor:hand;
+
 }
 .colId:hover{
-  -fx-background-color: gray !important;  
+    -fx-background-color: gray !important;
 }
 .userTable{
-    background-color: red;   
+    -fx-background-color: red;
 }
 .FullName :hover{
-  -fx-background-color: gray !important;  
+    -fx-background-color: gray !important;
 }
 .UserName :hover{
-      -fx-background-color: gray !important;  
+    -fx-background-color: gray !important;
 }
 .Email :hover{
-      -fx-background-color: gray !important;  
+    -fx-background-color: gray !important;
 }
 .Password :hover{
-      -fx-background-color: gray !important;  
+    -fx-background-color: gray !important;
 }
 .role :hover{
-      -fx-background-color: gray !important;  
+    -fx-background-color: gray !important;
 }
 .Domain :hover{
-      -fx-background-color: gray !important;  
+    -fx-background-color: gray !important;
 }
 .Interest :hover{
-      -fx-background-color: gray !important;  
+    -fx-background-color: gray !important;
 }
 .Speciality :hover{
-      -fx-background-color: gray !important;  
+    -fx-background-color: gray !important;
 }
 
+
+/********************************EVENTS STYLE*****************************/
+.addBtn{
+    -fx-background-color: #FF0042;
+    -fx-font-size: 16px;
+    -fx-font-family:cambria, serif;
+    -fx-font-weight: bold;
+    -fx-text-align: center;
+}
+.addBtn:hover{
+    -fx-background-color: #ffc21a;
+    -fx-opacity:0.8;
+    cursor: pointer;
+}
+#categ{
+    -fx-font-size: 16px;
+    -fx-font-family : cursive;
+    -fx-font-style : Bradley Hand;
+    -fx-color : blue;
+}

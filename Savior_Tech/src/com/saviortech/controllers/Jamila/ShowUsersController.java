@@ -123,9 +123,11 @@ public class ShowUsersController implements Initializable {
                             loader.setLocation(getClass().getResource("../../views/jamila/EditUser.fxml"));
                             try {
                                 loader.load();
+                                
                             } catch (IOException ex) {
                                 Logger.getLogger(ShowUsersController.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                            refrechUserList();
 
                             EditUserController editUser = loader.getController();
                             editUser.setTextField(user.getId(), user.getFullname(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRole(), user.getInterest(), user.getDomain(), user.getSpeciality());
