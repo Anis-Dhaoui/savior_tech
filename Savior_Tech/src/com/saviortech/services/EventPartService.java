@@ -75,6 +75,18 @@ public class EventPartService {
             }
 
             @Override
+            public void supprimer(int evId) {
+                try {
+                    String req = "DELETE FROM events where event_id=" + evId;
+                    PreparedStatement st = cnx.prepareStatement(req);
+                    st.executeUpdate(req);
+                    System.out.println("Event deleted successfully!");
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+            @Override
             public int participantNumber(int nb) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
@@ -168,6 +180,11 @@ public class EventPartService {
 
             @Override
             public List<Participant> afficher() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void supprimer(int id) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };

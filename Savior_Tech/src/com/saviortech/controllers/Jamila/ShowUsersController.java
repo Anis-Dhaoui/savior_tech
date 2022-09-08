@@ -80,7 +80,7 @@ public class ShowUsersController implements Initializable {
             final TableCell<Utilisateur, String> cell = new TableCell<Utilisateur, String>() {
                 @Override
                 public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
+
                     //that cell created only on non-empty rows
                     if (empty) {
                         setGraphic(null);
@@ -107,7 +107,7 @@ public class ShowUsersController implements Initializable {
                             user = userTable.getSelectionModel().getSelectedItem();
                             System.out.println(user);
                             int dialogButton = JOptionPane.YES_NO_OPTION;
-                            int dialogResult = JOptionPane.showConfirmDialog(null, "Confirmer la suppression","Confirm", dialogButton);
+                            int dialogResult = JOptionPane.showConfirmDialog(null, "Confirmer la suppression", "Confirm", dialogButton);
                             if (dialogResult == 0) {
                                 new ServiceUtilisateur().supprimer(user);
                                 refrechUserList();
