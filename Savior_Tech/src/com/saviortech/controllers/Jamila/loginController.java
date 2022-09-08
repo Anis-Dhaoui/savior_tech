@@ -4,9 +4,9 @@
  */
 package com.saviortech.controllers.Jamila;
 
-import com.saviortech.models.Utilisateur;
+
 import com.saviortech.services.ServiceUtilisateur;
-import com.saviortech.utils.PasswordHash;
+
 import static com.saviortech.utils.PasswordHash.getMd5;
 import java.net.URL;
 import java.sql.SQLException;
@@ -37,8 +37,7 @@ public class loginController implements Initializable {
     private Button submitButton;
     @FXML
     private AnchorPane loginpane;
-    @FXML
-    private Button submitclosing;
+    
     @FXML
     private Button shp;
     @FXML
@@ -107,11 +106,6 @@ public class loginController implements Initializable {
         alert.initOwner(owner);
         alert.show();
     }
-
-    @FXML
-    private void closing(ActionEvent event) {
-    }
-
     @FXML
     private void ShowHidePassword(ActionEvent event) {
         if ("Show".equals(shp.getText())) {

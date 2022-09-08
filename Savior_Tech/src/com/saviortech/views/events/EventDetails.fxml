@@ -89,7 +89,7 @@
                   </Separator>
                   <AnchorPane prefHeight="453.0" prefWidth="275.0">
                      <children>
-                        <Label layoutX="59.0" layoutY="6.0" prefHeight="17.0" prefWidth="92.0" text="START DATE">
+                        <Label fx:id="start" layoutX="59.0" layoutY="6.0" prefHeight="17.0" prefWidth="92.0" text="START DATE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -97,7 +97,7 @@
                         <Text fx:id="phStartDate" fill="#868282" layoutX="59.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="November 17, 2020 12:00 pm" wrappingWidth="194.298828125" />
                         <FontAwesomeIconView fill="#ffbf10" glyphName="CALENDAR" layoutX="17.0" layoutY="31.0" size="25.0" />
                         <Separator layoutX="13.0" layoutY="48.0" prefHeight="3.0" prefWidth="246.0" />
-                        <Label layoutX="59.0" layoutY="60.0" prefHeight="17.0" prefWidth="92.0" text="END DATE">
+                        <Label fx:id="end" layoutX="59.0" layoutY="60.0" prefHeight="17.0" prefWidth="92.0" text="END DATE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -105,7 +105,7 @@
                         <Text fx:id="phEndDate" fill="#868282" layoutX="59.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="November 17, 2020 12:00 pm" wrappingWidth="194.298828125" />
                         <FontAwesomeIconView fill="#ffbf10" glyphName="CALENDAR" layoutX="17.0" layoutY="85.0" size="25.0" />
                         <Separator layoutX="16.0" layoutY="102.0" prefHeight="3.0" prefWidth="246.0" />
-                        <Label layoutX="60.0" layoutY="115.0" prefHeight="17.0" prefWidth="92.0" text="STATUS">
+                        <Label fx:id="status" layoutX="60.0" layoutY="115.0" prefHeight="17.0" prefWidth="92.0" text="STATUS">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -113,7 +113,7 @@
                         <Text fx:id="phStatus" fill="#868282" layoutX="60.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active" wrappingWidth="194.298828125" />
                         <FontAwesomeIconView fill="#ffbf10" glyphName="EYE" layoutX="17.0" layoutY="140.0" size="25.0" />
                         <Separator layoutX="17.0" layoutY="157.0" prefHeight="3.0" prefWidth="246.0" />
-                        <Label layoutX="59.0" layoutY="166.0" prefHeight="17.0" prefWidth="92.0" text="LOCATION">
+                        <Label fx:id="location" layoutX="59.0" layoutY="166.0" prefHeight="17.0" prefWidth="92.0" text="LOCATION">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -121,7 +121,7 @@
                         <Text fx:id="phLocation" fill="#868282" layoutX="59.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Siliana Elife" wrappingWidth="194.298828125" />
                         <FontAwesomeIconView fill="#ffbf10" glyphName="MAP_MARKER" layoutX="22.0" layoutY="191.0" size="25.0" />
                         <Separator layoutX="16.0" layoutY="208.0" prefHeight="3.0" prefWidth="246.0" />
-                        <Label layoutX="61.0" layoutY="220.0" prefHeight="17.0" prefWidth="92.0" text="CATEGORY">
+                        <Label fx:id="cater" layoutX="61.0" layoutY="220.0" prefHeight="17.0" prefWidth="92.0" text="CATEGORY">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
