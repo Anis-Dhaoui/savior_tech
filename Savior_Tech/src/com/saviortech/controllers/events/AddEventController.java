@@ -69,8 +69,9 @@ public class AddEventController implements Initializable {
         Stage stage = new Stage();
         stage.setResizable(false);
         System.out.println(stage.getClass());
-
+        
         status_evt.getItems().addAll("Activé", "Désactivé");
+        status_evt.getSelectionModel().selectFirst();
     }
 
     @FXML
