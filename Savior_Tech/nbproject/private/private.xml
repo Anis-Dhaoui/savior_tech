@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/test/MainGUI.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/events/ShowEventsController.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/events/EventCardController.java</file>
+=======
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/Jamila/InscriptionUtilisateurController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/test/MainGUI.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/services/IService.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/services/ServiceUtilisateur.java</file>
+>>>>>>> 57154496134b92b25577065fccb31dae73f9ea06
         </group>
     </open-files>
 </project-private>
