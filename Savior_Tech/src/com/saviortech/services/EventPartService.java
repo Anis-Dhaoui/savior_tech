@@ -23,7 +23,7 @@ import javafx.collections.ObservableList;
  */
 public class EventPartService {
 
-    private Connection cnx = DataSource.getInstance().getCnx();
+    private Connection cnx = DataSource.getIstance().getCnx();
 
     //Events Service
     public InterfaceService<Events> ISEvents() {
