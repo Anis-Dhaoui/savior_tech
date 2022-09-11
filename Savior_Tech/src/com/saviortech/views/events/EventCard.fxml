@@ -13,11 +13,7 @@
                 <Image url="@../../../../../../../Downloads/Hackathon-500x286.png" />
             </image>
         </ImageView>
-<<<<<<< HEAD
         <Label fx:id="titre" alignment="CENTER" layoutX="6.0" layoutY="195.0" prefHeight="27.0" prefWidth="347.0" stylesheets="@../../css/Style.css" text="Front End Dev" textFill="#140000">
-=======
-        <Label fx:id="titre" layoutX="6.0" layoutY="195.0" prefHeight="27.0" prefWidth="347.0" text="Front End Dev" textFill="RED">
->>>>>>> aeab5bdb28a207c187771d53a105ef3cf2a8a698
             <font>
                 <Font size="18.0" />
             </font>

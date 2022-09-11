@@ -10,9 +10,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -27,32 +32,31 @@ public class ShowEventsController implements Initializable {
 
     @FXML
     private GridPane grid;
-    /**
-     * Initializes the controller class.
-     */
-    private static List<Events> es = new EventPartService().ISEvents().afficher();
-
     @FXML
     private ScrollPane scrol;
 
+    static GridPane customGridPane = new GridPane();
+
+    private static List<Events> es = new EventPartService().ISEvents().afficher();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        customGridPane = grid;
         renderCards();
         System.out.println("************************* INITIALIZE *************************");
     }
 
-    public void removeFromList(int id) {
-        System.out.println("List Size BEFORE remove: " + es.size());
+    public void removeFromList(int id) throws IOException {
+        //Remove from list and rerender renderCards method
         es.removeIf(item -> item.getEvent_id() == id);
-        System.out.println("List Size AFTER remove: " + es.size());
+        customGridPane.getChildren().clear();
         renderCards();
+        
+        //remove node of gridpane
+        //customGridPane.getChildren().remove(id - 1);
     }
 
     public void renderCards() {
-        System.out.println("RenderCards rendered......................");
-        System.out.println(es.size());
-        System.out.println("RenderCards rendered......................");
-
         int column = 0;
         int row = 1;
         try {
@@ -69,16 +73,16 @@ public class ShowEventsController implements Initializable {
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row); //(child,column,row)
+                customGridPane.add(anchorPane, column++, row); //(child,column,row)
                 //set grid width
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
+                customGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+                customGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                customGridPane.setMaxWidth(Region.USE_PREF_SIZE);
 
                 //set grid height
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                customGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                customGridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                customGridPane.setMaxHeight(Region.USE_PREF_SIZE);
 
                 GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
 

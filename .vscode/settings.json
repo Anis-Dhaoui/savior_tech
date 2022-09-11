@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "API/fontawesomefx-8.5.jar",
+        "API/mysql-connector-java-8.0.19.jar"
+    ]
+}
