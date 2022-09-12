@@ -170,7 +170,10 @@ public class EventCardController implements Initializable {
                     new EventPartService().ISEvents().supprimer(events.getEvent_id());
 
                     try {
+                        //METHOD 1:   Send the card id of grid to remove
                         //sec.removeFromList(Integer.parseInt(cardId.getId()));
+
+                        //METHOD 2:  Send the event id to remove
                         sec.removeFromList(events.getEvent_id());
                     } catch (IOException ex) {
                         Logger.getLogger(EventCardController.class.getName()).log(Level.SEVERE, null, ex);

@@ -43,7 +43,6 @@ public class ShowEventsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         customGridPane = grid;
         renderCards();
-        System.out.println("************************* INITIALIZE *************************");
     }
 
     public void removeFromList(int id) throws IOException {
@@ -51,7 +50,7 @@ public class ShowEventsController implements Initializable {
         es.removeIf(item -> item.getEvent_id() == id);
         customGridPane.getChildren().clear();
         renderCards();
-        
+
         //remove node of gridpane
         //customGridPane.getChildren().remove(id - 1);
     }
