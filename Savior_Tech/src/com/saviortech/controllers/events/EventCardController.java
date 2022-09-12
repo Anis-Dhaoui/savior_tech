@@ -7,12 +7,15 @@ package com.saviortech.controllers.events;
 import com.saviortech.models.Events;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
+import com.saviortech.test.MainGUI;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,7 +58,8 @@ public class EventCardController implements Initializable {
     private AnchorPane cardId;
 
     private Events events;
-   // ShowEventsController sec = new ShowEventsController();
+    ShowEventsController sec = new ShowEventsController();
+    private int evId;
 
     //Image is a generic concept and BufferedImage is the concrete implementation of the generic concept
     //if there is an exception with imageIO.read so it will use an image from saved in the localhost
@@ -75,9 +79,14 @@ public class EventCardController implements Initializable {
 
     public EventCardController() {
     }
+    static int counter = 0;
 
     public void setData(Events events) throws IOException {
+
+        counter++;
+        cardId.setId(String.valueOf(counter));
         this.events = events;
+        evId = events.getEvent_id();
 
         //Setting up data to card
         image.setImage(implementImage(events.getEvent_image()));
@@ -158,13 +167,14 @@ public class EventCardController implements Initializable {
                 int dialogResult = JOptionPane.showConfirmDialog(null, "Etes vous sure?", "Confirm", dialogButton);
                 if (dialogResult == 0) {
                     //Remove event from database
-                    //new EventPartService().ISEvents().supprimer(events.getEvent_id());
-                    Platform.runLater(() ->{
-                        new ShowEventsController().removeFromList(events.getEvent_id());
-                    });
-                    
-                    
-                    
+                    new EventPartService().ISEvents().supprimer(events.getEvent_id());
+
+                    try {
+                        //sec.removeFromList(Integer.parseInt(cardId.getId()));
+                        sec.removeFromList(events.getEvent_id());
+                    } catch (IOException ex) {
+                        Logger.getLogger(EventCardController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } else {
                     System.out.println("Delete Canceled");
