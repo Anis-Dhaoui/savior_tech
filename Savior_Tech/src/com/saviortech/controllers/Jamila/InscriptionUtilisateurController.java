@@ -19,9 +19,15 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import javax.swing.JOptionPane;
 import com.saviortech.utils.ControlSaisie;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -48,6 +54,8 @@ public class InscriptionUtilisateurController implements Initializable {
     private Button inscription;
     @FXML
     private ComboBox<String> LabelRole;
+    @FXML
+    private Button SignIn;
 
     /**
      * Initializes the controller class.
@@ -77,13 +85,13 @@ public class InscriptionUtilisateurController implements Initializable {
         String hashedPass = new PasswordHash().getMd5(labelPassword.getText());
         Window onAjouterClicked = inscription.getScene().getWindow();
         if (labelUsername.getText().isEmpty() || labelFullname.getText().isEmpty() || labelEmail.getText().isEmpty() || labelPassword.getText().isEmpty()
-                || LabelRole.getValue().isEmpty() || labelDomain.getValue().isEmpty() || labelInterest.getValue().isEmpty() || labelSpeciality.getValue().isEmpty()) {
+                || LabelRole.getItems().isEmpty() || labelDomain.getItems().isEmpty() || labelInterest.getItems().isEmpty() || labelSpeciality.getItems().isEmpty()) {
 
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "All fields are required!");
-        }
+        }else
         if (!cs.controlEmail(labelEmail.getText())) {
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "please type a valid email address");
-        }
+        }else
         if (!cs.controlPassword(labelPassword.getText())) {
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "please type a valid passwords");
 
@@ -94,4 +102,22 @@ public class InscriptionUtilisateurController implements Initializable {
         }
     }
 
-}
+    @FXML
+    private void SignInUser(ActionEvent event) {
+         FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../../views/jamila/login.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(ShowUsersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+    }
+    }
+
+

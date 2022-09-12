@@ -20,7 +20,7 @@
     -fx-background-color:beige;
 }
 .submitButton:hover {
-    -fx-background-color : #2E64E8 !important;
+    -fx-background-color : #ffc21a !important;
     -fx-cursor:hand;
 
 }
@@ -95,4 +95,12 @@
     -fx-font-family : cursive;
     -fx-font-style : Bradley Hand;
     -fx-color : blue;
+}
+#submitButton1{
+    -fx-background-color:#2E64E8;
+    
+}
+#submitButton{
+    -fx-background-color:#2E64E8;
+    
 }
