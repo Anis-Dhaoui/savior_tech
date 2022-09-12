@@ -93,7 +93,7 @@
 #categ{
     -fx-font-size: 16px;
     -fx-font-family : cursive;
-    -fx-font-style : Bradley Hand;
+/*    -fx-font-style : Bradley Hand;*/
     -fx-color : blue;
 }
 #submitButton1{

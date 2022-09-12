@@ -83,5 +83,6 @@
       </Label>
       <TextArea fx:id="description" layoutX="21.0" layoutY="190.0" prefHeight="159.0" prefWidth="614.0" />
       <ComboBox fx:id="status_evt" layoutX="459.0" layoutY="435.0" prefHeight="29.0" prefWidth="174.0" />
+      <Button fx:id="updateBtn" layoutX="283.0" layoutY="554.0" mnemonicParsing="false" onAction="#UpdateEvent" text="Modifier" />
    </children>
 </AnchorPane>

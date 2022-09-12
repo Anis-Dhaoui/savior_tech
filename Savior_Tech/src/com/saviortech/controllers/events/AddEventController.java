@@ -9,6 +9,7 @@ import com.saviortech.services.EventPartService;
 import com.saviortech.utils.PopupMessage;
 import java.net.URL;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -58,10 +59,11 @@ public class AddEventController implements Initializable {
     private Button addBtn;
     @FXML
     private AnchorPane addWindow;
+    @FXML
+    private Button updateBtn;
 
-    /**
-     * Initializes the controller class.
-     */
+    private int evId;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -69,7 +71,7 @@ public class AddEventController implements Initializable {
         Stage stage = new Stage();
         stage.setResizable(false);
         System.out.println(stage.getClass());
-        
+
         status_evt.getItems().addAll("Activé", "Désactivé");
         status_evt.getSelectionModel().selectFirst();
     }
@@ -116,6 +118,25 @@ public class AddEventController implements Initializable {
             organiser_evet.clear();
             nbr_max.clear();
         }
+    }
+
+    void getEventValues(int eventId, String tfTitle, String tfImg, String tfCategory, int tfPrice, String cbStatus, String tfLocal, String tfOrgoniser, int tfNbr_max, LocalDate dpStartDate, String taDescription, LocalDate dpEndDate) {
+        evId = eventId;
+        title.setText(tfTitle);
+        image.setText(tfImg);
+        category.setText(tfCategory);
+        price_event.setText(String.valueOf(tfPrice));
+        status_evt.setValue(cbStatus);
+        local.setText(tfLocal);
+        organiser_evet.setText(tfOrgoniser);
+        nbr_max.setText(String.valueOf(tfNbr_max));
+        start_dte.setValue(dpStartDate);
+        description.setText(taDescription);
+        end_dte.setValue(dpEndDate);
+    }
+
+    @FXML
+    private void UpdateEvent(ActionEvent event) {
     }
 
 }
