@@ -7,19 +7,17 @@ package com.saviortech.controllers.events;
 import com.saviortech.models.Events;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
-import com.saviortech.test.MainGUI;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,6 +75,11 @@ public class EventCardController implements Initializable {
         return card;
     }
 
+    // Convert sql date to local date
+    public LocalDate convertDate(Date dateToConvert) {
+        return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
+    }
+
     public EventCardController() {
     }
     static int counter = 0;
@@ -100,7 +103,7 @@ public class EventCardController implements Initializable {
 
         //Show Event details when click on the card
         image.setOnMouseClicked((MouseEvent event) -> {
-
+            System.out.println("Event ID: " + events.getEvent_id());
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../../views/events/EventDetails.fxml"));
 
@@ -125,7 +128,6 @@ public class EventCardController implements Initializable {
             stage.setTitle(events.getEvent_title());
             stage.setResizable(false);
             stage.show();
-            System.out.println(events.getEvent_id());
         });
     }
 
@@ -162,7 +164,7 @@ public class EventCardController implements Initializable {
 
             //Delete Event
             deleteIcon.setOnMouseClicked((MouseEvent event) -> {
-                System.out.println("Event ID: " + events.getEvent_id());
+                System.out.println("Delete Event ID: " + events.getEvent_id());
                 int dialogButton = JOptionPane.YES_NO_OPTION;
                 int dialogResult = JOptionPane.showConfirmDialog(null, "Etes vous sure?", "Confirm", dialogButton);
                 if (dialogResult == 0) {
@@ -182,6 +184,27 @@ public class EventCardController implements Initializable {
                 } else {
                     System.out.println("Delete Canceled");
                 }
+            });
+
+            //Edit Event
+            editIcon.setOnMouseClicked((MouseEvent event) -> {
+                System.out.println("Edit Event ID: " + events.getEvent_id());
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(EventCardController.this.getClass().getResource("../../views/events/AddEvent.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                AddEventController aec = loader.getController();
+                aec.getEventValues(events.getEvent_id(), events.getEvent_title(), events.getEvent_image(),
+                events.getEvent_category(), events.getEvent_price(), events.getEvent_status(), events.getEvent_location(), events.getEvent_orgoniser(), events.getEvent_max_participant(), convertDate(events.getEvent_start_date()), events.getEvent_description(), convertDate(events.getEvent_end_date()));
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
             });
         }
     }
