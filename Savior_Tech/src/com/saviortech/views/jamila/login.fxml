@@ -37,9 +37,10 @@
                   <TextField fx:id="tfusername" layoutX="114.0" layoutY="165.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                   <javafx.scene.control.PasswordField fx:id="tfpassword" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                   <Label layoutX="56.0" layoutY="258.0" prefHeight="18.0" prefWidth="268.0" text="         Invalide login. Please try again" />
-                  <Button fx:id="submitButton" layoutX="65.0" layoutY="292.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="251.0" styleClass="submitButton" stylesheets="@../../css/Style.css" text="Login" AnchorPane.bottomAnchor="78.0" />
+                  <Button fx:id="submitButton" layoutX="65.0" layoutY="292.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="251.0" styleClass="submitButton" stylesheets="@../../css/Style.css" text="Sign In" AnchorPane.bottomAnchor="78.0" />
                   <Button fx:id="shp" layoutX="279.0" layoutY="210.0" mnemonicParsing="false" onAction="#ShowHidePassword" text="Show" />
                   <TextField fx:id="pass_text" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                  <Button fx:id="submitButton1" layoutX="65.0" layoutY="329.0" mnemonicParsing="false" onAction="#inscription" prefHeight="30.0" prefWidth="251.0" styleClass="submitButton" stylesheets="@../../css/Style.css" text="Sign Up" />
                </children>
                <stylesheets>
                   <URL value="@../../css/Style.css" />
