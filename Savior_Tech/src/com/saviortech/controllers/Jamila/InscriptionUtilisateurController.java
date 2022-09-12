@@ -32,7 +32,7 @@ import javafx.stage.StageStyle;
 /**
  * FXML Controller class
  *
- * @author LENOVO
+ *  LENOVO
  */
 public class InscriptionUtilisateurController implements Initializable {
 
