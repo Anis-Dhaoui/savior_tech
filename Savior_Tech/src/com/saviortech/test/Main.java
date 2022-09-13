@@ -21,7 +21,6 @@ public class Main {
 
         EventPartService eveSer = new EventPartService();
 
-        
         ServiceUtilisateur su = new ServiceUtilisateur();
         
         //su.ajouter(new Utilisateur("aaaa", "bbb", "ccccccc", "dddddd", "eeeee", "ffffffff", "jjjjjjjjj", "hhhhhhhhhh"));
@@ -35,5 +34,7 @@ public class Main {
 //        System.out.println(eveSer.ISParticipant().getParticipants(1));
 //        eveSer.ISParticipant().ajouter(new Participant(3, 5));
 //          System.out.println(eveSer.ISParticipant().participantNumber());
+
+//eveSer.ISEvents().modifier(new Events(43, "bbbxxxxx", "aaaaaaa", "mmmm", "jjjjjjjj",new Date(2022,9,8) , new Date(2022,9,8), "ppppppp", "ttttttt", 0, "ccccc", 0));
     }
 }

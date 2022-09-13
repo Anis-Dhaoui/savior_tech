@@ -78,29 +78,32 @@
 
 
 /********************************EVENTS STYLE*****************************/
-.addBtn{
-    -fx-background-color: #FF0042;
-    -fx-font-size: 16px;
-    -fx-font-family:cambria, serif;
-    -fx-font-weight: bold;
-    -fx-text-align: center;
+
+#updateBtn, #addBtn{
+    -fx-background-color:  #11f533;
+    -fx-border-color: white;
+    -fx-border-radius: 5;
 }
-.addBtn:hover{
-    -fx-background-color: #ffc21a;
-    -fx-opacity:0.8;
-    cursor: pointer;
+
+#updateBtn:hover, #addBtn:hover{
+    -fx-cursor: HAND;
+    -fx-border-color: gray;
+    -fx-text-fill: black;
+    -fx-opacity: 0.7;
 }
-#categ{
-    -fx-font-size: 16px;
-    -fx-font-family : cursive;
-/*    -fx-font-style : Bradley Hand;*/
-    -fx-color : blue;
+
+.text-area {
+    -fx-font-family: Consolas;
+    -fx-font-size: 15;
+    -fx-text-fill: black;
+    -fx-display-caret:true;
 }
-#submitButton1{
-    -fx-background-color:#2E64E8;
-    
+
+.text-area .content {
+/*    -fx-background-color: gray;*/
+    -fx-padding: 10;
 }
-#submitButton{
-    -fx-background-color:#2E64E8;
-    
+
+.text-area .scroll-bar:horizontal:disabled {
+    -fx-opacity: 0;
 }

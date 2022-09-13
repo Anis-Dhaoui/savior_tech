@@ -23,7 +23,7 @@ public class MainGUI extends Application {
         primaryStage.setMaximized(true);
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("../views/events/ShowEvents.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../views/events/AddEvent.fxml"));
 
 
             Scene scene = new Scene(root);
@@ -39,7 +39,6 @@ public class MainGUI extends Application {
         
     }
 
-    
     public static void main(String[] args) {
         launch(args);
     }

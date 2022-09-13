@@ -100,6 +100,32 @@ public class EventPartService {
             public boolean checkIfParticipated(int userId, int eventId) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
+
+            @Override
+            public void modifier(Events o) {
+                try {
+                    String req = "UPDATE events SET event_title = ?, event_image = ?, event_category = ?, event_description = ?, event_start_date = ?, event_end_date = ?,"
+                        + "event_status = ?, event_location = ?, event_price = ?, event_orgoniser = ?, event_max_participant = ?"
+                        + " WHERE event_id=?";
+                    PreparedStatement pst = cnx.prepareStatement(req);
+                    pst.setString(1, o.getEvent_title());
+                    pst.setString(2, o.getEvent_image());
+                    pst.setString(3, o.getEvent_category());
+                    pst.setString(4, o.getEvent_description());
+                    pst.setDate(5, o.getEvent_start_date());
+                    pst.setDate(6, o.getEvent_end_date());
+                    pst.setString(7, o.getEvent_status());
+                    pst.setString(8, o.getEvent_location());
+                    pst.setInt(9, o.getEvent_price());
+                    pst.setString(10, o.getEvent_orgoniser());
+                    pst.setInt(11, o.getEvent_max_participant());
+                    pst.setInt(12, o.getEvent_id());
+                    pst.executeUpdate();
+                    System.out.println("Event has been updated successfully !");
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
         };
     }
 
@@ -185,6 +211,11 @@ public class EventPartService {
 
             @Override
             public void supprimer(int id) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void modifier(Participant o) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };
