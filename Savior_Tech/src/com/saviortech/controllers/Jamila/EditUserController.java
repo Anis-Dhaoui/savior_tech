@@ -6,20 +6,28 @@ package com.saviortech.controllers.Jamila;
 
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
  *
- * @author Lenovo
+ *Lenovo
  */
 public class EditUserController implements Initializable {
 
@@ -51,6 +59,8 @@ public class EditUserController implements Initializable {
     private Label tuser;
     @FXML
     private Button buttonchange;
+    @FXML
+    private Button buttonchange1;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -62,7 +72,7 @@ public class EditUserController implements Initializable {
         su.modifier(new Utilisateur(userId, labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), labelPassword.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
         suc.refrechUserList();
         JOptionPane.showMessageDialog(null, "Personne modifié !");
-    }
+  }
 
     //2 methods that will be used in ShowUsersController in order to edit user
 
@@ -76,5 +86,23 @@ public class EditUserController implements Initializable {
         labelDomain.setText(domain);
         labelSpeciality.setText(speciality);
         labelInterest.setText(interest);
+    }
+
+    @FXML
+    private void showChanges(ActionEvent event) {
+           FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../../views/jamila/ShowUsers.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(ShowUsersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+        stage.close();
     }
 }
