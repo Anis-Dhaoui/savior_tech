@@ -54,6 +54,12 @@ public class ShowEventsController implements Initializable {
         //remove node of gridpane
         //customGridPane.getChildren().remove(id - 1);
     }
+    
+    public void updateList(){
+        es = new EventPartService().ISEvents().afficher();
+        customGridPane.getChildren().clear();
+        renderCards();
+    }
 
     public void renderCards() {
         int column = 0;

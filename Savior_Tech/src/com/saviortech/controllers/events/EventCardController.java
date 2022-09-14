@@ -198,13 +198,13 @@ public class EventCardController implements Initializable {
                 AddEventController aec = loader.getController();
                 aec.addBtn.setVisible(false);
                 aec.updateBtn.setVisible(true);
-                
-                aec.getEventValues(    events.getEvent_id(), events.getEvent_title(), events.getEvent_image(),
-                                                     events.getEvent_category(), events.getEvent_price(), events.getEvent_status(), 
-                                                     events.getEvent_location(), events.getEvent_orgoniser(), events.getEvent_max_participant(),
-                                                     convertDate(events.getEvent_start_date()), events.getEvent_description(),
-                                                     convertDate(events.getEvent_end_date())
-                                                );
+
+                aec.getEventValues(events.getEvent_id(), events.getEvent_title(), events.getEvent_image(),
+                    events.getEvent_category(), events.getEvent_price(), events.getEvent_status(),
+                    events.getEvent_location(), events.getEvent_orgoniser(), events.getEvent_max_participant(),
+                    convertDate(events.getEvent_start_date()), events.getEvent_description(),
+                    convertDate(events.getEvent_end_date())
+                );
                 Parent parent = loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(parent));
@@ -214,5 +214,4 @@ public class EventCardController implements Initializable {
             });
         }
     }
-
 }

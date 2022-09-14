@@ -86,7 +86,7 @@ public class AddEventController implements Initializable {
         status_evt.getSelectionModel().selectFirst();
     }
 
-    private void AddEvent(String addEdit) {
+    private void AddEditEvent(String addEdit) {
         EventPartService es = new EventPartService();
         Window onAjouterClicked = addBtn.getScene().getWindow();
 
@@ -106,13 +106,20 @@ public class AddEventController implements Initializable {
                 );
                 PopupMessage.infoBox("Event Added Successfully!", null, "Success");
             } else {
-                es.ISEvents().modifier(new Events(
+                es.ISEvents().modifier(new Events(evId,
                     title.getText(), image.getText(), category.getText(),
                     description.getText(), convertToDate(start_dte), convertToDate(end_dte),
                     status_evt.getValue(), local.getText(), Integer.parseInt(price_event.getText()),
                     organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
                 );
                 PopupMessage.infoBox("Event has been updated Successfully!", null, "Success");
+                
+                //Close Edit windows after infoBox OK button clicked
+                Stage stage = (Stage) addBtn.getScene().getWindow();
+                stage.close();
+                
+                //Re-render cards after update
+                new ShowEventsController().updateList();
             }
             title.clear();
             image.clear();
@@ -147,6 +154,6 @@ public class AddEventController implements Initializable {
     private void AddOrUpdateEvent(ActionEvent event) {
         final Node source = (Node) event.getSource();
         String btn_id = source.getId();
-        AddEvent(btn_id);
+        AddEditEvent(btn_id);
     }
 }
