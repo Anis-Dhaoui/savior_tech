@@ -21,7 +21,7 @@ public interface InterfaceService<T> {
 
     public void supprimer(int id);
 
-    public List<T> afficher();
+    public List<T> afficher(String category);
 
     public int participantNumber(int x);
 

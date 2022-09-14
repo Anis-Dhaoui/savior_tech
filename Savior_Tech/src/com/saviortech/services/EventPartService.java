@@ -57,12 +57,12 @@ public class EventPartService {
             }
 
             @Override
-            public List<Events> afficher() {
+            public List<Events> afficher(String category) {
                 List<Events> events = new ArrayList<>();
-
                 try {
-                    String req = "SELECT * FROM events";
+                    String req = "SELECT * FROM events WHERE event_category LIKE ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
+                    pst.setString(1, category);
                     ResultSet res = pst.executeQuery();
                     while (res.next()) {
                         events.add(new Events(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6), res.getDate(7), res.getString(8), res.getString(9), res.getInt(10), res.getString(11), res.getInt(12)));
@@ -205,7 +205,7 @@ public class EventPartService {
             }
 
             @Override
-            public List<Participant> afficher() {
+            public List<Participant> afficher(String category) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
 

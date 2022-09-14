@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -34,15 +35,44 @@ public class ShowEventsController implements Initializable {
     private GridPane grid;
     @FXML
     private ScrollPane scrol;
+    @FXML
+    private ComboBox<String> categoryList;
 
     static GridPane customGridPane = new GridPane();
 
-    private static List<Events> es = new EventPartService().ISEvents().afficher();
-
+    private static List<Events> es = new EventPartService().ISEvents().afficher("%%");
+    
+    private static String choosedCategory = "%%";
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         customGridPane = grid;
         renderCards();
+        
+        //Adding categries to Combobox node
+        categoryList.getItems().addAll("All", "Web Developement", "Cyber Security", "Technology", "Video Gaming");
+        categoryList.getSelectionModel().selectFirst();
+
+        //Listner when combobox value changed
+        categoryList.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            System.out.println(newValue);
+
+            if (newValue.equals("All")) {
+                es = new EventPartService().ISEvents().afficher("%%");
+                choosedCategory = "%%";
+                customGridPane.getChildren().clear();
+                renderCards();
+            } else {
+                es = new EventPartService().ISEvents().afficher(newValue);
+                choosedCategory = newValue;
+                customGridPane.getChildren().clear();
+                renderCards();
+            }
+        });
+        
+        System.out.println(categoryList.getValue());
+    }
+
+    public ShowEventsController() {
     }
 
     public void removeFromList(int id) throws IOException {
@@ -54,9 +84,9 @@ public class ShowEventsController implements Initializable {
         //remove node of gridpane
         //customGridPane.getChildren().remove(id - 1);
     }
-    
-    public void updateList(){
-        es = new EventPartService().ISEvents().afficher();
+
+    public void updateList() {
+        es = new EventPartService().ISEvents().afficher(choosedCategory);
         customGridPane.getChildren().clear();
         renderCards();
     }
