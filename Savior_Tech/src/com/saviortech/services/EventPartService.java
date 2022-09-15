@@ -75,6 +75,22 @@ public class EventPartService {
             }
 
             @Override
+            public ObservableList<String> getCategories() {
+                ObservableList<String> catList = FXCollections.observableArrayList();
+                try {
+                    String req = "SELECT DISTINCT event_category FROM events";
+                    PreparedStatement pst = cnx.prepareStatement(req);
+                    ResultSet res = pst.executeQuery();
+                    while (res.next()) {
+                        catList.add(res.getString(1));
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                return catList;
+            }
+
+            @Override
             public void supprimer(int evId) {
                 try {
                     String req = "DELETE FROM events where event_id=" + evId;
@@ -216,6 +232,11 @@ public class EventPartService {
 
             @Override
             public void modifier(Participant o) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public ObservableList<String> getCategories() {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };

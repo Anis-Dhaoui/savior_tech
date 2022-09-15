@@ -10,14 +10,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -41,15 +37,18 @@ public class ShowEventsController implements Initializable {
     static GridPane customGridPane = new GridPane();
 
     private static List<Events> es = new EventPartService().ISEvents().afficher("%%");
-    
+    private static ObservableList<String> catList = new EventPartService().ISEvents().getCategories();
+
     private static String choosedCategory = "%%";
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         customGridPane = grid;
         renderCards();
-        
-        //Adding categries to Combobox node
-        categoryList.getItems().addAll("All", "Web Developement", "Cyber Security", "Technology", "Video Gaming");
+
+        //Adding categries to Combobox node from DB
+        catList.add(0, "All");
+        categoryList.setItems(catList);
         categoryList.getSelectionModel().selectFirst();
 
         //Listner when combobox value changed
@@ -68,8 +67,6 @@ public class ShowEventsController implements Initializable {
                 renderCards();
             }
         });
-        
-        System.out.println(categoryList.getValue());
     }
 
     public ShowEventsController() {

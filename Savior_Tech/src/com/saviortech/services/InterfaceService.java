@@ -28,4 +28,6 @@ public interface InterfaceService<T> {
     public ObservableList<Utilisateur> getParticipants(int id);
 
     public boolean checkIfParticipated(int userId, int eventId);
+    
+    public ObservableList<String> getCategories();
 }
