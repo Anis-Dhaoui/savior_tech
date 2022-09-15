@@ -57,12 +57,12 @@ public class EventPartService {
             }
 
             @Override
-            public List<Events> afficher() {
+            public List<Events> afficher(String category) {
                 List<Events> events = new ArrayList<>();
-
                 try {
-                    String req = "SELECT * FROM events";
+                    String req = "SELECT * FROM events WHERE event_category LIKE ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
+                    pst.setString(1, category);
                     ResultSet res = pst.executeQuery();
                     while (res.next()) {
                         events.add(new Events(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6), res.getDate(7), res.getString(8), res.getString(9), res.getInt(10), res.getString(11), res.getInt(12)));
@@ -72,6 +72,22 @@ public class EventPartService {
                     System.out.println(ex.getMessage());
                 }
                 return events;
+            }
+
+            @Override
+            public ObservableList<String> getCategories() {
+                ObservableList<String> catList = FXCollections.observableArrayList();
+                try {
+                    String req = "SELECT DISTINCT event_category FROM events";
+                    PreparedStatement pst = cnx.prepareStatement(req);
+                    ResultSet res = pst.executeQuery();
+                    while (res.next()) {
+                        catList.add(res.getString(1));
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                return catList;
             }
 
             @Override
@@ -99,6 +115,32 @@ public class EventPartService {
             @Override
             public boolean checkIfParticipated(int userId, int eventId) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void modifier(Events o) {
+                try {
+                    String req = "UPDATE events SET event_title = ?, event_image = ?, event_category = ?, event_description = ?, event_start_date = ?, event_end_date = ?,"
+                        + "event_status = ?, event_location = ?, event_price = ?, event_orgoniser = ?, event_max_participant = ?"
+                        + " WHERE event_id=?";
+                    PreparedStatement pst = cnx.prepareStatement(req);
+                    pst.setString(1, o.getEvent_title());
+                    pst.setString(2, o.getEvent_image());
+                    pst.setString(3, o.getEvent_category());
+                    pst.setString(4, o.getEvent_description());
+                    pst.setDate(5, o.getEvent_start_date());
+                    pst.setDate(6, o.getEvent_end_date());
+                    pst.setString(7, o.getEvent_status());
+                    pst.setString(8, o.getEvent_location());
+                    pst.setInt(9, o.getEvent_price());
+                    pst.setString(10, o.getEvent_orgoniser());
+                    pst.setInt(11, o.getEvent_max_participant());
+                    pst.setInt(12, o.getEvent_id());
+                    pst.executeUpdate();
+                    System.out.println("Event has been updated successfully !");
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         };
     }
@@ -179,12 +221,22 @@ public class EventPartService {
             }
 
             @Override
-            public List<Participant> afficher() {
+            public List<Participant> afficher(String category) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
 
             @Override
             public void supprimer(int id) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void modifier(Participant o) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public ObservableList<String> getCategories() {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };

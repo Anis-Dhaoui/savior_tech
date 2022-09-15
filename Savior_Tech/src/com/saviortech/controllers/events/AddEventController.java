@@ -11,11 +11,12 @@ import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
+import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -56,17 +57,26 @@ public class AddEventController implements Initializable {
     @FXML
     private DatePicker end_dte;
     @FXML
-    private Button addBtn;
+    public Button addBtn;
     @FXML
     private AnchorPane addWindow;
     @FXML
-    private Button updateBtn;
+    public Button updateBtn;
 
     private int evId;
 
+    //CONVER FROM DatePicker TO DATE
+    public Date convertToDate(DatePicker dateToConvert) {
+        Instant instant = Instant.from(dateToConvert.getValue().atStartOfDay(ZoneId.systemDefault()));
+        java.util.Date date = Date.from(instant);
+        Date sqlDate = new Date(date.getTime());
+        return sqlDate;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        updateBtn.setVisible(false);
+        description.setWrapText(true);
 
         Stage stage = new Stage();
         stage.setResizable(false);
@@ -76,8 +86,7 @@ public class AddEventController implements Initializable {
         status_evt.getSelectionModel().selectFirst();
     }
 
-    @FXML
-    private void AddEvent(ActionEvent event) {
+    private void AddEditEvent(String addEdit) {
         EventPartService es = new EventPartService();
         Window onAjouterClicked = addBtn.getScene().getWindow();
 
@@ -88,24 +97,30 @@ public class AddEventController implements Initializable {
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "All fields are required!");
 
         } else {
-            Instant instant_s = Instant.from(start_dte.getValue().atStartOfDay(ZoneId.systemDefault()));
-            Date s_date = Date.from(instant_s);
-
-            Instant instant_e = Instant.from(end_dte.getValue().atStartOfDay(ZoneId.systemDefault()));
-            Date e_date = Date.from(instant_e);
-
-            java.sql.Date startDate = new java.sql.Date(s_date.getTime());
-            java.sql.Date endDate = new java.sql.Date(e_date.getTime());
-
-            es.ISEvents().ajouter(new Events(
-                title.getText(), image.getText(), category.getText(),
-                description.getText(), startDate, endDate,
-                status_evt.getValue(), local.getText(), Integer.parseInt(price_event.getText()),
-                organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
-            );
-
-            PopupMessage.infoBox("Event Added Successfully!", null, "Success");
-
+            if (addEdit.equals("addBtn")) {
+                es.ISEvents().ajouter(new Events(
+                    title.getText(), image.getText(), category.getText(),
+                    description.getText(), convertToDate(start_dte), convertToDate(end_dte),
+                    status_evt.getValue(), local.getText(), Integer.parseInt(price_event.getText()),
+                    organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
+                );
+                PopupMessage.infoBox("Event Added Successfully!", null, "Success");
+            } else {
+                es.ISEvents().modifier(new Events(evId,
+                    title.getText(), image.getText(), category.getText(),
+                    description.getText(), convertToDate(start_dte), convertToDate(end_dte),
+                    status_evt.getValue(), local.getText(), Integer.parseInt(price_event.getText()),
+                    organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
+                );
+                PopupMessage.infoBox("Event has been updated Successfully!", null, "Success");
+                
+                //Close Edit windows after infoBox OK button clicked
+                Stage stage = (Stage) addBtn.getScene().getWindow();
+                stage.close();
+                
+                //Re-render cards after update
+                new ShowEventsController().updateList();
+            }
             title.clear();
             image.clear();
             category.clear();
@@ -136,7 +151,9 @@ public class AddEventController implements Initializable {
     }
 
     @FXML
-    private void UpdateEvent(ActionEvent event) {
+    private void AddOrUpdateEvent(ActionEvent event) {
+        final Node source = (Node) event.getSource();
+        String btn_id = source.getId();
+        AddEditEvent(btn_id);
     }
-
 }
