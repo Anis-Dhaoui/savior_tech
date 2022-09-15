@@ -19,15 +19,15 @@ public interface InterfaceService<T> {
 
     public void modifier(T o);
 
-    public void supprimer(int id);
+    public void supprimer(String id);
 
     public List<T> afficher(String category);
 
-    public int participantNumber(int x);
+    public int participantNumber(String x);
 
-    public ObservableList<Utilisateur> getParticipants(int id);
+    public ObservableList<Utilisateur> getParticipants(String id);
 
-    public boolean checkIfParticipated(int userId, int eventId);
+    public boolean checkIfParticipated(int userId, String eventId);
     
     public ObservableList<String> getCategories();
 }

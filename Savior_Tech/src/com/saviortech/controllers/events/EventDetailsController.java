@@ -68,7 +68,7 @@ public class EventDetailsController implements Initializable {
     @FXML
     private Button partBtn;
 
-    public static int ev_id;
+    public static String ev_id;
     EventPartService eveSer = new EventPartService();
 
     private EventCardController bufferImg = new EventCardController();
@@ -100,7 +100,7 @@ public class EventDetailsController implements Initializable {
         partBtn.setStyle("-fx-background-color: #0c0d0d; -fx-text-fill: #13fa02; -fx-font-size: 1em; -fx-opacity: 0.8;");
     }
 
-    void setLabel(int id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int maxPart) throws IOException {
+    void setLabel(String id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int maxPart) throws IOException {
 
         //purpose of getting event id is just to use it in participate method
         ev_id = id;
