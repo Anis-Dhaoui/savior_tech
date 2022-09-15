@@ -104,3 +104,12 @@
     -fx-background-color:#2E64E8;
     
 }
+#AnchorPane{
+   -fx-background-color:#C966CA; 
+}
+#VBox1{
+    -fx-background-color : antiquewhite;
+} 
+#image{
+    -fx-backgroud-radius:30;
+}
