@@ -58,7 +58,7 @@ public class EventCardController implements Initializable {
 
     private Events events;
     ShowEventsController sec = new ShowEventsController();
-    private int evId;
+    private String evId;
 
     //Image is a generic concept and BufferedImage is the concrete implementation of the generic concept
     //if there is an exception with imageIO.read so it will use an image from saved in the localhost

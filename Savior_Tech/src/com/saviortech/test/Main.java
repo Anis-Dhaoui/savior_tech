@@ -9,9 +9,11 @@ import com.saviortech.models.Participant;
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.ServiceUtilisateur;
+//import com.saviortech.utils.EmailSender;
 import com.saviortech.utils.PasswordHash;
 import java.sql.Date;
 import java.sql.SQLException;
+//import javax.mail.MessagingException;
 
 /**
  *
@@ -22,11 +24,12 @@ public class Main {
     public static void main(String[] args) throws SQLException {
 
         EventPartService eveSer = new EventPartService();
-
-        
         ServiceUtilisateur su = new ServiceUtilisateur();
         
         su.validate("DjamilaKH1", "xxxxx");
+        
+     //   EmailSender sendEmailTest = new EmailSender();
+       // sendEmailTest.sendEmail();
            
         //su.ajouter(new Utilisateur("aaaa", "bbb", "ccccccc", "dddddd", "eeeee", "ffffffff", "jjjjjjjjj", "hhhhhhhhhh"));
         //System.out.println(su.afficher());

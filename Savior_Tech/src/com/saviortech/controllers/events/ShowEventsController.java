@@ -72,9 +72,9 @@ public class ShowEventsController implements Initializable {
     public ShowEventsController() {
     }
 
-    public void removeFromList(int id) throws IOException {
+    public void removeFromList(String id) throws IOException {
         //Remove from list and rerender renderCards method
-        es.removeIf(item -> item.getEvent_id() == id);
+        es.removeIf(item -> item.getEvent_id().equals(id));
         customGridPane.getChildren().clear();
         renderCards();
 

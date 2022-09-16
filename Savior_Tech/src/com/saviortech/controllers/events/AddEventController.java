@@ -63,7 +63,7 @@ public class AddEventController implements Initializable {
     @FXML
     public Button updateBtn;
 
-    private int evId;
+    private String evId;
 
     //CONVER FROM DatePicker TO DATE
     public Date convertToDate(DatePicker dateToConvert) {
@@ -113,11 +113,11 @@ public class AddEventController implements Initializable {
                     organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
                 );
                 PopupMessage.infoBox("Event has been updated Successfully!", null, "Success");
-                
+
                 //Close Edit windows after infoBox OK button clicked
                 Stage stage = (Stage) addBtn.getScene().getWindow();
                 stage.close();
-                
+
                 //Re-render cards after update
                 new ShowEventsController().updateList();
             }
@@ -135,7 +135,7 @@ public class AddEventController implements Initializable {
         }
     }
 
-    void getEventValues(int eventId, String tfTitle, String tfImg, String tfCategory, int tfPrice, String cbStatus, String tfLocal, String tfOrgoniser, int tfNbr_max, LocalDate dpStartDate, String taDescription, LocalDate dpEndDate) {
+    void getEventValues(String eventId, String tfTitle, String tfImg, String tfCategory, int tfPrice, String cbStatus, String tfLocal, String tfOrgoniser, int tfNbr_max, LocalDate dpStartDate, String taDescription, LocalDate dpEndDate) {
         evId = eventId;
         title.setText(tfTitle);
         image.setText(tfImg);
