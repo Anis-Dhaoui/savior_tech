@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -37,8 +38,6 @@ public class EditUserController implements Initializable {
     private TextField labelFullname;
     @FXML
     private TextField labelEmail;
-    @FXML
-    private TextField labelPassword;
     @FXML
     private TextField labelRole;
     @FXML
@@ -61,6 +60,8 @@ public class EditUserController implements Initializable {
     private Button buttonchange;
     @FXML
     private Button buttonchange1;
+    @FXML
+    private PasswordField pass_field;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -69,7 +70,7 @@ public class EditUserController implements Initializable {
     @FXML
     private void saveChanges(ActionEvent event) {
         ServiceUtilisateur su = new ServiceUtilisateur();
-        su.modifier(new Utilisateur(userId, labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), labelPassword.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
+        su.modifier(new Utilisateur(userId, labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), pass_field.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
         suc.refrechUserList();
         JOptionPane.showMessageDialog(null, "Personne modifié !");
   }
@@ -81,7 +82,7 @@ public class EditUserController implements Initializable {
         labelFullname.setText(fullname);
         labelUsername.setText(username);
         labelEmail.setText(email);
-        labelPassword.setText(password);
+        pass_field.setText(password);
         labelRole.setText(role);
         labelDomain.setText(domain);
         labelSpeciality.setText(speciality);
@@ -90,6 +91,9 @@ public class EditUserController implements Initializable {
 
     @FXML
     private void showChanges(ActionEvent event) {
+        
+        Stage stageedit =(Stage) labelUsername.getScene().getWindow();
+        stageedit.close();
            FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../../views/jamila/ShowUsers.fxml"));
         try {
@@ -103,6 +107,6 @@ public class EditUserController implements Initializable {
         stage.setScene(new Scene(parent));
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
-        stage.close();
+
     }
 }

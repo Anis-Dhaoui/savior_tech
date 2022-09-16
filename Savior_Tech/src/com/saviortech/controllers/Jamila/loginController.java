@@ -108,6 +108,7 @@ public class loginController implements Initializable {
         alert.setHeaderText(headerText);
         alert.showAndWait();
     }
+    
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);

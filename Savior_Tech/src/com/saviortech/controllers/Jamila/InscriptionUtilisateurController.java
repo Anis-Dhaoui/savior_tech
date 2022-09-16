@@ -26,6 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -42,8 +43,7 @@ public class InscriptionUtilisateurController implements Initializable {
     private TextField labelFullname;
     @FXML
     private TextField labelEmail;
-    @FXML
-    private TextField labelPassword;
+    private PasswordField labelPassword;
     @FXML
     private ComboBox<String> labelDomain;
     @FXML
@@ -56,6 +56,12 @@ public class InscriptionUtilisateurController implements Initializable {
     private ComboBox<String> LabelRole;
     @FXML
     private Button SignIn;
+    @FXML
+    private Button shp;
+    @FXML
+    private TextField pass_text;
+    @FXML
+    private PasswordField pass_field;
 
     /**
      * Initializes the controller class.
@@ -64,6 +70,8 @@ public class InscriptionUtilisateurController implements Initializable {
 
     // TODO
     public void initialize(URL url, ResourceBundle rb) {
+        pass_text.setVisible(false);
+        System.out.println(shp.getText());
         LabelRole.getItems().add("Engineer");
         LabelRole.getItems().add("Technician");
         LabelRole.getItems().add("Coach");
@@ -101,6 +109,21 @@ public class InscriptionUtilisateurController implements Initializable {
             JOptionPane.showMessageDialog(null, "Merci pour votre inscription!");
         }
     }
+     @FXML
+    private void ShowHidePassword(ActionEvent event) {
+        
+         if ("Show".equals(shp.getText())) {
+            pass_text.setText(labelPassword.getText());
+            pass_text.setVisible(true);
+            pass_field.setVisible(false);
+            shp.setText("Hide");
+        } else {
+           pass_field.setText(pass_text.getText());
+            pass_field.setVisible(true);
+            pass_text.setVisible(false);
+            shp.setText("Show");
+        }
+    }
 
     @FXML
     private void SignInUser(ActionEvent event) {
@@ -118,6 +141,8 @@ public class InscriptionUtilisateurController implements Initializable {
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
     }
+
+   
     }
 
 

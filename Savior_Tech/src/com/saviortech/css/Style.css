@@ -76,6 +76,13 @@
     -fx-background-color: gray !important;
 }
 
+#AnchorPane{
+   -fx-background-color:#C966CA; 
+}
+#VBox1{
+    -fx-background-color : antiquewhite;
+} 
+
 
 /********************************EVENTS STYLE*****************************/
 
