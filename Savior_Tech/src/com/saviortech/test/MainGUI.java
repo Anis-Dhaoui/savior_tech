@@ -23,7 +23,7 @@ public class MainGUI extends Application {
         try {
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("../views/jamila/ShowUsers.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../views/jamila/login.fxml"));
 
 
 

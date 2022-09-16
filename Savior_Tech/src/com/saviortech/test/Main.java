@@ -11,6 +11,7 @@ import com.saviortech.services.EventPartService;
 import com.saviortech.services.ServiceUtilisateur;
 import com.saviortech.utils.PasswordHash;
 import java.sql.Date;
+import java.sql.SQLException;
 
 /**
  *
@@ -18,12 +19,14 @@ import java.sql.Date;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         EventPartService eveSer = new EventPartService();
 
         
         ServiceUtilisateur su = new ServiceUtilisateur();
+        
+        su.validate("DjamilaKH1", "xxxxx");
            
         //su.ajouter(new Utilisateur("aaaa", "bbb", "ccccccc", "dddddd", "eeeee", "ffffffff", "jjjjjjjjj", "hhhhhhhhhh"));
         //System.out.println(su.afficher());

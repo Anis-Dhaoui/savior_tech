@@ -4,13 +4,15 @@
  */
 package com.saviortech.controllers.Jamila;
 
-
+import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
 
 import static com.saviortech.utils.PasswordHash.getMd5;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +48,7 @@ public class loginController implements Initializable {
     private Button submitButton;
     @FXML
     private AnchorPane loginpane;
-    
+
     @FXML
     private Button shp;
     @FXML
@@ -92,12 +94,15 @@ public class loginController implements Initializable {
         String password = getMd5(tfpassword.getText());
 
         ServiceUtilisateur auth = new ServiceUtilisateur();
-        boolean flag = auth.validate(username, password);
+        List<Utilisateur> list = auth.validate(username, password);
 
-        if (!flag) {
+        if (list.size() == 0) {
+            System.out.println(list);
             infoBox("Please enter correct usename and Password", null, "Failed");
         } else {
             infoBox("Login Successful!", null, "Failed");
+            System.out.println(list);
+
         }
     }
 
@@ -108,7 +113,6 @@ public class loginController implements Initializable {
         alert.setHeaderText(headerText);
         alert.showAndWait();
     }
-    
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -118,6 +122,7 @@ public class loginController implements Initializable {
         alert.initOwner(owner);
         alert.show();
     }
+
     @FXML
     private void ShowHidePassword(ActionEvent event) {
         if ("Show".equals(shp.getText())) {
@@ -142,13 +147,11 @@ public class loginController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ShowUsersController.class.getName()).log(Level.SEVERE, null, ex);
         }
-         Parent parent = loader.getRoot();
+        Parent parent = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
-     
-        
-        
+
     }
-    }
+}
