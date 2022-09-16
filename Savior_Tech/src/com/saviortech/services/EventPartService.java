@@ -38,7 +38,7 @@ public class EventPartService {
                         + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
                     
-                    pst.setString(1, o.getEvent_id());
+                    pst.setString(1, new UUIDGenerator().getUuid().toString());
                     pst.setString(2, o.getEvent_title());
                     pst.setString(3, o.getEvent_image());
                     pst.setString(4, o.getEvent_category());
