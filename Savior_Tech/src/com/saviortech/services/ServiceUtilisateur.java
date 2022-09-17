@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -94,6 +96,8 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         return userList;
     }
 
+
+
     /*
     public void auth(Utilisateur o) {
         boolean isAuthenticated = false;
@@ -115,15 +119,14 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
 
         System.out.println("*************TESTING****************");
     }
-*/
-    
-    public boolean validate(String username, String password) throws SQLException {
-
+     */
+    public List<Utilisateur> validate(String username, String password) throws SQLException {
+        List<Utilisateur> userData = new ArrayList<>();
         // Step 1: Establishing a Connection and 
         // try-with-resource statement will auto close the connection.
-        
+
         try {
-            String req = "SELECT * from utilisateur where username = ? AND password = ?";
+            String req = "SELECT fullname, username, email, role, domain, interest, speciality from utilisateur where username = ? AND password = ?";
             PreparedStatement pst = cnx.prepareStatement(req);
             // Step 2:Create a statement using connection object
 
@@ -132,22 +135,19 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
 
             ResultSet res = pst.executeQuery();
 
-            System.out.println(pst);
-
-            if (res.next()) {
-                return true;
+            while(res.next()) {
+                userData.add(new Utilisateur(res.getString("fullname"), res.getString("username"), res.getString("email"), res.getString("role"), res.getString("domain"), res.getString("interest"), res.getString("speciality")));
             }
-
 
         } catch (SQLException e) {
             // print SQL exception information
             printSQLException(e);
         }
-        return false;
+        return userData;
     }
-    
-        public static void printSQLException(SQLException ex) {
-        for (Throwable e: ex) {
+
+    public static void printSQLException(SQLException ex) {
+        for (Throwable e : ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
                 System.err.println("SQLState: " + ((SQLException) e).getSQLState());

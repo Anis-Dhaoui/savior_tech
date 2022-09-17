@@ -25,6 +25,13 @@
 
 }
 
+#shp{
+    -fx-background-color:  #4169E1;
+}
+#shp:hover{
+    -fx-background-color: #ffc21a;
+}
+
 .submitclosing:hover{
     -fx-background-color:#F02222 !important;
     -fx-cursor:hand;
@@ -77,11 +84,33 @@
 }
 
 #AnchorPane{
-   -fx-background-color:#C966CA; 
+   -fx-background-color:#32CD32	; 
 }
 #VBox1{
-    -fx-background-color : antiquewhite;
-} 
+    -fx-background-color :  #9370DB;
+}
+#setting11:hover{
+    -fx-background-color: #32CD32	;
+    
+}
+#setting1:hover{
+        -fx-background-color: #32CD32	;
+
+}
+#notification:hover{
+        -fx-background-color: #32CD32	;
+
+}
+#setting:hover{
+        -fx-background-color: #32CD32	;}
+#setting111:hover{
+        -fx-background-color: #32CD32	;}
+
+#editprofile:hover{
+    -fx-background-color: #9370DB;
+    
+}
+
 
 
 /********************************EVENTS STYLE*****************************/
