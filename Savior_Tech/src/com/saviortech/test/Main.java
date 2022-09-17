@@ -26,7 +26,7 @@ public class Main {
         EventPartService eveSer = new EventPartService();
         ServiceUtilisateur su = new ServiceUtilisateur();
         
-        su.validate("DjamilaKH1", "xxxxx");
+        System.out.println(su.validate("DjamilaKH1", "9ae48df22b0715e18485142038a890cf"));
         
      //   EmailSender sendEmailTest = new EmailSender();
        // sendEmailTest.sendEmail();

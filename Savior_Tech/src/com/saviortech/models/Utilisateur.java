@@ -121,7 +121,7 @@ public class Utilisateur {
         this.speciality = speciality;
     }
 
-    public Utilisateur(String fullname, String username, String email, String role, String domain, String interest, String speciality) {
+    public Utilisateur(int id, String fullname, String username, String email, String role, String domain, String interest, String speciality) {
         this.fullname = fullname;
         this.username = username;
         this.email = email;
@@ -129,6 +129,7 @@ public class Utilisateur {
         this.domain = domain;
         this.interest = interest;
         this.speciality = speciality;
+        this.id= id;
     }
     
 

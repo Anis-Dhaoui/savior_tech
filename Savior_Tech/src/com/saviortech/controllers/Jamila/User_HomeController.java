@@ -4,6 +4,7 @@
  */
 package com.saviortech.controllers.Jamila;
 
+import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
 import java.net.URL;
@@ -58,22 +59,20 @@ public class User_HomeController implements Initializable {
     @FXML
     private TextField speciality;
 
-    /**
-     * Initializes the controller class.
-     */
+    CurrentUser cu = new CurrentUser();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        // TODO
+        System.out.println(cu.getUserInfo());
+        //fullname.setText(cu.getUserInfo().get(0).getFullname());
     }    
 
     @FXML
     private void saveChange(ActionEvent event) {
-         ServiceUtilisateur su = new ServiceUtilisateur();
+        
+        /* ServiceUtilisateur su = new ServiceUtilisateur();
         su.modifier(new Utilisateur( fullname.getText(), username.getText(), email.getText(), role.getText(), domain.getText(), interest.getText(), speciality.getText()));
      //   suc.refrechUserList();
-        JOptionPane.showMessageDialog(null, "User Changed !");
+        JOptionPane.showMessageDialog(null, "User Changed !");*/
     }
     
 }

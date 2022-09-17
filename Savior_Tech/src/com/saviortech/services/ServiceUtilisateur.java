@@ -126,7 +126,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         // try-with-resource statement will auto close the connection.
 
         try {
-            String req = "SELECT fullname, username, email, role, domain, interest, speciality from utilisateur where username = ? AND password = ?";
+            String req = "SELECT id, fullname, username, email, role, domain, interest, speciality from utilisateur where username = ? AND password = ?";
             PreparedStatement pst = cnx.prepareStatement(req);
             // Step 2:Create a statement using connection object
 
@@ -136,7 +136,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             ResultSet res = pst.executeQuery();
 
             while(res.next()) {
-                userData.add(new Utilisateur(res.getString("fullname"), res.getString("username"), res.getString("email"), res.getString("role"), res.getString("domain"), res.getString("interest"), res.getString("speciality")));
+                userData.add(new Utilisateur(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8)));
             }
 
         } catch (SQLException e) {
