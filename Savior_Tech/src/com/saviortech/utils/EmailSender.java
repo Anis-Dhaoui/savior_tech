@@ -22,13 +22,16 @@ public class EmailSender {
 
     public void sendEmail() throws MessagingException {
         // Recipient's email ID needs to be mentioned.
-        String to = "jamila.nouri@esprit.tn";
+        String to = "freeconcept6@gmail.com";
 
         // Sender's email ID needs to be mentioned
         String from = "anis.dh1109@gmail.com";
+        String senderPass = "zoujzciejmirxzdv";
 
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
+        
+        
 
         // Get system properties
         Properties properties = System.getProperties();
@@ -45,7 +48,7 @@ public class EmailSender {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("anis.dh1109@gmail.com", "zoujzciejmirxzdv");
+                return new PasswordAuthentication(from, senderPass);
 
             }
 
@@ -62,8 +65,12 @@ public class EmailSender {
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
         // Set Subject: header field
         message.setSubject("Savior-Tech");
+
+        // Send the actual HTML message, as big as you like
+        message.setContent("<h1>Test message from savior tech</h1>", "text/html");
+        
         // Now set the actual message
-        message.setText("This TEST email was sent from SAVIOR TECH Desktop App");
+//        message.setText("This TEST email was sent from SAVIOR TECH Desktop App");
         System.out.println("sending...");
         // Send message
         Transport.send(message);
