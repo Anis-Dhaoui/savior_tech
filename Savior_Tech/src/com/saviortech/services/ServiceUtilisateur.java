@@ -7,6 +7,7 @@ package com.saviortech.services;
 import com.saviortech.models.Utilisateur;
 import com.saviortech.utils.DataSource;
 import com.saviortech.utils.PasswordHash;
+import com.saviortech.utils.UUIDGenerator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,16 +29,17 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     @Override
     public void ajouter(Utilisateur o) {
         try {
-            String req = "INSERT INTO utilisateur(fullname, username, email, password, role, domain, interest, speciality) VALUES (?,?,?,?,?,?,?,?)";
+            String req = "INSERT INTO utilisateur(id, fullname, username, email, password, role, domain, interest, speciality) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setString(1, o.getFullname());
-            pst.setString(2, o.getUsername());
-            pst.setString(3, o.getEmail());
-            pst.setString(4, o.getPassword());
-            pst.setString(5, o.getRole());
-            pst.setString(6, o.getDomain());
-            pst.setString(7, o.getInterest());
-            pst.setString(8, o.getSpeciality());
+            pst.setString(1,new UUIDGenerator().getUuid().toString());
+            pst.setString(2, o.getFullname());
+            pst.setString(3, o.getUsername());
+            pst.setString(4, o.getEmail());
+            pst.setString(5, o.getPassword());
+            pst.setString(6, o.getRole());
+            pst.setString(7, o.getDomain());
+            pst.setString(8, o.getInterest());
+            pst.setString(9, o.getSpeciality());
             pst.executeUpdate();
             System.out.println("Utilisateur ajoutée !");
         } catch (SQLException ex) {
@@ -58,7 +60,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             pst.setString(6, o.getDomain());
             pst.setString(7, o.getInterest());
             pst.setString(8, o.getSpeciality());
-            pst.setInt(9, o.getId());
+            pst.setString(9, o.getId());
             pst.executeUpdate();
             System.out.println("Personne modifiée !");
         } catch (SQLException ex) {
@@ -87,7 +89,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet res = pst.executeQuery();
             while (res.next()) {
-                userList.add(new Utilisateur(res.getInt("id"), res.getString("fullname"), res.getString("username"), res.getString("email"), res.getString("password"), res.getString("role"), res.getString("domain"), res.getString(8), res.getString("speciality")));
+                userList.add(new Utilisateur(res.getString("id"), res.getString("fullname"), res.getString("username"), res.getString("email"), res.getString("password"), res.getString("role"), res.getString("domain"), res.getString(8), res.getString("speciality")));
             }
             System.out.println("Personnes récupérées !");
         } catch (SQLException ex) {
@@ -136,7 +138,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             ResultSet res = pst.executeQuery();
 
             while(res.next()) {
-                userData.add(new Utilisateur(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8), res.getByte(9)));
+                userData.add(new Utilisateur(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8), res.getByte(9)));
             }
             System.out.println(userData);
 

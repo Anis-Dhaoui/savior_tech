@@ -10,7 +10,7 @@ package com.saviortech.models;
  */
 public class Utilisateur {
 
-    private int id;
+    private String id;
     private String fullname;
     private String username;
     private String email;
@@ -29,11 +29,11 @@ public class Utilisateur {
         this.admin = admin;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -112,7 +112,7 @@ public class Utilisateur {
         this.speciality = speciality;
     }
 
-    public Utilisateur(int id, String fullname, String username, String email, String password, String role, String domain, String interest, String speciality) {
+    public Utilisateur(String id, String fullname, String username, String email, String password, String role, String domain, String interest, String speciality) {
         this.id = id;
         this.fullname = fullname;
         this.username = username;
@@ -130,8 +130,8 @@ public class Utilisateur {
         this.speciality = speciality;
     }
 
-    public Utilisateur(int id, String fullname, String username, String email, String role, String domain, String interest, String speciality, Byte admin) {
-        this.id= id;
+    public Utilisateur(String id, String fullname, String username, String email, String role, String domain, String interest, String speciality, Byte admin) {
+        this.id = id;
         this.fullname = fullname;
         this.username = username;
         this.email = email;
@@ -140,15 +140,12 @@ public class Utilisateur {
         this.interest = interest;
         this.speciality = speciality;
         this.admin = admin;
-        
+
     }
-    
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id=" + id + ", fullname=" + fullname + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", domain=" + domain + ", interest=" + interest + ", speciality=" + speciality + ", admin= "+admin +"}\n";
+        return "Utilisateur{" + "id=" + id + ", fullname=" + fullname + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", domain=" + domain + ", interest=" + interest + ", speciality=" + speciality + ", admin= " + admin + "}\n";
     }
-    
-    
 
 }

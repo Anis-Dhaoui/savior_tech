@@ -43,7 +43,6 @@ public class InscriptionUtilisateurController implements Initializable {
     private TextField labelFullname;
     @FXML
     private TextField labelEmail;
-    private PasswordField labelPassword;
     @FXML
     private ComboBox<String> labelDomain;
     @FXML
@@ -90,15 +89,15 @@ public class InscriptionUtilisateurController implements Initializable {
 
         ServiceUtilisateur su = new ServiceUtilisateur();
         ControlSaisie cs = new ControlSaisie();
-        String hashedPass = new PasswordHash().getMd5(labelPassword.getText());
+        String hashedPass = new PasswordHash().getMd5(pass_field.getText());
         Window onAjouterClicked = inscription.getScene().getWindow();
-        if (labelUsername.getText().isEmpty() || labelFullname.getText().isEmpty() || labelEmail.getText().isEmpty() || labelPassword.getText().isEmpty()
+        if (labelUsername.getText().isEmpty() || labelFullname.getText().isEmpty() || labelEmail.getText().isEmpty() || pass_field.getText().isEmpty()
                 || LabelRole.getItems().isEmpty() || labelDomain.getItems().isEmpty() || labelInterest.getItems().isEmpty() || labelSpeciality.getItems().isEmpty()) {
 
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "All fields are required!");
         } else if (!cs.controlEmail(labelEmail.getText())) {
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "please type a valid email address");
-        } else if (!cs.controlPassword(labelPassword.getText())) {
+        } else if (!cs.controlPassword(pass_field.getText())) {
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "please type a valid passwords");
 
         } else {
