@@ -20,13 +20,10 @@ import javax.mail.internet.MimeMessage;
  */
 public class EmailSender {
 
-    public void sendEmail() throws MessagingException {
-        // Recipient's email ID needs to be mentioned.
-        String to = "freeconcept6@gmail.com";
-
+    public void sendEmail(String reciever, String subject, String contentMsg ) throws MessagingException {
+        
         // Sender's email ID needs to be mentioned
-        String from = "anis.dh1109@gmail.com";
-        String senderPass = "zoujzciejmirxzdv";
+        String sender = "anis.dh1109@gmail.com";
 
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
@@ -48,7 +45,7 @@ public class EmailSender {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication(from, senderPass);
+                return new PasswordAuthentication(sender, "zoujzciejmirxzdv");
 
             }
 
@@ -60,17 +57,18 @@ public class EmailSender {
         // Create a default MimeMessage object.
         MimeMessage message = new MimeMessage(session);
         // Set From: header field of the header.
-        message.setFrom(new InternetAddress(from));
+        message.setFrom(new InternetAddress(sender));
         // Set To: header field of the header.
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(reciever));
         // Set Subject: header field
-        message.setSubject("Savior-Tech");
 
-        // Send the actual HTML message, as big as you like
-        message.setContent("<h1>Test message from savior tech</h1>", "text/html");
-        
+        message.setSubject(subject);
         // Now set the actual message
 //        message.setText("This TEST email was sent from SAVIOR TECH Desktop App");
+
+        // Send the actual HTML message, as big as you like
+        message.setContent(contentMsg, "text/html");
+
         System.out.println("sending...");
         // Send message
         Transport.send(message);
