@@ -86,10 +86,10 @@ public class User_HomeController implements Initializable {
     @FXML
     private void saveChange(ActionEvent event) {
 
-        /* ServiceUtilisateur su = new ServiceUtilisateur();
+        ServiceUtilisateur su = new ServiceUtilisateur();
         su.modifier(new Utilisateur( fullname.getText(), username.getText(), email.getText(), role.getText(), domain.getText(), interest.getText(), speciality.getText()));
-     //   suc.refrechUserList();
-        JOptionPane.showMessageDialog(null, "User Changed !");*/
+      su.refrechUserList();
+        JOptionPane.showMessageDialog(null, "User Changed !");
     }
 
 }
