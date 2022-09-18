@@ -27,6 +27,8 @@ public class EmailSender {
 
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
+        
+        
 
         // Get system properties
         Properties properties = System.getProperties();
@@ -59,6 +61,7 @@ public class EmailSender {
         // Set To: header field of the header.
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(reciever));
         // Set Subject: header field
+
         message.setSubject(subject);
         // Now set the actual message
 //        message.setText("This TEST email was sent from SAVIOR TECH Desktop App");
