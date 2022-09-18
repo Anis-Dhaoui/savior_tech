@@ -8,7 +8,10 @@ import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -60,19 +63,33 @@ public class User_HomeController implements Initializable {
     private TextField speciality;
 
     CurrentUser cu = new CurrentUser();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            cu.setUserInfo(new ServiceUtilisateur().validate("jamila", "9ae48df22b0715e18485142038a890cf"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(User_HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println(cu.getUserInfo());
-        //fullname.setText(cu.getUserInfo().get(0).getFullname());
-    }    
+        fullname.setText(cu.getUserInfo().get(0).getFullname());
+        username.setText(cu.getUserInfo().get(0).getUsername());
+        email.setText(cu.getUserInfo().get(0).getEmail());
+        role.setText(cu.getUserInfo().get(0).getRole());
+        domain.setText(cu.getUserInfo().get(0).getDomain());
+        interest.setText(cu.getUserInfo().get(0).getInterest());
+        speciality.setText(cu.getUserInfo().get(0).getSpeciality());
+
+    }
 
     @FXML
     private void saveChange(ActionEvent event) {
-        
+
         /* ServiceUtilisateur su = new ServiceUtilisateur();
         su.modifier(new Utilisateur( fullname.getText(), username.getText(), email.getText(), role.getText(), domain.getText(), interest.getText(), speciality.getText()));
      //   suc.refrechUserList();
         JOptionPane.showMessageDialog(null, "User Changed !");*/
     }
-    
+
 }

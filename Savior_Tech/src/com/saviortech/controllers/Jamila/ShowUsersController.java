@@ -159,6 +159,22 @@ public class ShowUsersController implements Initializable {
     public void refrechUserList() {
         getData();
     }
+    /* dateOfBirthColumn.setOnEditCommit(event - > {
+            final Date value = event.getNewValue() != null ? event.getNewValue() :
+                event.getOldValue();
+            ((PersonTableData) event.getTableView().getItems()
+                .get(event.getTablePosition().getRow()))
+            .setDateOfBirth(value);
+            table.refresh();
+        });
+    }*/
+
+    
+    
+
+ 
+  
+    
     
     
 }

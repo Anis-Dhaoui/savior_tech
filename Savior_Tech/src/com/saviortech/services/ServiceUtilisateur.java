@@ -161,4 +161,18 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             }
         }
     }
-}
+   public ObservableList<Utilisateur> searchUser() {
+        ObservableList<Utilisateur> searchlist = FXCollections.observableArrayList();
+ try {
+            String req = "SELECT * FROM utilisateur where username=?";
+            PreparedStatement pst = cnx.prepareStatement(req);
+            ResultSet res = pst.executeQuery();
+            while (res.next()) {
+                searchlist.add(new Utilisateur(res.getInt("id"), res.getString("fullname"), res.getString("username"), res.getString("email"), res.getString("password"), res.getString("role"), res.getString("domain"), res.getString(8), res.getString("speciality")));
+            }
+            System.out.println("Personnes récupérées !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return searchlist;        
+   }}

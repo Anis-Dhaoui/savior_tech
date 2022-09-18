@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class CurrentUser {
     public static List<Utilisateur> userInfo= new ArrayList<>();
+    
 
     public CurrentUser() {
     }
