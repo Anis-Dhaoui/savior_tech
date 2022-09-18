@@ -19,6 +19,15 @@ public class Utilisateur {
     private String domain;
     private String interest;
     private String speciality;
+    private Byte admin;
+
+    public Byte isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Byte admin) {
+        this.admin = admin;
+    }
 
     public int getId() {
         return id;
@@ -121,7 +130,8 @@ public class Utilisateur {
         this.speciality = speciality;
     }
 
-    public Utilisateur(int id, String fullname, String username, String email, String role, String domain, String interest, String speciality) {
+    public Utilisateur(int id, String fullname, String username, String email, String role, String domain, String interest, String speciality, Byte admin) {
+        this.id= id;
         this.fullname = fullname;
         this.username = username;
         this.email = email;
@@ -129,13 +139,14 @@ public class Utilisateur {
         this.domain = domain;
         this.interest = interest;
         this.speciality = speciality;
-        this.id= id;
+        this.admin = admin;
+        
     }
     
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id=" + id + ", fullname=" + fullname + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", domain=" + domain + ", interest=" + interest + ", speciality=" + speciality + "}\n";
+        return "Utilisateur{" + "id=" + id + ", fullname=" + fullname + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", domain=" + domain + ", interest=" + interest + ", speciality=" + speciality + ", admin= "+admin +"}\n";
     }
     
     

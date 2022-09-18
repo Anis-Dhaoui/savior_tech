@@ -33,7 +33,7 @@ import javafx.stage.StageStyle;
 /**
  * FXML Controller class
  *
- *  LENOVO
+ * LENOVO
  */
 public class InscriptionUtilisateurController implements Initializable {
 
@@ -57,7 +57,7 @@ public class InscriptionUtilisateurController implements Initializable {
     @FXML
     private Button SignIn;
     @FXML
-    private Button shp;
+    private Button shps;
     @FXML
     private TextField pass_text;
     @FXML
@@ -71,7 +71,7 @@ public class InscriptionUtilisateurController implements Initializable {
     // TODO
     public void initialize(URL url, ResourceBundle rb) {
         pass_text.setVisible(false);
-        System.out.println(shp.getText());
+        System.out.println(shps.getText());
         LabelRole.getItems().add("Engineer");
         LabelRole.getItems().add("Technician");
         LabelRole.getItems().add("Coach");
@@ -96,11 +96,9 @@ public class InscriptionUtilisateurController implements Initializable {
                 || LabelRole.getItems().isEmpty() || labelDomain.getItems().isEmpty() || labelInterest.getItems().isEmpty() || labelSpeciality.getItems().isEmpty()) {
 
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "All fields are required!");
-        }else
-        if (!cs.controlEmail(labelEmail.getText())) {
+        } else if (!cs.controlEmail(labelEmail.getText())) {
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "please type a valid email address");
-        }else
-        if (!cs.controlPassword(labelPassword.getText())) {
+        } else if (!cs.controlPassword(labelPassword.getText())) {
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "please type a valid passwords");
 
         } else {
@@ -109,25 +107,26 @@ public class InscriptionUtilisateurController implements Initializable {
             JOptionPane.showMessageDialog(null, "Merci pour votre inscription!");
         }
     }
-     @FXML
-    private void ShowHidePassword(ActionEvent event) {
-        
-         if ("Show".equals(shp.getText())) {
-            pass_text.setText(labelPassword.getText());
+
+    @FXML
+    private void sHidePassword(ActionEvent event) {
+
+        if ("Show".equals(shps.getText())) {
+            pass_text.setText(pass_field.getText());
             pass_text.setVisible(true);
             pass_field.setVisible(false);
-            shp.setText("Hide");
+            shps.setText("Hide");
         } else {
-           pass_field.setText(pass_text.getText());
+            pass_field.setText(pass_text.getText());
             pass_field.setVisible(true);
             pass_text.setVisible(false);
-            shp.setText("Show");
+            shps.setText("Show");
         }
     }
 
     @FXML
     private void SignInUser(ActionEvent event) {
-         FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../../views/jamila/login.fxml"));
         try {
             loader.load();
@@ -141,8 +140,4 @@ public class InscriptionUtilisateurController implements Initializable {
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
     }
-
-   
-    }
-
-
+}
