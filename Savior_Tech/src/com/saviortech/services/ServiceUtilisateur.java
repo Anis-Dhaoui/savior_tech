@@ -150,6 +150,19 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         return userData;
     }
 
+        public void updateUserPass(String newPass, String email) {
+        try {
+            String req = "UPDATE utilisateur SET password = ? where email=?";
+            PreparedStatement pst = cnx.prepareStatement(req);
+            pst.setString(1, newPass);
+            pst.setString(2, email);
+            pst.executeUpdate();
+            System.out.println("Password has been updated successfully!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     public static void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

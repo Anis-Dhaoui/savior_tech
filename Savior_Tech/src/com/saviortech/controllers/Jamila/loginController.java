@@ -82,12 +82,12 @@ public class loginController implements Initializable {
 
         if (tfusername.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your username");
+                "Please enter your username");
             return;
         }
         if (tfpassword.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter a password");
+                "Please enter a password");
             return;
         }
 
@@ -103,10 +103,10 @@ public class loginController implements Initializable {
         } else {
             infoBox("Login Successful!", null, "SUCCESS");
             System.out.println(list);
-            
+
             CurrentUser cu = new CurrentUser();
             cu.setUserInfo(list);
-            
+
             System.out.println(cu.getUserInfo().get(0).getId());
 
         }
@@ -163,5 +163,21 @@ public class loginController implements Initializable {
 
     @FXML
     private void resetPassword(ActionEvent event) {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../../views/jamila/ResetPassword.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(ShowUsersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.show();
+
+        Stage loginStage = (Stage) tfusername.getScene().getWindow();
+        loginStage.close();
     }
 }

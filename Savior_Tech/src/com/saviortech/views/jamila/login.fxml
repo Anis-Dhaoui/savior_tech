@@ -40,7 +40,7 @@
                   <Button fx:id="shp" layoutX="279.0" layoutY="210.0" mnemonicParsing="false" onAction="#ShowHidePassword" stylesheets="@../../css/Style.css" text="Show" />
                   <TextField fx:id="pass_text" layoutX="116.0" layoutY="207.0" style="-fx-background-color: transparent; -fx-border-color: #ffc21a; -fx-border-width: 0px 0px 2px 0px;" />
                   <Button fx:id="submitButton1" layoutX="65.0" layoutY="329.0" mnemonicParsing="false" onAction="#inscription" prefHeight="30.0" prefWidth="251.0" style="-fx-background-color: #4169E1;" styleClass="submitButton" stylesheets="@../../css/Style.css" text="Sign Up" />
-                  <Button layoutX="63.0" layoutY="256.0" mnemonicParsing="false" onAction="#resetPassword" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: clear;" text="I Forgot My Password" textFill="#500eeb">
+                  <Button layoutX="63.0" layoutY="256.0" mnemonicParsing="false" onAction="#resetPassword" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: clear; -fx-cursor: hand;" text="I Forgot My Password" textFill="#500eeb">
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font>
