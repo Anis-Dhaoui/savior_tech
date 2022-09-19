@@ -69,13 +69,12 @@ public class EditUserController implements Initializable {
     }
 
     @FXML
-    private void saveChanges(ActionEvent event) {
+    private void saveChanges(ActionEvent event) throws IOException {
         ServiceUtilisateur su = new ServiceUtilisateur();
         su.modifier(new Utilisateur(userId, labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), pass_field.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
         JOptionPane.showMessageDialog(null, "User Changed !");
         Stage stage = (Stage) labelUsername.getScene().getWindow();
         stage.close();
-
     }
 
     //2 methods that will be used in ShowUsersController in order to edit user

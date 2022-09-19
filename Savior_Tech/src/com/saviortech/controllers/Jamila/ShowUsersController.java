@@ -71,6 +71,13 @@ public class ShowUsersController implements Initializable {
     ObservableList<Utilisateur> dataList = new ServiceUtilisateur().afficher();
     FilteredList<Utilisateur> filteredData = new FilteredList<>(FXCollections.observableList(dataList));
 
+    @FXML
+    public void refrechUserList() {
+        dataList = new ServiceUtilisateur().afficher();
+        filteredData = new FilteredList<>(FXCollections.observableList(dataList));
+        getData();
+    }
+
     private boolean searchFindsUser(Utilisateur user, String searchText) {
         return (user.getUsername().toLowerCase().contains(searchText.toLowerCase()));
     }
@@ -85,17 +92,15 @@ public class ShowUsersController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle rb) {
-//        filtredfield.textProperty().addListener((observable, oldValue, newValue) -> {
-////            System.out.println(filtredfield.getText());
-//            filteredData.setPredicate(createPredicate(newValue));
-//        });
+        filtredfield.textProperty().addListener((observable, oldValue, newValue) -> {
+//            System.out.println(filtredfield.getText());
+            filteredData.setPredicate(createPredicate(newValue));
+        });
         getData();
     }
 
     private void getData() {
-        ObservableList<Utilisateur> dataList = new ServiceUtilisateur().afficher();
-        FilteredList<Utilisateur> filteredData = new FilteredList<>(FXCollections.observableList(dataList));
-        
+
         userTable.setItems(filteredData);
 
         colFullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
@@ -125,14 +130,14 @@ public class ShowUsersController implements Initializable {
 
                         //Styling delete and edit buttons
                         deleteIcon.setStyle(
-                            " -fx-cursor: hand ;"
-                            + "-glyph-size:28px;"
-                            + "-fx-fill:#ff1744;"
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#ff1744;"
                         );
                         editIcon.setStyle(
-                            " -fx-cursor: hand ;"
-                            + "-glyph-size:28px;"
-                            + "-fx-fill:#00E676;"
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
                         );
 
                         //Delete user method
@@ -186,20 +191,4 @@ public class ShowUsersController implements Initializable {
         };
         colEdit.setCellFactory(cellFoctory);
     }
-
-    @FXML
-
-    public void refrechUserList() {
-        getData();
-    }
-    /* dateOfBirthColumn.setOnEditCommit(event - > {
-            final Date value = event.getNewValue() != null ? event.getNewValue() :
-                event.getOldValue();
-            ((PersonTableData) event.getTableView().getItems()
-                .get(event.getTablePosition().getRow()))
-            .setDateOfBirth(value);
-            table.refresh();
-        });
-    }*/
-
 }
