@@ -43,8 +43,7 @@ public class ShowUsersController implements Initializable {
 
     @FXML
     private TableView<Utilisateur> userTable;
-    @FXML
-    private TableColumn<Utilisateur, String> colId;
+    
     @FXML
     private TableColumn<Utilisateur, String> colFullname;
     @FXML
@@ -97,7 +96,6 @@ public class ShowUsersController implements Initializable {
 
         userTable.setItems(filteredData);
 
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colFullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -163,7 +161,7 @@ public class ShowUsersController implements Initializable {
                             refrechUserList();
 
                             EditUserController editUser = loader.getController();
-                            editUser.setTextField(user.getId(new UUIDGenerator().getUuid().toString()), user.getFullname(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRole(), user.getInterest(), user.getDomain(), user.getSpeciality());
+                            editUser.setTextField(user.getFullname(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRole(), user.getInterest(), user.getDomain(), user.getSpeciality());
                             Parent parent = loader.getRoot();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(parent));

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.saviortech.views.jamila;
+package com.saviortech.controllers.Jamila;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,7 +36,7 @@ public class ResetPasswordController implements Initializable {
     }    
 
     @FXML
-    private void resetMyPassword(ActionEvent event) {
+    private void resetMyPassword(ActionEvent event) {;
     }
     
 }

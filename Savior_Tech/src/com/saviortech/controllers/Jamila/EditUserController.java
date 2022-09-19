@@ -70,7 +70,7 @@ public class EditUserController implements Initializable {
     @FXML
     private void saveChanges(ActionEvent event) {
         ServiceUtilisateur su = new ServiceUtilisateur();
-        su.modifier(new Utilisateur(userId, labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), pass_field.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
+        su.modifier(new Utilisateur(labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), pass_field.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
         suc.refrechUserList();
         JOptionPane.showMessageDialog(null, "User Changed !");
   }
@@ -108,5 +108,9 @@ public class EditUserController implements Initializable {
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
 
+    }
+
+    void setTextField(String fullname, String username, String email, String password, String role, String interest, String domain, String speciality) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

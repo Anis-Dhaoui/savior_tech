@@ -11,19 +11,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.Jamila.loginController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <left>
-            <AnchorPane prefHeight="400.0" prefWidth="238.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="400.0" fitWidth="248.0" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../../images/1_PJp6uLe8RBeuJY9Vo4h1Og.jpeg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
+            <AnchorPane prefHeight="400.0" prefWidth="238.0" BorderPane.alignment="CENTER" />
          </left>
          <right>
             <AnchorPane fx:id="loginpane" prefHeight="200.0" prefWidth="360.0" styleClass="login-pane" BorderPane.alignment="CENTER">
@@ -41,7 +34,7 @@
                   <Button fx:id="shp" layoutX="279.0" layoutY="210.0" mnemonicParsing="false" onAction="#ShowHidePassword" stylesheets="@../../css/Style.css" text="Show" />
                   <TextField fx:id="pass_text" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #ffc21a; -fx-border-width: 0px 0px 2px 0px;" />
                   <Button fx:id="submitButton1" layoutX="65.0" layoutY="329.0" mnemonicParsing="false" onAction="#inscription" prefHeight="30.0" prefWidth="251.0" style="-fx-background-color: #4169E1;" styleClass="submitButton" stylesheets="@../../css/Style.css" text="Sign Up" />
-                  <Button layoutX="63.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: clear; -fx-alignment: 1px;" text="I Forgot My Password" textFill="#500eeb">
+                  <Button layoutX="63.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: clear;" text="I Forgot My Password" textFill="#500eeb">
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font>
@@ -54,5 +47,10 @@
             </AnchorPane>
          </right>
       </BorderPane>
+      <ImageView fitHeight="400.0" fitWidth="248.0" layoutX="132.0" layoutY="-171.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../../images/1_PJp6uLe8RBeuJY9Vo4h1Og.jpeg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
