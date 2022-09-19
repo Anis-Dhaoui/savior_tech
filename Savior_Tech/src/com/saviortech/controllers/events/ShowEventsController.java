@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -79,15 +80,11 @@ public class ShowEventsController implements Initializable {
             System.out.println(oldValue);
 
             if (newValue.equals("All")) {
-//                es = new EventPartService().ISEvents().afficher("%%");
-//                choosedCategory = "%%";
+                es = new EventPartService().ISEvents().afficher("%%");
+                filteredData = new FilteredList<>(FXCollections.observableList(es));
                 customGridPane.getChildren().clear();
                 renderCards();
             } else {
-//                es = new EventPartService().ISEvents().afficher(newValue);
-//                choosedCategory = newValue;
-//                customGridPane.getChildren().clear();
-//                renderCards();
                 filteredData.setPredicate(createPredicate(newValue));
                 customGridPane.getChildren().clear();
                 renderCards();
@@ -111,13 +108,11 @@ public class ShowEventsController implements Initializable {
         es.removeIf(item -> item.getEvent_id().equals(id));
         customGridPane.getChildren().clear();
         renderCards();
-
-        //remove node of gridpane
-        //customGridPane.getChildren().remove(id - 1);
     }
 
     public void updateList() {
-        es = new EventPartService().ISEvents().afficher(choosedCategory);
+        es = new EventPartService().ISEvents().afficher("%%");
+        filteredData = new FilteredList<>(FXCollections.observableList(es));
         customGridPane.getChildren().clear();
         renderCards();
     }
@@ -156,6 +151,11 @@ public class ShowEventsController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void clearText(MouseEvent event) {
+        searchField.clear();
     }
 
 }
