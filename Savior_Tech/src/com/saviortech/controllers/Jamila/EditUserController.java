@@ -50,7 +50,7 @@ public class EditUserController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    int userId;
+    String userId;
     private ShowUsersController suc = new ShowUsersController();
     @FXML
     private Label tfull;
@@ -77,7 +77,7 @@ public class EditUserController implements Initializable {
 
     //2 methods that will be used in ShowUsersController in order to edit user
 
-    void setTextField(int id, String fullname, String username, String email, String password, String role, String interest, String domain, String speciality) {
+    void setTextField(String id, String fullname, String username, String email, String password, String role, String interest, String domain, String speciality) {
         userId = id;
         labelFullname.setText(fullname);
         labelUsername.setText(username);
