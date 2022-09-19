@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>-->
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -35,5 +36,10 @@
          <Font name="System Bold" size="14.0" />
       </font>
    </Label>
-   <TextField fx:id="searchField" layoutX="2.0" layoutY="303.0" prefHeight="25.0" prefWidth="185.0" />
+   <TextField fx:id="searchField" layoutX="2.0" layoutY="93.0" prefHeight="25.0" prefWidth="185.0" promptText="Search by name">
+      <padding>
+         <Insets left="15.0" />
+      </padding></TextField>
+   <FontAwesomeIconView fill="#07a8a8" glyphName="SEARCH" layoutX="5.0" layoutY="110.0" rotate="84.9" />
+   <FontAwesomeIconView fill="#eb1010" glyphName="CLOSE" layoutX="173.0" layoutY="110.0" onMouseClicked="#clearText" size="13.0" style="-fx-cursor: HAND;" />
 </AnchorPane>
