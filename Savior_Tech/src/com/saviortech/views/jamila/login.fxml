@@ -9,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.Jamila.loginController">
    <children>
@@ -16,13 +17,12 @@
          <left>
             <AnchorPane prefHeight="400.0" prefWidth="238.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="400.0" fitWidth="248.0" pickOnBounds="true" smooth="false">
+                  <ImageView fitHeight="400.0" fitWidth="248.0" layoutX="-1.0" pickOnBounds="true" smooth="false">
                      <image>
                         <Image url="@../../images/1_PJp6uLe8RBeuJY9Vo4h1Og.jpeg" />
                      </image>
                   </ImageView>
-               </children>
-            </AnchorPane>
+               </children></AnchorPane>
          </left>
          <right>
             <AnchorPane fx:id="loginpane" prefHeight="200.0" prefWidth="360.0" styleClass="login-pane" BorderPane.alignment="CENTER">
@@ -35,12 +35,16 @@
                   <Label layoutX="41.0" layoutY="168.0" text="Username" />
                   <Label layoutX="41.0" layoutY="212.0" text="Password" />
                   <TextField fx:id="tfusername" layoutX="114.0" layoutY="165.0" style="-fx-background-color: transparent; -fx-border-color: #ffc21a; -fx-border-width: 0px 0px 2px 0px;" />
-                  <javafx.scene.control.PasswordField fx:id="tfpassword" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                  <Label layoutX="56.0" layoutY="258.0" prefHeight="18.0" prefWidth="268.0" text=" " />
+                  <javafx.scene.control.PasswordField fx:id="tfpassword" layoutX="116.0" layoutY="207.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                   <Button fx:id="submitButton" layoutX="65.0" layoutY="292.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="251.0" style="-fx-background-color: #4169E1;" styleClass="submitButton" stylesheets="@../../css/Style.css" text="Sign In" AnchorPane.bottomAnchor="78.0" />
                   <Button fx:id="shp" layoutX="279.0" layoutY="210.0" mnemonicParsing="false" onAction="#ShowHidePassword" stylesheets="@../../css/Style.css" text="Show" />
-                  <TextField fx:id="pass_text" layoutX="116.0" layoutY="209.0" style="-fx-background-color: transparent; -fx-border-color: #ffc21a; -fx-border-width: 0px 0px 2px 0px;" />
+                  <TextField fx:id="pass_text" layoutX="116.0" layoutY="207.0" style="-fx-background-color: transparent; -fx-border-color: #ffc21a; -fx-border-width: 0px 0px 2px 0px;" />
                   <Button fx:id="submitButton1" layoutX="65.0" layoutY="329.0" mnemonicParsing="false" onAction="#inscription" prefHeight="30.0" prefWidth="251.0" style="-fx-background-color: #4169E1;" styleClass="submitButton" stylesheets="@../../css/Style.css" text="Sign Up" />
+                  <Button layoutX="63.0" layoutY="256.0" mnemonicParsing="false" onAction="#resetPassword" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: clear;" text="I Forgot My Password" textFill="#500eeb">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </Button>
                </children>
                <stylesheets>
                   <URL value="@../../css/Style.css" />

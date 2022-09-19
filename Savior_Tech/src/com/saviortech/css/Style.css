@@ -110,7 +110,12 @@
     -fx-background-color: #9370DB;
     
 }
-
+#anchorpass{
+    -fx-background-color: #696969	;	
+}
+#buttonpass{
+   -fx-background-color: #E9967A	;
+}
 
 
 /********************************EVENTS STYLE*****************************/

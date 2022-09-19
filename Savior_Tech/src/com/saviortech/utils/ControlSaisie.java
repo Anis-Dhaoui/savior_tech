@@ -27,6 +27,7 @@ public class ControlSaisie {
         Pattern pattern = Pattern.compile(masque);
         //CharSequence laSaisieDeLutilisateur = null;
         Matcher controler = pattern.matcher(pass);
+         System.out.println(controler.matches());
         return controler.matches();
 
     }

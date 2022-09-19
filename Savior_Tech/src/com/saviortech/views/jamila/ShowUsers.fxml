@@ -16,7 +16,6 @@
      
       <TableView fx:id="userTable" fixedCellSize="0.0" layoutX="61.0" layoutY="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="237.0" prefWidth="761.0" style="-fx-background-color: transprent;" styleClass="userTable" stylesheets="@../../css/Style.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="121.0">
         <columns>
-          <TableColumn id="colId" fx:id="colId" maxWidth="70.0" prefWidth="25.0" styleClass="colId" text="ID" />
           <TableColumn id="FullName" fx:id="colFullname" maxWidth="100.0" prefWidth="89.0" styleClass="FullName" text="FullName" />
             <TableColumn id="UserName" fx:id="colUsername" maxWidth="100.0" prefWidth="99.0" styleClass="UserName" text="UserName" />
             <TableColumn id="Email" fx:id="colEmail" maxWidth="139.0" prefWidth="73.0" styleClass="Email" text="Email" />

@@ -67,7 +67,7 @@ public class User_HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            cu.setUserInfo(new ServiceUtilisateur().validate("jamila", "9ae48df22b0715e18485142038a890cf"));
+            cu.setUserInfo(new ServiceUtilisateur().validate("AnisDH", "829fcbc79400a905d63b13882490d1e3"));
 
         } catch (SQLException ex) {
             Logger.getLogger(User_HomeController.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,11 +85,12 @@ public class User_HomeController implements Initializable {
 
     @FXML
     private void saveChange(ActionEvent event) {
-
-        /* ServiceUtilisateur su = new ServiceUtilisateur();
-        su.modifier(new Utilisateur( fullname.getText(), username.getText(), email.getText(), role.getText(), domain.getText(), interest.getText(), speciality.getText()));
-     //   suc.refrechUserList();
-        JOptionPane.showMessageDialog(null, "User Changed !");*/
+//        ShowUsersController suc = new ShowUsersController();
+        ServiceUtilisateur su = new ServiceUtilisateur();
+        System.out.println("xxxxxxxxxxxx     " + cu.getUserInfo().get(0).getId());
+        su.modifier(new Utilisateur(cu.getUserInfo().get(0).getId(), fullname.getText(), username.getText(), email.getText(), role.getText(), domain.getText(), interest.getText(), speciality.getText()));
+//        suc.refrechUserList();
+        JOptionPane.showMessageDialog(null, "User Changed !");
     }
 
 }

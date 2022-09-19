@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
 /**
  * FXML Controller class
  *
- *Lenovo
+ * Lenovo
  */
 public class EditUserController implements Initializable {
 
@@ -62,6 +62,7 @@ public class EditUserController implements Initializable {
     private Button buttonchange1;
     @FXML
     private PasswordField pass_field;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -71,12 +72,13 @@ public class EditUserController implements Initializable {
     private void saveChanges(ActionEvent event) {
         ServiceUtilisateur su = new ServiceUtilisateur();
         su.modifier(new Utilisateur(userId, labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), pass_field.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
-        suc.refrechUserList();
         JOptionPane.showMessageDialog(null, "User Changed !");
-  }
+        Stage stage = (Stage) labelUsername.getScene().getWindow();
+        stage.close();
+
+    }
 
     //2 methods that will be used in ShowUsersController in order to edit user
-
     void setTextField(String id, String fullname, String username, String email, String password, String role, String interest, String domain, String speciality) {
         userId = id;
         labelFullname.setText(fullname);
@@ -91,10 +93,10 @@ public class EditUserController implements Initializable {
 
     @FXML
     private void showChanges(ActionEvent event) {
-        
-        Stage stageedit =(Stage) labelUsername.getScene().getWindow();
+
+        Stage stageedit = (Stage) labelUsername.getScene().getWindow();
         stageedit.close();
-           FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../../views/jamila/ShowUsers.fxml"));
         try {
             loader.load();
@@ -108,5 +110,9 @@ public class EditUserController implements Initializable {
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
 
+    }
+
+    void setTextField(String fullname, String username, String email, String password, String role, String interest, String domain, String speciality) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

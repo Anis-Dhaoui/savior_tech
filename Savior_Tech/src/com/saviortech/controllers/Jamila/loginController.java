@@ -160,4 +160,8 @@ public class loginController implements Initializable {
         stage.show();
 
     }
+
+    @FXML
+    private void resetPassword(ActionEvent event) {
+    }
 }

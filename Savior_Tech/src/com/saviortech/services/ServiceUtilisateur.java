@@ -71,9 +71,10 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     @Override
     public void supprimer(Utilisateur o) {
         try {
-            String req = "DELETE FROM utilisateur where id=" + o.getId();
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
+            String req = "DELETE FROM utilisateur where id LIKE ?";
+            PreparedStatement pst = cnx.prepareStatement(req);
+            pst.setString(1, o.getId());
+            pst.executeUpdate();
             System.out.println("Utilisateur supprimée !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

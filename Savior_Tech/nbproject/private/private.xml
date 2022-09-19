@@ -12,10 +12,22 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/test/MainGUI.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/events/ShowEventsController.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/Jamila/ShowUsersController.java</file>
             <file>file:/C:/Users/freec/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/events/AddEventController.java</file>
+=======
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/Jamila/EditUserController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/css/Style.css</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/Jamila/ResetPasswordController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/Jamila/ShowUsersController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/test/MainGUI.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/Jamila/User_HomeController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/models/CurrentUser.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/controllers/Jamila/loginController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/services/ServiceUtilisateur.java</file>
+>>>>>>> 454f1feec911406ff7dbd462ef389dff1faa5d93
         </group>
     </open-files>
 </project-private>

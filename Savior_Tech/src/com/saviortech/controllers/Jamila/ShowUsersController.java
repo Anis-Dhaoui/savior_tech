@@ -6,6 +6,7 @@ package com.saviortech.controllers.Jamila;
 
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
+import com.saviortech.utils.UUIDGenerator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
@@ -42,8 +43,7 @@ public class ShowUsersController implements Initializable {
 
     @FXML
     private TableView<Utilisateur> userTable;
-    @FXML
-    private TableColumn<Utilisateur, String> colId;
+
     @FXML
     private TableColumn<Utilisateur, String> colFullname;
     @FXML
@@ -76,7 +76,7 @@ public class ShowUsersController implements Initializable {
     }
 
     private Predicate<Utilisateur> createPredicate(String searchText) {
-        return (user)-> {
+        return (user) -> {
             if (searchText == null || searchText.isEmpty()) {
                 return true;
             }
@@ -85,18 +85,19 @@ public class ShowUsersController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle rb) {
-        filtredfield.textProperty().addListener((observable, oldValue, newValue) -> {
-//            System.out.println(filtredfield.getText());
-            filteredData.setPredicate(createPredicate(newValue));
-        });
+//        filtredfield.textProperty().addListener((observable, oldValue, newValue) -> {
+////            System.out.println(filtredfield.getText());
+//            filteredData.setPredicate(createPredicate(newValue));
+//        });
         getData();
     }
 
     private void getData() {
-
+        ObservableList<Utilisateur> dataList = new ServiceUtilisateur().afficher();
+        FilteredList<Utilisateur> filteredData = new FilteredList<>(FXCollections.observableList(dataList));
+        
         userTable.setItems(filteredData);
 
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colFullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -124,14 +125,14 @@ public class ShowUsersController implements Initializable {
 
                         //Styling delete and edit buttons
                         deleteIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#ff1744;"
+                            " -fx-cursor: hand ;"
+                            + "-glyph-size:28px;"
+                            + "-fx-fill:#ff1744;"
                         );
                         editIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#00E676;"
+                            " -fx-cursor: hand ;"
+                            + "-glyph-size:28px;"
+                            + "-fx-fill:#00E676;"
                         );
 
                         //Delete user method
