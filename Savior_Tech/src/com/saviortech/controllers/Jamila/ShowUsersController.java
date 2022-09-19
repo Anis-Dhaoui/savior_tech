@@ -191,4 +191,9 @@ public class ShowUsersController implements Initializable {
         };
         colEdit.setCellFactory(cellFoctory);
     }
+
+    @FXML
+    private void clearText(MouseEvent event) {
+        filtredfield.clear();
+    }
 }

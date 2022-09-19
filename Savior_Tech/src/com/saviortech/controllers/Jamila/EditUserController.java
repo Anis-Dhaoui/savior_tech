@@ -74,7 +74,7 @@ public class EditUserController implements Initializable {
         su.modifier(new Utilisateur(userId, labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), pass_field.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
         JOptionPane.showMessageDialog(null, "User Changed !");
         Stage stage = (Stage) labelUsername.getScene().getWindow();
-        stage.close();
+        stage.close(); 
     }
 
     //2 methods that will be used in ShowUsersController in order to edit user

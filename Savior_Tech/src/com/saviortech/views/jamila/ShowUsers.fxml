@@ -46,7 +46,9 @@
             <FontAwesomeIconView fill="#0ef012" glyphName="REFRESH" onMouseClicked="#refrechUserList" size="45" style="-fx-cursor: hand;" text="" />
          </children>
       </HBox>
-      <TextField fx:id="filtredfield" layoutX="71.0" layoutY="86.0" promptText="Username" />
+      <TextField fx:id="filtredfield" alignment="CENTER" layoutX="71.0" layoutY="86.0" prefHeight="25.0" prefWidth="201.0" promptText="Username" />
+      <FontAwesomeIconView fill="#077fbf" glyphName="SEARCH" layoutX="77.0" layoutY="104.0" rotate="87.0" />
+      <FontAwesomeIconView fill="RED" glyphName="CLOSE" layoutX="259.0" layoutY="103.0" onMouseClicked="#clearText" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
