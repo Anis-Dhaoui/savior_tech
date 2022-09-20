@@ -77,7 +77,7 @@ public class HomeController implements Initializable {
         Parent parent = showEventLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
-        stage.setTitle("ADD NEW EVENT");
+        stage.setTitle("ALL EVENTS");
         stage.initStyle(StageStyle.UTILITY);
         stage.setResizable(false);
         stage.setMaximized(true);
@@ -152,6 +152,22 @@ public class HomeController implements Initializable {
 
     @FXML
     private void ShowUsersMethod(MouseEvent event) {
+        FXMLLoader showUsersLoader = new FXMLLoader();
+        showUsersLoader.setLocation(HomeController.this.getClass().getResource("../views/jamila/ShowUsers.fxml"));
+        try {
+            showUsersLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = showUsersLoader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.setTitle("ALL USERS");
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setResizable(false);
+        stage.setMaximized(true);
+        stage.show();
     }
     //$$$$$$$$$$$$$$$$$$$ END USERS METHODS $$$$$$$$$$$$$$$$$$$
 }
