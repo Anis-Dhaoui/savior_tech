@@ -66,6 +66,22 @@ public class HomeController implements Initializable {
 //$$$$$$$$$$$$$$$$$$$ START EVENTS METHODS $$$$$$$$$$$$$$$$$$$
     @FXML
     private void ShowEventsMethod(MouseEvent event) {
+        FXMLLoader showEventLoader = new FXMLLoader();
+        showEventLoader.setLocation(HomeController.this.getClass().getResource("../views/events/ShowEvents.fxml"));
+        try {
+            showEventLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = showEventLoader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.setTitle("ADD NEW EVENT");
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setResizable(false);
+        stage.setMaximized(true);
+        stage.show();
     }
 
     @FXML
@@ -86,12 +102,15 @@ public class HomeController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
-//$$$$$$$$$$$$$$$$$$$ END EVENTS METHODS $$$$$$$$$$$$$$$$$$$
-
+//$$$$$$$$$$$$$$$$$$$ END EVENTS METHODS $$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
 //$$$$$$$$$$$$$$$$$$$ START USERS METHODS $$$$$$$$$$$$$$$$$$$
-    @FXML
-    private void onActionAjouter(ActionEvent event) {
-    }
 
     @FXML
     private void SignUpMethod(ActionEvent event) {
@@ -114,7 +133,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void SignInMethod(ActionEvent event) {
-                FXMLLoader signinLoader = new FXMLLoader();
+        FXMLLoader signinLoader = new FXMLLoader();
         signinLoader.setLocation(HomeController.this.getClass().getResource("../views/jamila/login.fxml"));
         try {
             signinLoader.load();
