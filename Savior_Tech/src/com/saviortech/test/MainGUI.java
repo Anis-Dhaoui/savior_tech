@@ -21,12 +21,11 @@ public class MainGUI extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setMaximized(true);
         try {
-<<<<<<< HEAD
+
             Parent root = FXMLLoader.load(getClass().getResource("../views/Home.fxml"));
 
-=======
-            Parent root = FXMLLoader.load(getClass().getResource("../views/events/ShowEvents.fxml"));
->>>>>>> 416a91c5eb32498188320cc54b628a0d7c1bbcb8
+         //   Parent root = FXMLLoader.load(getClass().getResource("../views/events/ShowEvents.fxml"));
+
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);
