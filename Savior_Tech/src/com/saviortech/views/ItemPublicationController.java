@@ -4,7 +4,6 @@
  */
 package com.saviortech.views;
 
-import com.saviortech.views.HomeControllerPublication;
 import com.saviortech.models.Publication;
 
 import com.saviortech.services.MyListener;
@@ -44,23 +43,29 @@ public class ItemPublicationController implements Initializable {
     private Label nomUtilisateur;
     @FXML
     private Label nbrCom;
+    @FXML
+    private Label nbrJ;
+    @FXML
+    private Label nbrJp;
  
    
     public void setData(Publication pub, MyListener myListener ) throws MalformedURLException, IOException {
         this.pub = pub;
         this.myListener = myListener;
       
-       /* if (pub.getImage() != null) {
+        if (pub.getImage() != null) {
             BufferedImage deck = ImageIO.read(new URL(pub.getImage()));
             BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
             WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
             img.setImage(card);
         }
-*/
+
         titreLabel.setText(pub.getTitre());
         datelabel.setText(pub.getDate());
        nomUtilisateur.setText(pub.getNomPrenom());
-       this.nbrCom.setText("("+HomeControllerPublication.nbrCom+")");
+       this.nbrCom.setText("("+HomeController.nbrCom+")");
+       this.nbrJ.setText("("+HomeController.nbrJ+")");
+       this.nbrJp.setText("("+HomeController.nbrJp+")");
 
     }
 

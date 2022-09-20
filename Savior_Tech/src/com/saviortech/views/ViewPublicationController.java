@@ -107,7 +107,7 @@ public class ViewPublicationController implements Initializable {
             JOptionPane.showMessageDialog(null, "le champ est vide!");
         } else {
 
-            sc.ajouter(new Commentaire(desComAjouter.getText(), null, 3, HomeControllerPublication.idPub));
+            sc.ajouter(new Commentaire(desComAjouter.getText(), null, 3, HomeController.idPub));
             desComAjouter.clear();
             desComAjouter.setPromptText("Ecrivez un commentaire");
             JOptionPane.showMessageDialog(null, "Commentaire ajoutée !");
@@ -129,7 +129,7 @@ public class ViewPublicationController implements Initializable {
         if (response == JOptionPane.NO_OPTION) {
             System.out.println("No button clicked");
         } else if (response == JOptionPane.YES_OPTION) {
-           sp.supprimer(new Publication(HomeControllerPublication.idPub));
+           sp.supprimer(new Publication(HomeController.idPub));
         } else if (response == JOptionPane.CLOSED_OPTION) {
             System.out.println("JOptionPane closed");
         }
@@ -138,18 +138,22 @@ public class ViewPublicationController implements Initializable {
     @FXML
     private void onModifier(ActionEvent event) {
        
-       sp.modifier(new Publication(HomeControllerPublication.idPub,textModif.getText()));
+       sp.modifier(new Publication(HomeController.idPub,textModif.getText()));
        hboxModifier.setVisible(false);
        JOptionPane.showMessageDialog(null, "Modifieé");
      
     }
 
+    @FXML
     private void onClickJaime(ActionEvent event) {
-        sr.ajouter(new Reaction("jaime", HomeControllerPublication.idUtilisateur,HomeControllerPublication.idPub));
+        sr.ajouter(new Reaction("jaime", HomeController.idUtilisateur,HomeController.idPub));
+        JOptionPane.showMessageDialog(null,"J'aime");
     }
 
+    @FXML
     private void onClickJaimePas(ActionEvent event) {
-         sr.ajouter(new Reaction("jaimepas", HomeControllerPublication.idUtilisateur,HomeControllerPublication.idPub));
+         sr.ajouter(new Reaction("jaimepas", HomeController.idUtilisateur,HomeController.idPub));
+         JOptionPane.showMessageDialog(null,"J'aime pas");
     }
 
 }
