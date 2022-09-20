@@ -6,6 +6,7 @@ package com.saviortech.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.saviortech.controllers.events.AddEventController;
+import com.saviortech.models.CurrentUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,7 +38,10 @@ public class HomeController implements Initializable {
     private Button addPub;
     @FXML
     private VBox vBox;
-
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private GridPane gridPane;
 //$$$$$$$$$$$$$$$$$$$ START EVENTS NODES $$$$$$$$$$$$$$$$$$$
     @FXML
     private HBox showEventsId;
@@ -47,20 +51,29 @@ public class HomeController implements Initializable {
 
 //$$$$$$$$$$$$$$$$$$$ START USERS NODES $$$$$$$$$$$$$$$$$$$ 
     @FXML
-    private ScrollPane scrollPane;
-    @FXML
-    private GridPane gridPane;
-    @FXML
-    private JFXButton signupId;
-    @FXML
-    private JFXButton signId;
-    @FXML
     private HBox showUsersId;
+    @FXML
+    private HBox authenticatedUserBox;
+    @FXML
+    private HBox signinSignupBtnsBox;
 //$$$$$$$$$$$$$$$$$$$ END USERS NODES $$$$$$$$$$$$$$$$$$$ 
+
+    CurrentUser cu = new CurrentUser();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        checkIfUserAuthenticated();
+    }
+
+    public void checkIfUserAuthenticated() {
+        System.out.println(cu.getUserInfo().isEmpty());
+        if (cu.getUserInfo().isEmpty()) {
+            authenticatedUserBox.setVisible(false);
+            signinSignupBtnsBox.setVisible(true);
+        } else {
+            authenticatedUserBox.setVisible(true);
+            signinSignupBtnsBox.setVisible(false);
+        }
     }
 
 //$$$$$$$$$$$$$$$$$$$ START EVENTS METHODS $$$$$$$$$$$$$$$$$$$
