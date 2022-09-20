@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.saviortech.test;
-
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -18,27 +17,30 @@ import javafx.stage.Stage;
  */
 public class MainGUI extends Application {
 
-    @Override
+    @Override 
     public void start(Stage primaryStage) {
         primaryStage.setMaximized(true);
         try {
+<<<<<<< HEAD
             Parent root = FXMLLoader.load(getClass().getResource("../views/Home.fxml"));
 
+=======
+            Parent root = FXMLLoader.load(getClass().getResource("../views/events/ShowEvents.fxml"));
+>>>>>>> 416a91c5eb32498188320cc54b628a0d7c1bbcb8
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Savior Tech - Accueil");
-            //primaryStage.setResizable(false);
+//          primaryStage.setResizable(false);
             primaryStage.show();
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+        
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         launch(args);
     }

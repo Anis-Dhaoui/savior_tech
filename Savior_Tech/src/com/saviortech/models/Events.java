@@ -12,7 +12,7 @@ import java.sql.Date;
  */
 public class Events {
 
-    private int event_id;
+    private String event_id;
     private String event_title;
     private String event_image;
     private String event_category;
@@ -39,7 +39,7 @@ public class Events {
         this.event_max_participant = event_max_participant;
     }
 
-    public Events(int event_id, String event_title, String event_image, String event_category, String event_description, Date event_start_date, Date event_end_date, String event_status, String event_location, int event_price, String event_orgoniser, int event_max_participant) {
+    public Events(String event_id, String event_title, String event_image, String event_category, String event_description, Date event_start_date, Date event_end_date, String event_status, String event_location, int event_price, String event_orgoniser, int event_max_participant) {
         this.event_id = event_id;
         this.event_title = event_title;
         this.event_image = event_image;
@@ -58,11 +58,11 @@ public class Events {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public int getEvent_id() {
+    public String getEvent_id() {
         return event_id;
     }
 
-    public void setEvent_id(int event_id) {
+    public void setEvent_id(String event_id) {
         this.event_id = event_id;
     }
 

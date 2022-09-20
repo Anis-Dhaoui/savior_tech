@@ -6,21 +6,31 @@ package com.saviortech.controllers.Jamila;
 
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
+import com.saviortech.utils.UUIDGenerator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -33,8 +43,7 @@ public class ShowUsersController implements Initializable {
 
     @FXML
     private TableView<Utilisateur> userTable;
-    @FXML
-    private TableColumn<Utilisateur, String> colId;
+
     @FXML
     private TableColumn<Utilisateur, String> colFullname;
     @FXML
@@ -56,15 +65,44 @@ public class ShowUsersController implements Initializable {
 
     Utilisateur user = null;
 
+    @FXML
+    private TextField filtredfield;
+
+    ObservableList<Utilisateur> dataList = new ServiceUtilisateur().afficher();
+    FilteredList<Utilisateur> filteredData = new FilteredList<>(FXCollections.observableList(dataList));
+
+    @FXML
+    public void refrechUserList() {
+        dataList = new ServiceUtilisateur().afficher();
+        filteredData = new FilteredList<>(FXCollections.observableList(dataList));
+        getData();
+    }
+
+    private boolean searchFindsUser(Utilisateur user, String searchText) {
+        return (user.getUsername().toLowerCase().contains(searchText.toLowerCase()));
+    }
+
+    private Predicate<Utilisateur> createPredicate(String searchText) {
+        return (user) -> {
+            if (searchText == null || searchText.isEmpty()) {
+                return true;
+            }
+            return searchFindsUser(user, searchText);
+        };
+    }
+
     public void initialize(URL url, ResourceBundle rb) {
+        filtredfield.textProperty().addListener((observable, oldValue, newValue) -> {
+//            System.out.println(filtredfield.getText());
+            filteredData.setPredicate(createPredicate(newValue));
+        });
         getData();
     }
 
     private void getData() {
-        userTable.setItems(new ServiceUtilisateur().afficher());
-        System.out.println(userTable);
 
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        userTable.setItems(filteredData);
+
         colFullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -92,20 +130,19 @@ public class ShowUsersController implements Initializable {
 
                         //Styling delete and edit buttons
                         deleteIcon.setStyle(
-                            " -fx-cursor: hand ;"
-                            + "-glyph-size:28px;"
-                            + "-fx-fill:#ff1744;"
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#ff1744;"
                         );
                         editIcon.setStyle(
-                            " -fx-cursor: hand ;"
-                            + "-glyph-size:28px;"
-                            + "-fx-fill:#00E676;"
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
                         );
 
                         //Delete user method
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
                             user = userTable.getSelectionModel().getSelectedItem();
-                            System.out.println(user);
                             int dialogButton = JOptionPane.YES_NO_OPTION;
                             int dialogResult = JOptionPane.showConfirmDialog(null, "Confirmer la suppression", "Confirm", dialogButton);
                             if (dialogResult == 0) {
@@ -119,13 +156,16 @@ public class ShowUsersController implements Initializable {
 
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
                             user = userTable.getSelectionModel().getSelectedItem();
+                            System.out.println(user);
                             FXMLLoader loader = new FXMLLoader();
                             loader.setLocation(getClass().getResource("../../views/jamila/EditUser.fxml"));
                             try {
                                 loader.load();
+
                             } catch (IOException ex) {
                                 Logger.getLogger(ShowUsersController.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                            refrechUserList();
 
                             EditUserController editUser = loader.getController();
                             editUser.setTextField(user.getId(), user.getFullname(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRole(), user.getInterest(), user.getDomain(), user.getSpeciality());
@@ -153,10 +193,7 @@ public class ShowUsersController implements Initializable {
     }
 
     @FXML
-
-    public void refrechUserList() {
-        getData();
+    private void clearText(MouseEvent event) {
+        filtredfield.clear();
     }
-    
-    
 }

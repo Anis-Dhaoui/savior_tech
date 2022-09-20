@@ -13,6 +13,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,6 +57,7 @@ public class EventCardController implements Initializable {
 
     private Events events;
     ShowEventsController sec = new ShowEventsController();
+    private String evId;
 
     //Image is a generic concept and BufferedImage is the concrete implementation of the generic concept
     //if there is an exception with imageIO.read so it will use an image from saved in the localhost
@@ -72,11 +75,21 @@ public class EventCardController implements Initializable {
         return card;
     }
 
-    public EventCardController() {
+    // Convert sql date to local date
+    public LocalDate convertDate(Date dateToConvert) {
+        return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
     }
 
+    public EventCardController() {
+    }
+    static int counter = 0;
+
     public void setData(Events events) throws IOException {
+
+        counter++;
+        cardId.setId(String.valueOf(counter));
         this.events = events;
+        evId = events.getEvent_id();
 
         //Setting up data to card
         image.setImage(implementImage(events.getEvent_image()));
@@ -90,7 +103,7 @@ public class EventCardController implements Initializable {
 
         //Show Event details when click on the card
         image.setOnMouseClicked((MouseEvent event) -> {
-
+            System.out.println("Event ID: " + events.getEvent_id());
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../../views/events/EventDetails.fxml"));
 
@@ -115,13 +128,9 @@ public class EventCardController implements Initializable {
             stage.setTitle(events.getEvent_title());
             stage.setResizable(false);
             stage.show();
-            System.out.println(events.getEvent_id());
         });
     }
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -152,20 +161,56 @@ public class EventCardController implements Initializable {
 
             //Delete Event
             deleteIcon.setOnMouseClicked((MouseEvent event) -> {
-                System.out.println("Event ID: " + events.getEvent_id());
+                System.out.println("Delete Event ID: " + events.getEvent_id());
                 int dialogButton = JOptionPane.YES_NO_OPTION;
                 int dialogResult = JOptionPane.showConfirmDialog(null, "Etes vous sure?", "Confirm", dialogButton);
                 if (dialogResult == 0) {
                     //Remove event from database
                     new EventPartService().ISEvents().supprimer(events.getEvent_id());
-                    sec.setEs(new EventPartService().ISEvents().afficher());
-                    
+
+                    try {
+                        //METHOD 1:   Send the card id of grid to remove
+                        //sec.removeFromList(Integer.parseInt(cardId.getId()));
+
+                        //METHOD 2:  Send the event id to remove
+                        sec.removeFromList(events.getEvent_id());
+                    } catch (IOException ex) {
+                        Logger.getLogger(EventCardController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } else {
                     System.out.println("Delete Canceled");
                 }
             });
+
+            //Edit Event
+            editIcon.setOnMouseClicked((MouseEvent event) -> {
+                System.out.println("Edit Event ID: " + events.getEvent_id());
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(EventCardController.this.getClass().getResource("../../views/events/AddEvent.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                AddEventController aec = loader.getController();
+                aec.addBtn.setVisible(false);
+                aec.updateBtn.setVisible(true);
+
+                aec.getEventValues(events.getEvent_id(), events.getEvent_title(), events.getEvent_image(),
+                    events.getEvent_category(), events.getEvent_price(), events.getEvent_status(),
+                    events.getEvent_location(), events.getEvent_orgoniser(), events.getEvent_max_participant(),
+                    convertDate(events.getEvent_start_date()), events.getEvent_description(),
+                    convertDate(events.getEvent_end_date())
+                );
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.setTitle("Modifier:  " + events.getEvent_title());
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            });
         }
     }
-
 }

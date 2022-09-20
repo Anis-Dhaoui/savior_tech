@@ -6,20 +6,29 @@ package com.saviortech.controllers.Jamila;
 
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
  *
- * @author Lenovo
+ * Lenovo
  */
 public class EditUserController implements Initializable {
 
@@ -29,8 +38,6 @@ public class EditUserController implements Initializable {
     private TextField labelFullname;
     @FXML
     private TextField labelEmail;
-    @FXML
-    private TextField labelPassword;
     @FXML
     private TextField labelRole;
     @FXML
@@ -43,7 +50,7 @@ public class EditUserController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    int userId;
+    String userId;
     private ShowUsersController suc = new ShowUsersController();
     @FXML
     private Label tfull;
@@ -51,30 +58,60 @@ public class EditUserController implements Initializable {
     private Label tuser;
     @FXML
     private Button buttonchange;
+    @FXML
+    private Button buttonchange1;
+    @FXML
+    private PasswordField pass_field;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
     @FXML
-    private void saveChanges(ActionEvent event) {
+    private void saveChanges(ActionEvent event) throws IOException {
         ServiceUtilisateur su = new ServiceUtilisateur();
-        su.modifier(new Utilisateur(userId, labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), labelPassword.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
-        suc.refrechUserList();
-        JOptionPane.showMessageDialog(null, "Personne modifié !");
+        su.modifier(new Utilisateur(userId, labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), pass_field.getText(), labelRole.getText(), labelDomain.getText(), labelInterest.getText(), labelSpeciality.getText()));
+        JOptionPane.showMessageDialog(null, "User Changed !");
+        Stage stage = (Stage) labelUsername.getScene().getWindow();
+        stage.close(); 
     }
 
     //2 methods that will be used in ShowUsersController in order to edit user
-
-    void setTextField(int id, String fullname, String username, String email, String password, String role, String interest, String domain, String speciality) {
+    void setTextField(String id, String fullname, String username, String email, String password, String role, String interest, String domain, String speciality) {
         userId = id;
         labelFullname.setText(fullname);
         labelUsername.setText(username);
         labelEmail.setText(email);
-        labelPassword.setText(password);
+        pass_field.setText(password);
         labelRole.setText(role);
         labelDomain.setText(domain);
         labelSpeciality.setText(speciality);
         labelInterest.setText(interest);
+    }
+
+    @FXML
+    private void showChanges(ActionEvent event) {
+
+        Stage stageedit = (Stage) labelUsername.getScene().getWindow();
+        stageedit.close();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../../views/jamila/ShowUsers.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(ShowUsersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+
+    }
+
+    void setTextField(String fullname, String username, String email, String password, String role, String interest, String domain, String speciality) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

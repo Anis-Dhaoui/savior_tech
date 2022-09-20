@@ -13,12 +13,12 @@
                 <Image url="@../../../../../../../Downloads/Hackathon-500x286.png" />
             </image>
         </ImageView>
-        <Label fx:id="titre" layoutX="6.0" layoutY="195.0" prefHeight="27.0" prefWidth="347.0" text="Front End Dev" textFill="RED">
+        <Label fx:id="titre" layoutX="13.0" layoutY="195.0" prefHeight="27.0" prefWidth="261.0" stylesheets="@../../css/Style.css" text="Front End Dev" textFill="#140000">
             <font>
                 <Font size="18.0" />
             </font>
         </Label>
-        <Label layoutX="14.0" layoutY="230.0" prefHeight="21.0" prefWidth="73.0" text="Category:" textFill="#111111">
+        <Label fx:id="categ" layoutX="14.0" layoutY="230.0" prefHeight="21.0" prefWidth="73.0" stylesheets="@../../css/Style.css" text="Category:" textFill="#111111">
             <font>
                 <Font name="System Bold" size="13.0" />
             </font>

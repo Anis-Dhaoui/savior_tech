@@ -10,7 +10,7 @@ package com.saviortech.models;
  */
 public class Utilisateur {
 
-    private int id;
+    private String id;
     private String fullname;
     private String username;
     private String email;
@@ -19,12 +19,25 @@ public class Utilisateur {
     private String domain;
     private String interest;
     private String speciality;
+    private Byte admin;
 
-    public int getId() {
+    public Utilisateur(String text, String text0, String text1, String text2, String text3, String text4, String text5) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Byte isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Byte admin) {
+        this.admin = admin;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -103,7 +116,7 @@ public class Utilisateur {
         this.speciality = speciality;
     }
 
-    public Utilisateur(int id, String fullname, String username, String email, String password, String role, String domain, String interest, String speciality) {
+    public Utilisateur(String id, String fullname, String username, String email, String password, String role, String domain, String interest, String speciality) {
         this.id = id;
         this.fullname = fullname;
         this.username = username;
@@ -121,11 +134,22 @@ public class Utilisateur {
         this.speciality = speciality;
     }
 
+    public Utilisateur(String id, String fullname, String username, String email, String role, String domain, String interest, String speciality, Byte admin) {
+        this.id = id;
+        this.fullname = fullname;
+        this.username = username;
+        this.email = email;
+        this.role = role;
+        this.domain = domain;
+        this.interest = interest;
+        this.speciality = speciality;
+        this.admin = admin;
+
+    }
+
     @Override
     public String toString() {
-        return "Utilisateur{" + "id=" + id + ", fullname=" + fullname + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", domain=" + domain + ", interest=" + interest + ", speciality=" + speciality + "}\n";
+        return "Utilisateur{" + "id=" + id + ", fullname=" + fullname + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", domain=" + domain + ", interest=" + interest + ", speciality=" + speciality + ", admin= " + admin + "}\n";
     }
-    
-    
 
 }

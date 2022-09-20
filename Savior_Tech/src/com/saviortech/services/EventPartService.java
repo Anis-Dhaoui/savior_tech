@@ -8,6 +8,7 @@ import com.saviortech.models.Events;
 import com.saviortech.models.Participant;
 import com.saviortech.models.Utilisateur;
 import com.saviortech.utils.DataSource;
+import com.saviortech.utils.UUIDGenerator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,22 +33,24 @@ public class EventPartService {
             public void ajouter(Events o) {
                 try {
                     String req = "INSERT INTO events ("
-                        + "event_title, event_image, event_category, event_description, event_start_date, event_end_date,"
+                        + "event_id, event_title, event_image, event_category, event_description, event_start_date, event_end_date,"
                         + "event_status, event_location, event_price,event_orgoniser, event_max_participant)"
-                        + " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                        + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
-
-                    pst.setString(1, o.getEvent_title());
-                    pst.setString(2, o.getEvent_image());
-                    pst.setString(3, o.getEvent_category());
-                    pst.setString(4, o.getEvent_description());
-                    pst.setDate(5, o.getEvent_start_date());
-                    pst.setDate(6, o.getEvent_end_date());
-                    pst.setString(7, o.getEvent_status());
-                    pst.setString(8, o.getEvent_location());
-                    pst.setInt(9, o.getEvent_price());
-                    pst.setString(10, o.getEvent_orgoniser());
-                    pst.setInt(11, o.getEvent_max_participant());
+                    
+                    pst.setString(1, new UUIDGenerator().getUuid().toString());
+                    pst.setString(2, o.getEvent_title());
+                    pst.setString(3, o.getEvent_image());
+                    pst.setString(4, o.getEvent_category());
+                    pst.setString(5, o.getEvent_description());
+                    pst.setDate(6, o.getEvent_start_date());
+                    pst.setDate(7, o.getEvent_end_date());
+                    pst.setString(8, o.getEvent_status());
+                    pst.setString(9, o.getEvent_location());
+                    pst.setInt(10, o.getEvent_price());
+                    pst.setString(11, o.getEvent_orgoniser());
+                    pst.setInt(12, o.getEvent_max_participant());
+                    
 
                     pst.executeUpdate();
                     System.out.println("Event ajoutée !");
@@ -57,15 +60,15 @@ public class EventPartService {
             }
 
             @Override
-            public List<Events> afficher() {
+            public List<Events> afficher(String category) {
                 List<Events> events = new ArrayList<>();
-
                 try {
-                    String req = "SELECT * FROM events";
+                    String req = "SELECT * FROM events WHERE event_category LIKE ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
+                    pst.setString(1, category);
                     ResultSet res = pst.executeQuery();
                     while (res.next()) {
-                        events.add(new Events(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6), res.getDate(7), res.getString(8), res.getString(9), res.getInt(10), res.getString(11), res.getInt(12)));
+                        events.add(new Events(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6), res.getDate(7), res.getString(8), res.getString(9), res.getInt(10), res.getString(11), res.getInt(12)));
                     }
                     System.out.println("Events récupérées !");
                 } catch (SQLException ex) {
@@ -75,7 +78,23 @@ public class EventPartService {
             }
 
             @Override
-            public void supprimer(int evId) {
+            public ObservableList<String> getCategories() {
+                ObservableList<String> catList = FXCollections.observableArrayList();
+                try {
+                    String req = "SELECT DISTINCT event_category FROM events";
+                    PreparedStatement pst = cnx.prepareStatement(req);
+                    ResultSet res = pst.executeQuery();
+                    while (res.next()) {
+                        catList.add(res.getString(1));
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                return catList;
+            }
+
+            @Override
+            public void supprimer(String evId) {
                 try {
                     String req = "DELETE FROM events where event_id=" + evId;
                     PreparedStatement st = cnx.prepareStatement(req);
@@ -87,18 +106,44 @@ public class EventPartService {
             }
 
             @Override
-            public int participantNumber(int nb) {
+            public int participantNumber(String nb) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
 
             @Override
-            public ObservableList<Utilisateur> getParticipants(int id) {
+            public ObservableList<Utilisateur> getParticipants(String id) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
 
             @Override
-            public boolean checkIfParticipated(int userId, int eventId) {
+            public boolean checkIfParticipated(int userId, String eventId) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void modifier(Events o) {
+                try {
+                    String req = "UPDATE events SET event_title = ?, event_image = ?, event_category = ?, event_description = ?, event_start_date = ?, event_end_date = ?,"
+                        + "event_status = ?, event_location = ?, event_price = ?, event_orgoniser = ?, event_max_participant = ?"
+                        + " WHERE event_id=?";
+                    PreparedStatement pst = cnx.prepareStatement(req);
+                    pst.setString(1, o.getEvent_title());
+                    pst.setString(2, o.getEvent_image());
+                    pst.setString(3, o.getEvent_category());
+                    pst.setString(4, o.getEvent_description());
+                    pst.setDate(5, o.getEvent_start_date());
+                    pst.setDate(6, o.getEvent_end_date());
+                    pst.setString(7, o.getEvent_status());
+                    pst.setString(8, o.getEvent_location());
+                    pst.setInt(9, o.getEvent_price());
+                    pst.setString(10, o.getEvent_orgoniser());
+                    pst.setInt(11, o.getEvent_max_participant());
+                    pst.setString(12, o.getEvent_id());
+                    pst.executeUpdate();
+                    System.out.println("Event has been updated successfully !");
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         };
     }
@@ -112,7 +157,7 @@ public class EventPartService {
                     String req = "INSERT INTO participant (user_id, event_id) VALUES (?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
                     pst.setInt(1, o.getUser_id());
-                    pst.setInt(2, o.getEvent_id());
+                    pst.setString(2, o.getEvent_id());
                     pst.executeUpdate();
                     System.out.println("User participated successfully!");
                 } catch (SQLException ex) {
@@ -121,13 +166,13 @@ public class EventPartService {
             }
 
             @Override
-            public int participantNumber(int nb) {
+            public int participantNumber(String nb) {
                 {
                     int part_nb = 0;
                     try {
                         String req = "SELECT COUNT(*) FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id = ?";
                         PreparedStatement pst = cnx.prepareStatement(req);
-                        pst.setInt(1, nb);
+                        pst.setString(1, nb);
                         ResultSet res = pst.executeQuery();
                         while (res.next()) {
                             part_nb = res.getInt(1);
@@ -141,13 +186,13 @@ public class EventPartService {
             }
 
             @Override
-            public ObservableList<Utilisateur> getParticipants(int id) {
+            public ObservableList<Utilisateur> getParticipants(String id) {
                 ObservableList<Utilisateur> participantList = FXCollections.observableArrayList();
 
                 try {
                     String req = "SELECT fullname, role, speciality FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id = ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
-                    pst.setInt(1, id);
+                    pst.setString(1, id);
                     ResultSet res = pst.executeQuery();
                     while (res.next()) {
                         participantList.add(new Utilisateur(res.getString(1), res.getString(2), res.getString(3)));
@@ -160,12 +205,12 @@ public class EventPartService {
             }
 
             @Override
-            public boolean checkIfParticipated(int userId, int eventId) {
+            public boolean checkIfParticipated(int userId, String eventId) {
                 try {
                     String req = "SELECT * FROM participant WHERE user_id = ? and event_id = ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
                     pst.setInt(1, userId);
-                    pst.setInt(2, eventId);
+                    pst.setString(2, eventId);
                     ResultSet res = pst.executeQuery();
 
                     if (res.next()) {
@@ -179,12 +224,22 @@ public class EventPartService {
             }
 
             @Override
-            public List<Participant> afficher() {
+            public List<Participant> afficher(String category) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
 
             @Override
-            public void supprimer(int id) {
+            public void supprimer(String id) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void modifier(Participant o) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public ObservableList<String> getCategories() {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };

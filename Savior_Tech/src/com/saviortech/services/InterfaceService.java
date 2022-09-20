@@ -17,13 +17,17 @@ public interface InterfaceService<T> {
 
     public void ajouter(T o);
 
-//    public void modifier(T o);
-//
-    public void supprimer(int id);
+    public void modifier(T o);
+
+    public void supprimer(String id);
+
+    public List<T> afficher(String category);
+
+    public int participantNumber(String x);
+
+    public ObservableList<Utilisateur> getParticipants(String id);
+
+    public boolean checkIfParticipated(int userId, String eventId);
     
-    public List<T> afficher();
-    public int participantNumber(int x);
-    
-    public ObservableList<Utilisateur> getParticipants(int id);
-    public boolean checkIfParticipated(int userId, int eventId);
+    public ObservableList<String> getCategories();
 }

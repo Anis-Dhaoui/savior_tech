@@ -9,14 +9,17 @@ import com.saviortech.services.EventPartService;
 import com.saviortech.utils.PopupMessage;
 import java.net.URL;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
+import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -40,7 +43,7 @@ public class AddEventController implements Initializable {
     @FXML
     private TextField price_event;
     @FXML
-    private TextField status_evt;
+    private ComboBox<String> status_evt;
     @FXML
     private TextField local;
     @FXML
@@ -54,59 +57,77 @@ public class AddEventController implements Initializable {
     @FXML
     private DatePicker end_dte;
     @FXML
-    private Button addBtn;
+    public Button addBtn;
     @FXML
     private AnchorPane addWindow;
+    @FXML
+    public Button updateBtn;
 
-    /**
-     * Initializes the controller class.
-     */
+    private String evId;
+
+    //CONVER FROM DatePicker TO DATE
+    public Date convertToDate(DatePicker dateToConvert) {
+        Instant instant = Instant.from(dateToConvert.getValue().atStartOfDay(ZoneId.systemDefault()));
+        java.util.Date date = Date.from(instant);
+        Date sqlDate = new Date(date.getTime());
+        return sqlDate;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
+        updateBtn.setVisible(false);
+        description.setWrapText(true);
+
         Stage stage = new Stage();
         stage.setResizable(false);
         System.out.println(stage.getClass());
+
+        status_evt.getItems().addAll("Activé", "Désactivé");
+        status_evt.getSelectionModel().selectFirst();
     }
 
-    @FXML
-    private void AddEvent(ActionEvent event) {
+    private void AddEditEvent(String addEdit) {
         EventPartService es = new EventPartService();
         Window onAjouterClicked = addBtn.getScene().getWindow();
 
         if (title.getText().isEmpty() || image.getText().isEmpty() || category.getText().isEmpty() || description.getText().isEmpty()
-            || start_dte.getValue() == null || end_dte.getValue() == null || status_evt.getText().isEmpty() || local.getText().isEmpty()
+            || start_dte.getValue() == null || end_dte.getValue() == null || status_evt.getItems().isEmpty() || local.getText().isEmpty()
             || price_event.getText().isEmpty() || organiser_evet.getText().isEmpty() || nbr_max.getText().isEmpty()) {
-            
+
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "All fields are required!");
-            
+
         } else {
-            Instant instant_s = Instant.from(start_dte.getValue().atStartOfDay(ZoneId.systemDefault()));
-            Date s_date = Date.from(instant_s);
+            if (addEdit.equals("addBtn")) {
+                es.ISEvents().ajouter(new Events(
+                    title.getText(), image.getText(), category.getText(),
+                    description.getText(), convertToDate(start_dte), convertToDate(end_dte),
+                    status_evt.getValue(), local.getText(), Integer.parseInt(price_event.getText()),
+                    organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
+                );
+                PopupMessage.infoBox("Event Added Successfully!", null, "Success");
+            } else {
+                es.ISEvents().modifier(new Events(evId,
+                    title.getText(), image.getText(), category.getText(),
+                    description.getText(), convertToDate(start_dte), convertToDate(end_dte),
+                    status_evt.getValue(), local.getText(), Integer.parseInt(price_event.getText()),
+                    organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
+                );
+                PopupMessage.infoBox("Event has been updated Successfully!", null, "Success");
 
-            Instant instant_e = Instant.from(end_dte.getValue().atStartOfDay(ZoneId.systemDefault()));
-            Date e_date = Date.from(instant_e);
+                //Close Edit windows after infoBox OK button clicked
+                Stage stage = (Stage) addBtn.getScene().getWindow();
+                stage.close();
 
-            java.sql.Date startDate = new java.sql.Date(s_date.getTime());
-            java.sql.Date endDate = new java.sql.Date(e_date.getTime());
-
-            es.ISEvents().ajouter(new Events(
-                title.getText(), image.getText(), category.getText(),
-                description.getText(), startDate, endDate,
-                status_evt.getText(), local.getText(), Integer.parseInt(price_event.getText()),
-                organiser_evet.getText(), Integer.parseInt(nbr_max.getText()))
-            );
-
-            PopupMessage.infoBox("Event Added Successfully!", null, "Success");
-
+                //Re-render cards after update
+                new ShowEventsController().updateList();
+            }
             title.clear();
             image.clear();
             category.clear();
             description.clear();
             start_dte.setValue(null);
             end_dte.setValue(null);
-            status_evt.clear();
+            status_evt.valueProperty().set(null);
             local.clear();
             price_event.clear();
             organiser_evet.clear();
@@ -114,4 +135,25 @@ public class AddEventController implements Initializable {
         }
     }
 
+    void getEventValues(String eventId, String tfTitle, String tfImg, String tfCategory, int tfPrice, String cbStatus, String tfLocal, String tfOrgoniser, int tfNbr_max, LocalDate dpStartDate, String taDescription, LocalDate dpEndDate) {
+        evId = eventId;
+        title.setText(tfTitle);
+        image.setText(tfImg);
+        category.setText(tfCategory);
+        price_event.setText(String.valueOf(tfPrice));
+        status_evt.setValue(cbStatus);
+        local.setText(tfLocal);
+        organiser_evet.setText(tfOrgoniser);
+        nbr_max.setText(String.valueOf(tfNbr_max));
+        start_dte.setValue(dpStartDate);
+        description.setText(taDescription);
+        end_dte.setValue(dpEndDate);
+    }
+
+    @FXML
+    private void AddOrUpdateEvent(ActionEvent event) {
+        final Node source = (Node) event.getSource();
+        String btn_id = source.getId();
+        AddEditEvent(btn_id);
+    }
 }

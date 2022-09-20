@@ -6,23 +6,40 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>-->
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.events.ShowEventsController">
-      <ScrollPane fx:id="scrol" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.events.ShowEventsController">
+      <ScrollPane fx:id="scrol" layoutX="193.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1143.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="10.0">
           <content>
               <GridPane fx:id="grid" prefHeight="87.0" prefWidth="105.0">
                   <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" />
                   </rowConstraints>
             <padding>
-               <Insets bottom="5.0" left="117.0" right="5.0" top="5.0" />
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
               </GridPane>
           </content>
       </ScrollPane>
+   <ComboBox fx:id="categoryList" layoutX="2.0" layoutY="53.0" prefHeight="25.0" prefWidth="185.0" />
+   <Label layoutX="22.0" layoutY="33.0" prefHeight="20.0" prefWidth="158.0" text="Afficher par catégorie" textFill="#3b9e9a">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Label>
+   <TextField fx:id="searchField" layoutX="2.0" layoutY="93.0" prefHeight="25.0" prefWidth="185.0" promptText="Search by name">
+      <padding>
+         <Insets left="15.0" />
+      </padding></TextField>
+   <FontAwesomeIconView fill="#07a8a8" glyphName="SEARCH" layoutX="5.0" layoutY="110.0" rotate="84.9" />
+   <FontAwesomeIconView fill="#eb1010" glyphName="CLOSE" layoutX="173.0" layoutY="110.0" onMouseClicked="#clearText" size="13.0" style="-fx-cursor: HAND;" />
 </AnchorPane>
