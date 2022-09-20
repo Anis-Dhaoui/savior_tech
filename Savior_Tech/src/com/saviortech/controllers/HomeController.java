@@ -4,6 +4,7 @@
  */
 package com.saviortech.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import com.saviortech.controllers.events.AddEventController;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +33,10 @@ import javafx.stage.StageStyle;
  */
 public class HomeController implements Initializable {
 
+    @FXML
+    private Button addPub;
+    @FXML
+    private VBox vBox;
 
 //$$$$$$$$$$$$$$$$$$$ START EVENTS NODES $$$$$$$$$$$$$$$$$$$
     @FXML
@@ -39,14 +44,19 @@ public class HomeController implements Initializable {
     @FXML
     private HBox addEventId;
 //$$$$$$$$$$$$$$$$$$$ END EVENTS NODES $$$$$$$$$$$$$$$$$$$
-    @FXML
-    private Button addPub;
-    @FXML
-    private VBox vBox;
+
+//$$$$$$$$$$$$$$$$$$$ START USERS NODES $$$$$$$$$$$$$$$$$$$ 
     @FXML
     private ScrollPane scrollPane;
     @FXML
     private GridPane gridPane;
+    @FXML
+    private JFXButton signupId;
+    @FXML
+    private JFXButton signId;
+    @FXML
+    private HBox showUsersId;
+//$$$$$$$$$$$$$$$$$$$ END USERS NODES $$$$$$$$$$$$$$$$$$$ 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -78,7 +88,51 @@ public class HomeController implements Initializable {
     }
 //$$$$$$$$$$$$$$$$$$$ END EVENTS METHODS $$$$$$$$$$$$$$$$$$$
 
+//$$$$$$$$$$$$$$$$$$$ START USERS METHODS $$$$$$$$$$$$$$$$$$$
     @FXML
     private void onActionAjouter(ActionEvent event) {
     }
+
+    @FXML
+    private void SignUpMethod(ActionEvent event) {
+        FXMLLoader signupLoader = new FXMLLoader();
+        signupLoader.setLocation(HomeController.this.getClass().getResource("../views/jamila/InscriptionUtilisateur.fxml"));
+        try {
+            signupLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = signupLoader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.setTitle("SIGN UP");
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    @FXML
+    private void SignInMethod(ActionEvent event) {
+                FXMLLoader signinLoader = new FXMLLoader();
+        signinLoader.setLocation(HomeController.this.getClass().getResource("../views/jamila/login.fxml"));
+        try {
+            signinLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = signinLoader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.setTitle("SIGN IN");
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    @FXML
+    private void ShowUsersMethod(MouseEvent event) {
+    }
+    //$$$$$$$$$$$$$$$$$$$ END USERS METHODS $$$$$$$$$$$$$$$$$$$
 }
