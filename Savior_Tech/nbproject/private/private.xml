@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LENOVO/Desktop/savior_tech/Savior_Tech/src/com/saviortech/test/MainGUI.java</file>
+            <file>file:/C:/Users/Marwen/Desktop/savior_tech_Version%201/Savior_Tech/src/com/saviortech/controllers/AfficherEventsController.java</file>
+            <file>file:/C:/Users/Marwen/Desktop/savior_tech_Version%201/Savior_Tech/src/com/saviortech/services/InterfaceService.java</file>
+            <file>file:/C:/Users/Marwen/Desktop/savior_tech_Version%201/Savior_Tech/src/com/saviortech/services/InterfaceServiceReaction.java</file>
+            <file>file:/C:/Users/Marwen/Desktop/savior_tech_Version%201/Savior_Tech/src/com/saviortech/views/ViewPublicationController.java</file>
+            <file>file:/C:/Users/Marwen/Desktop/savior_tech_Version%201/Savior_Tech/src/com/saviortech/views/HomeController.java</file>
+            <file>file:/C:/Users/Marwen/Desktop/savior_tech_Version%201/Savior_Tech/src/com/saviortech/services/IServicePubliction.java</file>
+            <file>file:/C:/Users/Marwen/Desktop/savior_tech_Version%201/Savior_Tech/src/com/saviortech/services/ServiceReaction.java</file>
+            <file>file:/C:/Users/Marwen/Desktop/savior_tech_Version%201/Savior_Tech/src/com/saviortech/test/MainGUI.java</file>
+            <file>file:/C:/Users/Marwen/Desktop/savior_tech_Version%201/Savior_Tech/src/com/saviortech/utils/DataSource.java</file>
         </group>
     </open-files>
 </project-private>

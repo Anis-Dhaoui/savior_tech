@@ -24,7 +24,7 @@ import javafx.collections.ObservableList;
  */
 public class ServiceUtilisateur implements IService<Utilisateur> {
 
-    private final Connection cnx = DataSource.getIstance().getCnx();
+    private final Connection cnx = DataSource.getInstance().getCnx();
 
     @Override
     public void ajouter(Utilisateur o) {
