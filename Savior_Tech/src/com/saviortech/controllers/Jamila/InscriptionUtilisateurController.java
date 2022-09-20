@@ -71,13 +71,7 @@ public class InscriptionUtilisateurController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         pass_text.setVisible(false);
         System.out.println(shps.getText());
-        LabelRole.getItems().add("Engineer");
-        LabelRole.getItems().add("Technician");
-        LabelRole.getItems().add("Coach");
-        LabelRole.getItems().add("Designer");
-        LabelRole.getItems().add("Devlopper Front-end");
-        LabelRole.getItems().add("Devlopper Back-end");
-        LabelRole.getItems().add("Devlopper FullStack");
+        LabelRole.getItems().addAll("Engineer", "Technician", "Coach", "Designer", "Devlopper Front-end", "Devlopper Back-end", "Devlopper FullStack");
         labelDomain.getItems().addAll("Data Science", "Artificiel Intellegent", "Cloud Computing", "Cyber Sectrity", "Degital", "Web Developpement");
         labelInterest.getItems().addAll("Data Science", "Artificiel Intellegent", "Cloud Computing", "Cyber Sectrity", "Degital", "Web Developpement");
         labelSpeciality.getItems().addAll("Data Science", "Artificiel Intellegent", "Cloud Computing", "Cyber Sectrity", "Degital", "Web Developpement");
@@ -92,7 +86,7 @@ public class InscriptionUtilisateurController implements Initializable {
         String hashedPass = new PasswordHash().getMd5(pass_field.getText());
         Window onAjouterClicked = inscription.getScene().getWindow();
         if (labelUsername.getText().isEmpty() || labelFullname.getText().isEmpty() || labelEmail.getText().isEmpty() || pass_field.getText().isEmpty()
-                || LabelRole.getItems().isEmpty() || labelDomain.getItems().isEmpty() || labelInterest.getItems().isEmpty() || labelSpeciality.getItems().isEmpty()) {
+                || this.LabelRole.getValue()==null || labelDomain.getValue()==null || labelInterest.getValue()==null || labelSpeciality.getValue()==null) {
 
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "All fields are required!");
         } else if (!cs.controlEmail(labelEmail.getText())) {
@@ -103,7 +97,7 @@ public class InscriptionUtilisateurController implements Initializable {
         } else {
             su.ajouter(new Utilisateur(labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), hashedPass, LabelRole.getValue(), labelDomain.getValue(), labelInterest.getValue(), labelSpeciality.getValue()));
 
-            JOptionPane.showMessageDialog(null, "Merci pour votre inscription!");
+            JOptionPane.showMessageDialog(null, "Thank you for registration!");
         }
     }
 
@@ -138,5 +132,8 @@ public class InscriptionUtilisateurController implements Initializable {
         stage.setScene(new Scene(parent));
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
+         Stage stageregistration;
+        stageregistration = (Stage) labelUsername.getScene().getWindow();
+        stageregistration.close(); 
     }
 }
