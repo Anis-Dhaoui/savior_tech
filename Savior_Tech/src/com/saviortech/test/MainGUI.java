@@ -21,7 +21,9 @@ public class MainGUI extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setMaximized(true);
         try {
+
             Parent root = FXMLLoader.load(getClass().getResource("../views/Home.fxml"));
+
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);

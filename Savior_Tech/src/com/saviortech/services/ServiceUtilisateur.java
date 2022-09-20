@@ -45,7 +45,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }
+    }  
 
     @Override
     public void modifier(Utilisateur o) {
