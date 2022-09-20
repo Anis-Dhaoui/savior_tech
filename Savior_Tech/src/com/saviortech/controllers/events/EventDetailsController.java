@@ -9,6 +9,7 @@ import com.saviortech.controllers.Jamila.ShowUsersController;
 import com.saviortech.models.Participant;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
+import com.saviortech.utils.EmailSender;
 import com.saviortech.utils.PopupMessage;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +30,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.mail.MessagingException;
 
 /**
  * FXML Controller class
@@ -90,14 +92,38 @@ public class EventDetailsController implements Initializable {
         }
     }
 
+
+            String emailContent = "    <div>\n"
+            + "        <div>Dear<b> Anis Dhaoui </b></div>\n"
+            + "        <div>\n"
+            + "            <p>\n"
+            + "                It has been an honor to have you present in our event. Your participation ensured the success of our\n"
+            + "                event.\n"
+            + "                As mentioned in the invitation letter, a certificate of appreciation will be\n"
+            + "                granted to all participants. Winners will be awarded shields. Chief\n"
+            + "                guests will also be honored with an honorary certificate.\n"
+            + "            </p>\n"
+            + "            <p>\n"
+            + "                We hope to invite you again soon. Please keep visiting us for further events and their details.\n"
+            + "            </p>\n"
+            + "            <br>\n"
+            + "            <p>Thank you.</p>\n"
+            + "        </div>\n"
+            + "    </div>";
+            
+            
     @FXML
-    private void participate(ActionEvent event) {
+    private void participate(ActionEvent event) throws MessagingException {
         System.out.println("user participated");
         eveSer.ISParticipant().ajouter(new Participant(2, ev_id));
         partBtn.setText("Participé");
         partBtn.setDisable(true);
         PopupMessage.infoBox("Participé avec succés!", null, "Success");
         partBtn.setStyle("-fx-background-color: #0c0d0d; -fx-text-fill: #13fa02; -fx-font-size: 1em; -fx-opacity: 0.8;");
+        
+        //SEND EMAIL AFTER PARTICIPATE BUTTON CLICKED
+        EmailSender sendEmail = new EmailSender();
+        sendEmail.sendEmail("freeconcept6@gmail.com", "APPRECIATION", emailContent );
     }
 
     void setLabel(String id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int maxPart) throws IOException {

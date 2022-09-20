@@ -6,6 +6,7 @@ package com.saviortech.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.saviortech.controllers.events.AddEventController;
+import com.saviortech.models.CurrentUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,11 +19,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -32,12 +35,19 @@ import javafx.stage.StageStyle;
  * @author SOMRANI
  */
 public class HomeController implements Initializable {
-
+    
     @FXML
     private Button addPub;
     @FXML
     private VBox vBox;
-
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private GridPane gridPane;
+    @FXML
+    private JFXButton testId;
+    @FXML
+    private Text username;
 //$$$$$$$$$$$$$$$$$$$ START EVENTS NODES $$$$$$$$$$$$$$$$$$$
     @FXML
     private HBox showEventsId;
@@ -47,27 +57,61 @@ public class HomeController implements Initializable {
 
 //$$$$$$$$$$$$$$$$$$$ START USERS NODES $$$$$$$$$$$$$$$$$$$ 
     @FXML
-    private ScrollPane scrollPane;
-    @FXML
-    private GridPane gridPane;
-    @FXML
-    private JFXButton signupId;
-    @FXML
-    private JFXButton signId;
-    @FXML
     private HBox showUsersId;
+    @FXML
+    private HBox authenticatedUserBox;
+    @FXML
+    private HBox signinSignupBtnsBox;
 //$$$$$$$$$$$$$$$$$$$ END USERS NODES $$$$$$$$$$$$$$$$$$$ 
 
+    CurrentUser cu = new CurrentUser();
+    private Label xx;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+//        authenticatedUserBox.managedProperty().bind(authenticatedUserBox.visibleProperty());
+//        checkIfUserAuthenticated();
+    }
+    
+    public void checkIfUserAuthenticated() {
+//        if (cu.getUserInfo().isEmpty()) {
+//            System.out.println("IFIFIFIFIFIFIFIFIFIFIFIFIFIFFIFIFIFIFIF");
+////            authenticatedUserBox.setVisible(false);
+////            signinSignupBtnsBox.setVisible(true);
+//        } else {
+//            
+//            testId.setManaged(false);
+//            testId.setText("connected");
+//            testId.managedProperty().bind(testId.visibleProperty());
+////            System.out.println("ELSEELSEELSEELSEELSEELSE");
+////            authenticatedUserBox.getChildren().remove(testId);
+////            authenticatedUserBox.setVisible(false);
+////            signinSignupBtnsBox.managedProperty().bind(signinSignupBtnsBox.visibleProperty());
+////            signinSignupBtnsBox.setVisible(false);
+//        }
     }
 
 //$$$$$$$$$$$$$$$$$$$ START EVENTS METHODS $$$$$$$$$$$$$$$$$$$
     @FXML
     private void ShowEventsMethod(MouseEvent event) {
+        FXMLLoader showEventLoader = new FXMLLoader();
+        showEventLoader.setLocation(HomeController.this.getClass().getResource("../views/events/ShowEvents.fxml"));
+        try {
+            showEventLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Parent parent = showEventLoader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.setTitle("ALL EVENTS");
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setResizable(false);
+        stage.setMaximized(true);
+        stage.show();
     }
-
+    
     @FXML
     private void AddEventMethod(MouseEvent event) {
         FXMLLoader addEventLoader = new FXMLLoader();
@@ -77,7 +121,7 @@ public class HomeController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         Parent parent = addEventLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -86,12 +130,15 @@ public class HomeController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
-//$$$$$$$$$$$$$$$$$$$ END EVENTS METHODS $$$$$$$$$$$$$$$$$$$
-
+//$$$$$$$$$$$$$$$$$$$ END EVENTS METHODS $$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //$$$$$$$$$$$$$$$$$$$ START USERS METHODS $$$$$$$$$$$$$$$$$$$
-    @FXML
-    private void onActionAjouter(ActionEvent event) {
-    }
 
     @FXML
     private void SignUpMethod(ActionEvent event) {
@@ -102,7 +149,7 @@ public class HomeController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         Parent parent = signupLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -111,17 +158,17 @@ public class HomeController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
-
+    
     @FXML
     private void SignInMethod(ActionEvent event) {
-                FXMLLoader signinLoader = new FXMLLoader();
+        FXMLLoader signinLoader = new FXMLLoader();
         signinLoader.setLocation(HomeController.this.getClass().getResource("../views/jamila/login.fxml"));
         try {
             signinLoader.load();
         } catch (IOException ex) {
             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         Parent parent = signinLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -130,9 +177,25 @@ public class HomeController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
-
+    
     @FXML
     private void ShowUsersMethod(MouseEvent event) {
+        FXMLLoader showUsersLoader = new FXMLLoader();
+        showUsersLoader.setLocation(HomeController.this.getClass().getResource("../views/jamila/ShowUsers.fxml"));
+        try {
+            showUsersLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Parent parent = showUsersLoader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.setTitle("ALL USERS");
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setResizable(false);
+        stage.setMaximized(true);
+        stage.show();
     }
     //$$$$$$$$$$$$$$$$$$$ END USERS METHODS $$$$$$$$$$$$$$$$$$$
 }
