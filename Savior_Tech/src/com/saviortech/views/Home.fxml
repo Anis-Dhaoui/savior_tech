@@ -60,7 +60,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </JFXButton>
-                              <JFXButton onAction="#SignInMethod" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #03fc17; -fx-cursor: HAND;" text="SIGN IN">
+                              <JFXButton fx:id="testId" onAction="#SignInMethod" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #03fc17; -fx-cursor: HAND;" text="SIGN IN">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
@@ -86,7 +86,7 @@
                               <Image url="@../images/149071.png" />
                            </image>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold;" text="SOMRANI">
+                        <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold;" text="USERNAME">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>

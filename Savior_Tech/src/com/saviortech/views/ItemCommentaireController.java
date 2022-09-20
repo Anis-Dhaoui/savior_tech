@@ -50,7 +50,7 @@ ServiceCommentaire sc = new ServiceCommentaire();
     @FXML
     private void onClickSupprimer(ActionEvent event) {
         
-        JOptionPane.showMessageDialog(null,"idUt"+HomeController.idUtilisateur);
+        JOptionPane.showMessageDialog(null,"idUt"+HomePubController.idUtilisateur);
     }
 
 }

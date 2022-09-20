@@ -4,11 +4,13 @@
  */
 package com.saviortech.controllers.Jamila;
 
+import com.saviortech.controllers.HomeController;
 import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
 
 import static com.saviortech.utils.PasswordHash.getMd5;
+import com.saviortech.views.HomePubController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -73,7 +75,7 @@ public class loginController implements Initializable {
         su.auth(new Utilisateur(tfusername.getText(), hashedPass));
      */
     @FXML
-    private void Login(ActionEvent event) throws SQLException {
+    private void Login(ActionEvent event) throws SQLException, IOException {
 
         Window owner = submitButton.getScene().getWindow();
 
@@ -108,7 +110,11 @@ public class loginController implements Initializable {
             cu.setUserInfo(list);
 
             System.out.println(cu.getUserInfo().get(0).getId());
-
+            
+//            FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("../../views/Home.fxml"));
+//            homeLoader.load();
+//            HomeController home = homeLoader.getController();
+//            home.checkIfUserAuthenticated();
         }
     }
 

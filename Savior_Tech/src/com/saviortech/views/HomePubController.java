@@ -46,7 +46,7 @@ import java.util.prefs.Preferences;
  *
  * @author SOMRANI
  */
-public class HomeController implements Initializable {
+public class HomePubController implements Initializable {
 
     @FXML
     private ScrollPane scrollPane;

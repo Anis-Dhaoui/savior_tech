@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.saviortech.test;
+
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
  */
 public class MainGUI extends Application {
 
-    @Override 
+    @Override
     public void start(Stage primaryStage) {
         primaryStage.setMaximized(true);
         try {
@@ -34,10 +35,9 @@ public class MainGUI extends Application {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        
+
     }
 
-    
     public static void main(String[] args) {
         launch(args);
     }
