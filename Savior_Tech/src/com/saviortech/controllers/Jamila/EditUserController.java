@@ -76,7 +76,7 @@ public class EditUserController implements Initializable {
         Stage stage = (Stage) labelUsername.getScene().getWindow();
         stage.close(); 
     }
-
+   
     //2 methods that will be used in ShowUsersController in order to edit user
     void setTextField(String id, String fullname, String username, String email, String password, String role, String interest, String domain, String speciality) {
         userId = id;
