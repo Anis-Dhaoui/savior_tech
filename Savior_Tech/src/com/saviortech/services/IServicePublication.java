@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Marwen
  */
-public interface IService <T> {
+public interface IServicePublication <T> {
     public void ajouter (T o);
     public void modifier (T o);
     public void supprimer (T o);

@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author Marwen
  */
-public class ServiceCommentaire implements IService<Commentaire> {
+public class ServiceCommentaire implements IServicePublication<Commentaire> {
 
     private Connection cnx = DataSource.getInstance().getCnx();
 

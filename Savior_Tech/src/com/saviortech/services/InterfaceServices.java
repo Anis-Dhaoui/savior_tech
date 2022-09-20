@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author freec
  */
-public interface InterfaceService<T> {
+public interface InterfaceServices<T> {
 
     public void ajouter(T o);
 

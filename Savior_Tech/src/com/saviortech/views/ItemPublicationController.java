@@ -4,6 +4,7 @@
  */
 package com.saviortech.views;
 
+import com.saviortech.views.HomeControllerPublication;
 import com.saviortech.models.Publication;
 
 import com.saviortech.services.MyListener;
@@ -49,17 +50,17 @@ public class ItemPublicationController implements Initializable {
         this.pub = pub;
         this.myListener = myListener;
       
-        if (pub.getImage() != null) {
+       /* if (pub.getImage() != null) {
             BufferedImage deck = ImageIO.read(new URL(pub.getImage()));
             BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
             WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
             img.setImage(card);
         }
-
+*/
         titreLabel.setText(pub.getTitre());
         datelabel.setText(pub.getDate());
        nomUtilisateur.setText(pub.getNomPrenom());
-       this.nbrCom.setText("("+HomeController.nbrCom+")");
+       this.nbrCom.setText("("+HomeControllerPublication.nbrCom+")");
 
     }
 

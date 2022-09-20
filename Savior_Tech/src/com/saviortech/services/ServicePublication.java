@@ -26,7 +26,7 @@ import javafx.scene.image.WritableImage;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 
-public class ServicePublication implements IService<Publication> {
+public class ServicePublication implements IServicePublication<Publication> {
 
     private Connection cnx = DataSource.getInstance().getCnx();
 

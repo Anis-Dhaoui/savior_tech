@@ -4,6 +4,7 @@
  */
 package com.saviortech.views;
 
+import com.saviortech.views.ViewPublicationController;
 import com.saviortech.models.Publication;
 import com.saviortech.models.Commentaire;
 
@@ -11,16 +12,10 @@ import com.saviortech.services.MyListener;
 import com.saviortech.services.ServiceCommentaire;
 
 import com.saviortech.services.ServicePublication;
-import com.saviortech.views.ItemPublicationController;
-import com.saviortech.views.ItemPublicationController;
-import com.saviortech.views.ViewPublicationController;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,11 +27,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import java.util.prefs.Preferences;
 
 /**
@@ -44,7 +36,7 @@ import java.util.prefs.Preferences;
  *
  * @author SOMRANI
  */
-public class HomeController implements Initializable {
+public class HomeControllerPublication implements Initializable {
 
     @FXML
     private ScrollPane scrollPane;
@@ -61,28 +53,31 @@ public class HomeController implements Initializable {
 
     public static int idPub;
     public static int nbrCom = 0;
-    public static int idUtilisateur = 3  ;
+    public static int idUtilisateur = 3;
+    @FXML
+    private VBox vBox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        MyListener myListener = new MyListener() {
+        MyListener myListener;
+        myListener = new MyListener() {
             @Override
             public void onClickListener(Publication pub) {
                 try {
 
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("viewPublication.fxml"));
-                    Parent root2 = (Parent) fxmlLoader.load();
+
+                    Parent root1 = (Parent) fxmlLoader.load();
 
                     Stage stage = new Stage();
                     stage.setTitle("View publication");
-                    stage.setScene(new Scene(root2));
+                    stage.setScene(new Scene(root1));
                     stage.show();
                     ViewPublicationController vp = fxmlLoader.getController();
                     vp.setShowPublication(pub);
                     idPub = pub.getIdPublication();
-                 
 
                 } catch (IOException ex) {
                     ex.getMessage();
@@ -100,7 +95,7 @@ public class HomeController implements Initializable {
                 AnchorPane anchorPane = fxmlLoader.load();
                 List<Commentaire> coms = sc.afficher(pubs.get(i).getIdPublication());
                 nbrCom = coms.size();
-              
+
                 ItemPublicationController itemController = fxmlLoader.getController();
                 itemController.setData(pubs.get(i), myListener);
 
@@ -123,7 +118,7 @@ public class HomeController implements Initializable {
     @FXML
     private void onActionAjouter(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("AddPublication.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../views/AddPublication.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
 

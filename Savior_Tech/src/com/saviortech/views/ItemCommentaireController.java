@@ -4,6 +4,7 @@
  */
 package com.saviortech.views;
 
+import com.saviortech.views.HomeControllerPublication;
 import com.saviortech.models.Commentaire;
 import com.saviortech.services.ServiceCommentaire;
 import java.net.URL;
@@ -50,7 +51,7 @@ ServiceCommentaire sc = new ServiceCommentaire();
     @FXML
     private void onClickSupprimer(ActionEvent event) {
         
-        JOptionPane.showMessageDialog(null,"idUt"+HomeController.idUtilisateur);
+        JOptionPane.showMessageDialog(null,"idUt"+HomeControllerPublication.idUtilisateur);
     }
 
 }

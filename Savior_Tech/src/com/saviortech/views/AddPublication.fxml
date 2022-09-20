@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.views.AddPublicationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.AddPublicationController">
    <children>
       <VBox alignment="CENTER" layoutX="140.0" layoutY="69.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -26,9 +26,7 @@
                      <children>
                         <TextField fx:id="titreText" prefHeight="25.0" prefWidth="555.0" promptText="Titre" />
                         <TextField fx:id="descriptionText" alignment="TOP_LEFT" prefHeight="88.0" prefWidth="439.0" promptText="Description">
-                           <cursor>
-                              <Cursor fx:constant="MOVE" />
-                           </cursor>
+                      
                            <opaqueInsets>
                               <Insets right="2.0" />
                            </opaqueInsets></TextField>
