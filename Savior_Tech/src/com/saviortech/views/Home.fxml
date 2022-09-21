@@ -75,7 +75,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox fx:id="authenticatedUserBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="authenticatedUserBox" alignment="CENTER" onMouseClicked="#showProfileInfo" prefHeight="100.0" prefWidth="200.0" style="-fx-cursor: HAND;">
                      <children>
                         <FontAwesomeIconView glyphName="BELL" size="1.3em" styleClass="cursor-hand" />
                         <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="cursor-hand">

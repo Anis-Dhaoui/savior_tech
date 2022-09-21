@@ -35,7 +35,7 @@ import javafx.stage.StageStyle;
  * @author SOMRANI
  */
 public class HomeController implements Initializable {
-    
+
     @FXML
     private Button addPub;
     @FXML
@@ -66,17 +66,17 @@ public class HomeController implements Initializable {
 //$$$$$$$$$$$$$$$$$$$ END USERS NODES $$$$$$$$$$$$$$$$$$$ 
 
     static CurrentUser cu = new CurrentUser();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         customAuthBox = authenticatedUserBox;
         customSignBox = signinSignupBtnsBox;
         customUsername = username;
 //        authenticatedUserBox.managedProperty().bind(authenticatedUserBox.visibleProperty());
-checkIfUserAuthenticated();
+        checkIfUserAuthenticated();
 
     }
-    
+
     public static void checkIfUserAuthenticated() {
         if (cu.getUserInfo().isEmpty()) {
             customAuthBox.managedProperty().bind(customAuthBox.visibleProperty());
@@ -104,7 +104,7 @@ checkIfUserAuthenticated();
         } catch (IOException ex) {
             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         Parent parent = showEventLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -114,7 +114,7 @@ checkIfUserAuthenticated();
         stage.setMaximized(true);
         stage.show();
     }
-    
+
     @FXML
     private void AddEventMethod(MouseEvent event) {
         FXMLLoader addEventLoader = new FXMLLoader();
@@ -124,7 +124,7 @@ checkIfUserAuthenticated();
         } catch (IOException ex) {
             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         Parent parent = addEventLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -152,7 +152,7 @@ checkIfUserAuthenticated();
         } catch (IOException ex) {
             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         Parent parent = signupLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -161,7 +161,7 @@ checkIfUserAuthenticated();
         stage.setResizable(false);
         stage.show();
     }
-    
+
     @FXML
     private void SignInMethod(ActionEvent event) {
         FXMLLoader signinLoader = new FXMLLoader();
@@ -171,7 +171,7 @@ checkIfUserAuthenticated();
         } catch (IOException ex) {
             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         Parent parent = signinLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -180,7 +180,7 @@ checkIfUserAuthenticated();
         stage.setResizable(false);
         stage.show();
     }
-    
+
     @FXML
     private void ShowUsersMethod(MouseEvent event) {
         FXMLLoader showUsersLoader = new FXMLLoader();
@@ -190,7 +190,7 @@ checkIfUserAuthenticated();
         } catch (IOException ex) {
             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         Parent parent = showUsersLoader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -201,4 +201,23 @@ checkIfUserAuthenticated();
         stage.show();
     }
     //$$$$$$$$$$$$$$$$$$$ END USERS METHODS $$$$$$$$$$$$$$$$$$$
+
+    @FXML
+    private void showProfileInfo(MouseEvent event) {
+        FXMLLoader showProfileLoader = new FXMLLoader();
+        showProfileLoader.setLocation(HomeController.this.getClass().getResource("../views/jamila/User_Home.fxml"));
+        try {
+            showProfileLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = showProfileLoader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.setTitle("PROFILE INFORMATION");
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setResizable(false);
+        stage.show();
+    }
 }
