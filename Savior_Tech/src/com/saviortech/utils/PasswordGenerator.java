@@ -10,7 +10,6 @@ package com.saviortech.utils;
  */
 public class PasswordGenerator {
 
-    // function to generate a random string of length n
     public static String getRandomPassword() {
         final int PASWORDLENGTH = 8;
         // chose a Character random from this String
