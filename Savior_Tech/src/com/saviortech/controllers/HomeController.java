@@ -110,7 +110,7 @@ public class HomeController implements Initializable {
         stage.setScene(new Scene(parent));
         stage.setTitle("ALL EVENTS");
         stage.initStyle(StageStyle.UTILITY);
-        stage.setResizable(false);
+//        stage.setResizable(false);
         stage.setMaximized(true);
         stage.show();
     }

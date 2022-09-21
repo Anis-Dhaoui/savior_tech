@@ -6,7 +6,9 @@ package com.saviortech.controllers.events;
 
 import com.saviortech.controllers.Jamila.EditUserController;
 import com.saviortech.controllers.Jamila.ShowUsersController;
+import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Participant;
+import com.saviortech.models.Utilisateur;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
 import com.saviortech.utils.EmailSender;
@@ -69,12 +71,13 @@ public class EventDetailsController implements Initializable {
     private Text phShowPart;
     @FXML
     private Button partBtn;
-
+    
     public static String ev_id;
     EventPartService eveSer = new EventPartService();
 
     private EventCardController bufferImg = new EventCardController();
 
+    Utilisateur userInfo = new CurrentUser().getUserInfo().get(0);
     /**
      * Initializes the controller class.
      */
@@ -83,9 +86,7 @@ public class EventDetailsController implements Initializable {
     }
 
     private void checkParticipateBtn() {
-        System.out.println(eveSer.ISParticipant().checkIfParticipated(2, ev_id));
-
-        if (eveSer.ISParticipant().checkIfParticipated(2, ev_id)) {
+        if (eveSer.ISParticipant().checkIfParticipated(userInfo.getId(), ev_id)) {
             partBtn.setText("Participé");
             partBtn.setDisable(true);
             partBtn.setStyle("-fx-background-color: #0c0d0d; -fx-text-fill: #13fa02; -fx-font-size: 1em; -fx-opacity: 0.8;");
@@ -94,7 +95,7 @@ public class EventDetailsController implements Initializable {
 
 
             String emailContent = "    <div>\n"
-            + "        <div>Dear<b> Anis Dhaoui </b></div>\n"
+            + "        <div>Dear<b>" + userInfo.getFullname() + "</b></div>\n"
             + "        <div>\n"
             + "            <p>\n"
             + "                It has been an honor to have you present in our event. Your participation ensured the success of our\n"
@@ -115,7 +116,7 @@ public class EventDetailsController implements Initializable {
     @FXML
     private void participate(ActionEvent event) throws MessagingException {
         System.out.println("user participated");
-        eveSer.ISParticipant().ajouter(new Participant(2, ev_id));
+        eveSer.ISParticipant().ajouter(new Participant(userInfo.getId(), ev_id));
         partBtn.setText("Participé");
         partBtn.setDisable(true);
         PopupMessage.infoBox("Participé avec succés!", null, "Success");
@@ -123,7 +124,7 @@ public class EventDetailsController implements Initializable {
         
         //SEND EMAIL AFTER PARTICIPATE BUTTON CLICKED
         EmailSender sendEmail = new EmailSender();
-        sendEmail.sendEmail("freeconcept6@gmail.com", "APPRECIATION", emailContent );
+        sendEmail.sendEmail(userInfo.getEmail(), "APPRECIATION", emailContent );
     }
 
     void setLabel(String id, String title, String image, String category, String description, Date sd, Date ed, String status, String location, int price, String orgoniser, int maxPart) throws IOException {
