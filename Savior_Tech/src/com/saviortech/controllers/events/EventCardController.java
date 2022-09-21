@@ -6,6 +6,7 @@ package com.saviortech.controllers.events;
 
 import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Events;
+import com.saviortech.models.Utilisateur;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -16,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,6 +61,9 @@ public class EventCardController implements Initializable {
     private Events events;
     ShowEventsController sec = new ShowEventsController();
     private String evId;
+    
+    List<Utilisateur> userInfo = new CurrentUser().getUserInfo();
+   
 
     //Image is a generic concept and BufferedImage is the concrete implementation of the generic concept
     //if there is an exception with imageIO.read so it will use an image from saved in the localhost
@@ -135,8 +140,8 @@ public class EventCardController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        if (new CurrentUser().getUserInfo().get(0).isAdmin() == 1) {
+        
+        if (!userInfo.isEmpty() && userInfo.get(0).isAdmin() == 1) {
             FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
             FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
 
