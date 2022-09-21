@@ -103,8 +103,14 @@ public class loginController implements Initializable {
 
             CurrentUser cu = new CurrentUser();
             cu.setUserInfo(list);
-
+            System.out.println(list);
+            
+            //Call this method in order to hide sign in and sign up buttons and show profile image and username
             HomeController.checkIfUserAuthenticated();
+
+            Stage loginStage = (Stage) tfusername.getScene().getWindow();
+            loginStage.close();
+
         }
     }
 

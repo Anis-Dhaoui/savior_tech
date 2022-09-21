@@ -73,7 +73,7 @@ public class HomeController implements Initializable {
         customSignBox = signinSignupBtnsBox;
         customUsername = username;
 //        authenticatedUserBox.managedProperty().bind(authenticatedUserBox.visibleProperty());
-//        checkIfUserAuthenticated();
+checkIfUserAuthenticated();
 
     }
     
@@ -90,7 +90,7 @@ public class HomeController implements Initializable {
             customSignBox.setVisible(false);
 
             //Set username of authenticated user
-            customUsername.setText("Anis");
+            customUsername.setText(cu.getUserInfo().get(0).getUsername());
         }
     }
 
