@@ -63,6 +63,8 @@ public class HomeController implements Initializable {
     public static HBox customAuthBox = new HBox();
     public static HBox customSignBox = new HBox();
     public static Text customUsername = new Text();
+    public static HBox customAddEvent = new HBox();
+    public static HBox customShowUsers = new HBox();
 //$$$$$$$$$$$$$$$$$$$ END USERS NODES $$$$$$$$$$$$$$$$$$$ 
 
     static CurrentUser cu = new CurrentUser();
@@ -72,9 +74,17 @@ public class HomeController implements Initializable {
         customAuthBox = authenticatedUserBox;
         customSignBox = signinSignupBtnsBox;
         customUsername = username;
+        customAddEvent = addEventId;
+        customShowUsers = showUsersId;
+
 //        authenticatedUserBox.managedProperty().bind(authenticatedUserBox.visibleProperty());
         checkIfUserAuthenticated();
 
+        customAddEvent.managedProperty().bind(customAddEvent.visibleProperty());
+        customAddEvent.setVisible(false);
+
+        customShowUsers.managedProperty().bind(customShowUsers.visibleProperty());
+        customShowUsers.setVisible(false);
     }
 
     public static void checkIfUserAuthenticated() {
@@ -91,6 +101,14 @@ public class HomeController implements Initializable {
 
             //Set username of authenticated user
             customUsername.setText(cu.getUserInfo().get(0).getUsername());
+
+            if (cu.getUserInfo().get(0).isAdmin() == 1) {
+                customAddEvent.managedProperty().bind(customAddEvent.visibleProperty());
+                customAddEvent.setVisible(true);
+
+                customShowUsers.managedProperty().bind(customShowUsers.visibleProperty());
+                customShowUsers.setVisible(true);
+            }
         }
     }
 
@@ -109,8 +127,6 @@ public class HomeController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.setTitle("ALL EVENTS");
-        stage.initStyle(StageStyle.UTILITY);
-//        stage.setResizable(false);
         stage.setMaximized(true);
         stage.show();
     }
@@ -195,9 +211,7 @@ public class HomeController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.setTitle("ALL USERS");
-        stage.initStyle(StageStyle.UTILITY);
-//        stage.setResizable(false);
-        stage.setMaximized(true);
+//        stage.setMaximized(true);
         stage.show();
     }
     //$$$$$$$$$$$$$$$$$$$ END USERS METHODS $$$$$$$$$$$$$$$$$$$
