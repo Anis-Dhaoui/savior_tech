@@ -75,9 +75,9 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox fx:id="authenticatedUserBox" alignment="CENTER" onMouseClicked="#showProfileInfo" prefHeight="100.0" prefWidth="200.0" style="-fx-cursor: HAND;">
+                  <HBox fx:id="authenticatedUserBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-cursor: HAND;">
                      <children>
-                        <FontAwesomeIconView glyphName="BELL" size="1.3em" styleClass="cursor-hand" />
+                        <FontAwesomeIconView fill="#485460" glyphName="BELL" size="1.3em" styleClass="cursor-hand" />
                         <ImageView fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="cursor-hand">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
@@ -86,12 +86,12 @@
                               <Image url="@../images/149071.png" />
                            </image>
                         </ImageView>
-                        <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold;" text="USERNAME">
+                        <Text fx:id="username" fill="#485460" onMouseClicked="#showProfileInfo" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold;" text="USERNAME">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Text>
-                        <FontAwesomeIconView glyphName="ANGLE_DOWN" size="1.5em" styleClass="cursor-hand">
+                        <FontAwesomeIconView fx:id="lougoutId" fill="#252424a8" glyphName="SIGN_OUT" onMouseClicked="#Logout" size="1.5em" styleClass="cursor-hand">
                            <HBox.margin>
                               <Insets right="15.0" />
                            </HBox.margin>

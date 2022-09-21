@@ -7,6 +7,7 @@ package com.saviortech.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.saviortech.controllers.events.AddEventController;
 import com.saviortech.models.CurrentUser;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -68,6 +69,8 @@ public class HomeController implements Initializable {
 //$$$$$$$$$$$$$$$$$$$ END USERS NODES $$$$$$$$$$$$$$$$$$$ 
 
     static CurrentUser cu = new CurrentUser();
+    @FXML
+    private FontAwesomeIconView lougoutId;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,12 +82,6 @@ public class HomeController implements Initializable {
 
 //        authenticatedUserBox.managedProperty().bind(authenticatedUserBox.visibleProperty());
         checkIfUserAuthenticated();
-
-        customAddEvent.managedProperty().bind(customAddEvent.visibleProperty());
-        customAddEvent.setVisible(false);
-
-        customShowUsers.managedProperty().bind(customShowUsers.visibleProperty());
-        customShowUsers.setVisible(false);
     }
 
     public static void checkIfUserAuthenticated() {
@@ -92,6 +89,12 @@ public class HomeController implements Initializable {
             customAuthBox.managedProperty().bind(customAuthBox.visibleProperty());
             customAuthBox.setVisible(false);
             customSignBox.setVisible(true);
+
+            customAddEvent.managedProperty().bind(customAddEvent.visibleProperty());
+            customAddEvent.setVisible(false);
+
+            customShowUsers.managedProperty().bind(customShowUsers.visibleProperty());
+            customShowUsers.setVisible(false);
         } else {
             //Show and hide boxes
             customAuthBox.managedProperty().bind(customAuthBox.visibleProperty());
@@ -233,5 +236,12 @@ public class HomeController implements Initializable {
         stage.initStyle(StageStyle.UTILITY);
         stage.setResizable(false);
         stage.show();
+    }
+
+    @FXML
+    private void Logout(MouseEvent event) {
+        System.out.println("SIGN OUT");
+        cu.getUserInfo().clear();
+        checkIfUserAuthenticated();
     }
 }
