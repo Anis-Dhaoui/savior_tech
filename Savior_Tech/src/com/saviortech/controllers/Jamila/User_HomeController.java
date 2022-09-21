@@ -66,12 +66,9 @@ public class User_HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            cu.setUserInfo(new ServiceUtilisateur().validate("SamiaR", "0795d630be52c878a1e0f37099d1c48a"));
-
-        } catch (SQLException ex) {
-            Logger.getLogger(User_HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//            cu.setUserInfo(new ServiceUtilisateur().validate("SamiaR", "0795d630be52c878a1e0f37099d1c48a"));
+        cu.getUserInfo();
+        
         System.out.println(cu.getUserInfo());
         fullname.setText(cu.getUserInfo().get(0).getFullname());
         username.setText(cu.getUserInfo().get(0).getUsername());

@@ -10,11 +10,9 @@ import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
 
 import static com.saviortech.utils.PasswordHash.getMd5;
-import com.saviortech.views.HomePubController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -59,9 +57,6 @@ public class loginController implements Initializable {
     @FXML
     private Button submitButton1;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pass_text.setVisible(false);
@@ -108,13 +103,14 @@ public class loginController implements Initializable {
 
             CurrentUser cu = new CurrentUser();
             cu.setUserInfo(list);
-
-            System.out.println(cu.getUserInfo().get(0).getId());
+            System.out.println(list);
             
-//            FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("../../views/Home.fxml"));
-//            homeLoader.load();
-//            HomeController home = homeLoader.getController();
-//            home.checkIfUserAuthenticated();
+            //Call this method in order to hide sign in and sign up buttons and show profile image and username
+            HomeController.checkIfUserAuthenticated();
+
+            Stage loginStage = (Stage) tfusername.getScene().getWindow();
+            loginStage.close();
+
         }
     }
 

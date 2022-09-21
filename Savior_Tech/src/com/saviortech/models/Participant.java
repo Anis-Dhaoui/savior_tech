@@ -10,31 +10,22 @@ package com.saviortech.models;
  */
 public class Participant {
 
-    private int part_id;
-    private int user_id;
+    private String user_id;
     private String event_id;
 
     public Participant() {
     }
 
-    public Participant(int user_id, String event_id) {
+    public Participant(String user_id, String event_id) {
         this.user_id = user_id;
         this.event_id = event_id;
     }
 
-    public int getPart_id() {
-        return part_id;
-    }
-
-    public void setPart_id(int part_id) {
-        this.part_id = part_id;
-    }
-
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
@@ -48,6 +39,6 @@ public class Participant {
 
     @Override
     public String toString() {
-        return "Participant{" + "part_id=" + part_id + ", user_id=" + user_id + ", event_id=" + event_id + '}';
+        return "Participant{user_id=" + user_id + ", event_id=" + event_id + '}';
     }
 }

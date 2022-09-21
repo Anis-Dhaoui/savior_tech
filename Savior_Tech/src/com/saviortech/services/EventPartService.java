@@ -116,7 +116,7 @@ public class EventPartService {
             }
 
             @Override
-            public boolean checkIfParticipated(int userId, String eventId) {
+            public boolean checkIfParticipated(String userId, String eventId) {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
 
@@ -156,7 +156,7 @@ public class EventPartService {
                 try {
                     String req = "INSERT INTO participant (user_id, event_id) VALUES (?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
-                    pst.setInt(1, o.getUser_id());
+                    pst.setString(1, o.getUser_id());
                     pst.setString(2, o.getEvent_id());
                     pst.executeUpdate();
                     System.out.println("User participated successfully!");
@@ -170,7 +170,7 @@ public class EventPartService {
                 {
                     int part_nb = 0;
                     try {
-                        String req = "SELECT COUNT(*) FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id = ?";
+                        String req = "SELECT COUNT(*) FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id LIKE ?";
                         PreparedStatement pst = cnx.prepareStatement(req);
                         pst.setString(1, nb);
                         ResultSet res = pst.executeQuery();
@@ -190,7 +190,7 @@ public class EventPartService {
                 ObservableList<Utilisateur> participantList = FXCollections.observableArrayList();
 
                 try {
-                    String req = "SELECT fullname, role, speciality FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id = ?";
+                    String req = "SELECT fullname, role, speciality FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id LIKE ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
                     pst.setString(1, id);
                     ResultSet res = pst.executeQuery();
@@ -205,11 +205,11 @@ public class EventPartService {
             }
 
             @Override
-            public boolean checkIfParticipated(int userId, String eventId) {
+            public boolean checkIfParticipated(String userId, String eventId) {
                 try {
                     String req = "SELECT * FROM participant WHERE user_id = ? and event_id = ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
-                    pst.setInt(1, userId);
+                    pst.setString(1, userId);
                     pst.setString(2, eventId);
                     ResultSet res = pst.executeQuery();
 

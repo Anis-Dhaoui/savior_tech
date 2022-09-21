@@ -27,7 +27,7 @@ public interface InterfaceService<T> {
 
     public ObservableList<Utilisateur> getParticipants(String id);
 
-    public boolean checkIfParticipated(int userId, String eventId);
+    public boolean checkIfParticipated(String userId, String eventId);
     
     public ObservableList<String> getCategories();
 }
