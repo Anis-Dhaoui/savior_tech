@@ -4,6 +4,7 @@
  */
 package com.saviortech.controllers.events;
 
+import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Events;
 import com.saviortech.services.EventPartService;
 import com.saviortech.services.InterfaceService;
@@ -131,10 +132,11 @@ public class EventCardController implements Initializable {
         });
     }
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        if (true) {
+        if (new CurrentUser().getUserInfo().get(0).isAdmin() == 1) {
             FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
             FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
 
