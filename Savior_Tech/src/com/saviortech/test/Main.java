@@ -31,8 +31,8 @@ public class Main {
         String newPassword = "<h1> Your new password is " + generatedPassword + " </h1>";
         
         System.out.println(generatedPassword);
-                EmailSender sendEmailTest = new EmailSender();
-        sendEmailTest.sendEmail("jamila.nouri@esprit.tn", "Reset Password", newPassword);
+//                EmailSender sendEmailTest = new EmailSender();
+//        sendEmailTest.sendEmail("jamila.nouri@esprit.tn", "Reset Password", newPassword);
 
 
 

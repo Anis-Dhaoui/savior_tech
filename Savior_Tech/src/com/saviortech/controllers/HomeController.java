@@ -45,8 +45,6 @@ public class HomeController implements Initializable {
     @FXML
     private GridPane gridPane;
     @FXML
-    private JFXButton testId;
-    @FXML
     private Text username;
 //$$$$$$$$$$$$$$$$$$$ START EVENTS NODES $$$$$$$$$$$$$$$$$$$
     @FXML
@@ -62,33 +60,38 @@ public class HomeController implements Initializable {
     private HBox authenticatedUserBox;
     @FXML
     private HBox signinSignupBtnsBox;
+    public static HBox customAuthBox = new HBox();
+    public static HBox customSignBox = new HBox();
+    public static Text customUsername = new Text();
 //$$$$$$$$$$$$$$$$$$$ END USERS NODES $$$$$$$$$$$$$$$$$$$ 
 
-    CurrentUser cu = new CurrentUser();
-    private Label xx;
+    static CurrentUser cu = new CurrentUser();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        customAuthBox = authenticatedUserBox;
+        customSignBox = signinSignupBtnsBox;
+        customUsername = username;
 //        authenticatedUserBox.managedProperty().bind(authenticatedUserBox.visibleProperty());
 //        checkIfUserAuthenticated();
+
     }
     
-    public void checkIfUserAuthenticated() {
-//        if (cu.getUserInfo().isEmpty()) {
-//            System.out.println("IFIFIFIFIFIFIFIFIFIFIFIFIFIFFIFIFIFIFIF");
-////            authenticatedUserBox.setVisible(false);
-////            signinSignupBtnsBox.setVisible(true);
-//        } else {
-//            
-//            testId.setManaged(false);
-//            testId.setText("connected");
-//            testId.managedProperty().bind(testId.visibleProperty());
-////            System.out.println("ELSEELSEELSEELSEELSEELSE");
-////            authenticatedUserBox.getChildren().remove(testId);
-////            authenticatedUserBox.setVisible(false);
-////            signinSignupBtnsBox.managedProperty().bind(signinSignupBtnsBox.visibleProperty());
-////            signinSignupBtnsBox.setVisible(false);
-//        }
+    public static void checkIfUserAuthenticated() {
+        if (cu.getUserInfo().isEmpty()) {
+            customAuthBox.managedProperty().bind(customAuthBox.visibleProperty());
+            customAuthBox.setVisible(false);
+            customSignBox.setVisible(true);
+        } else {
+            //Show and hide boxes
+            customAuthBox.managedProperty().bind(customAuthBox.visibleProperty());
+            customAuthBox.setVisible(true);
+            customSignBox.managedProperty().bind(customSignBox.visibleProperty());
+            customSignBox.setVisible(false);
+
+            //Set username of authenticated user
+            customUsername.setText("Anis");
+        }
     }
 
 //$$$$$$$$$$$$$$$$$$$ START EVENTS METHODS $$$$$$$$$$$$$$$$$$$
