@@ -315,7 +315,7 @@
                            </HBox.margin>
                         </TextField>
                         <FontAwesomeIconView fill="#485460" glyphName="SEARCH" size="1.5em" styleClass="cursor-hand" />
-                        <Button fx:id="addPub" mnemonicParsing="false" prefHeight="28.0" prefWidth="134.0" style="-fx-background-color: #0fbcf9; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-family: Quicksand; -fx-font-weight: bold;" styleClass="cursor-hand" text="Nouvelle Publication">
+                        <Button fx:id="addPub" mnemonicParsing="false" onAction="#onActionAjouterP" prefHeight="28.0" prefWidth="134.0" style="-fx-background-color: #0fbcf9; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-family: Quicksand; -fx-font-weight: bold;" styleClass="cursor-hand" text="Nouvelle Publication">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>

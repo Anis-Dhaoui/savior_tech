@@ -4,6 +4,7 @@
  */
 package com.saviortech.views;
 
+import com.saviortech.controllers.HomeController;
 import com.saviortech.models.Publication;
 
 import com.saviortech.services.MyListener;
@@ -63,9 +64,9 @@ public class ItemPublicationController implements Initializable {
         titreLabel.setText(pub.getTitre());
         datelabel.setText(pub.getDate());
        nomUtilisateur.setText(pub.getNomPrenom());
-       this.nbrCom.setText("("+HomePubController.nbrCom+")");
-       this.nbrJ.setText("("+HomePubController.nbrJ+")");
-       this.nbrJp.setText("("+HomePubController.nbrJp+")");
+       this.nbrCom.setText("("+HomeController.nbrCom+")");
+       this.nbrJ.setText("("+HomeController.nbrJ+")");
+       this.nbrJp.setText("("+HomeController.nbrJp+")");
 
     }
 

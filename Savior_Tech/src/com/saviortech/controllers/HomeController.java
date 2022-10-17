@@ -6,23 +6,40 @@ package com.saviortech.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.saviortech.controllers.events.AddEventController;
+import com.saviortech.models.Commentaire;
 import com.saviortech.models.CurrentUser;
+import com.saviortech.models.Publication;
+import com.saviortech.models.Reaction;
+import com.saviortech.services.MyListener;
+import com.saviortech.services.ServiceCommentaire;
+import com.saviortech.services.ServicePublication;
+import com.saviortech.services.ServiceReaction;
+import static com.saviortech.views.HomePubController.idPub;
+import static com.saviortech.views.HomePubController.nbrCom;
+import static com.saviortech.views.HomePubController.nbrJ;
+import static com.saviortech.views.HomePubController.nbrJp;
+import com.saviortech.views.ItemPublicationController;
+import com.saviortech.views.ViewPublicationController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -68,12 +85,109 @@ public class HomeController implements Initializable {
     public static HBox customShowUsers = new HBox();
 //$$$$$$$$$$$$$$$$$$$ END USERS NODES $$$$$$$$$$$$$$$$$$$ 
 
+    //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ START PUBLICATIONS NODES  $$$$$$$$$$$$$$$$$$$$$$$$$$
+    ServicePublication sp = new ServicePublication();
+    ServiceCommentaire sc = new ServiceCommentaire();
+    ServiceReaction sr = new ServiceReaction();
+    private List<Publication> pubs = sp.afficher();
+
+    private Preferences prefs;
+
+    public static int idPub;
+    public static int nbrCom = 0;
+    public static int nbrJ = 0;
+    public static int nbrJp = 0;
+    public static int idUtilisateur = 3;
+
+    //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ END PUBLICATIONS NODES  $$$$$$$$$$$$$$$$$$$$$$$$$$
     static CurrentUser cu = new CurrentUser();
     @FXML
     private FontAwesomeIconView lougoutId;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ START PUBLICATIONS METHODS  $$$$$$$$$$$$$$$$$$$$$$$$$$
+        MyListener myListener = new MyListener() {
+            @Override
+            public void onClickListener(Publication pub) {
+                try {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("../views/viewPublication.fxml"));
+                    Parent root2 = (Parent) fxmlLoader.load();
+
+                    Stage stage = new Stage();
+                    stage.setTitle("View publication");
+                    stage.setScene(new Scene(root2));
+                    stage.show();
+                    ViewPublicationController vp = fxmlLoader.getController();
+                    vp.setShowPublication(pub);
+                    idPub = pub.getIdPublication();
+                 
+
+                } catch (IOException ex) {
+                    ex.getMessage();
+                }
+
+            }
+
+        };
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < pubs.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("../views/itemPublication.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                List<Commentaire> coms = sc.afficher(pubs.get(i).getIdPublication());
+                nbrCom = coms.size();
+                List<Reaction> recs = sr.afficher(pubs.get(i).getIdPublication());
+             
+                nbrJ = recs.size();
+            
+                nbrJp = recs.size();
+                ItemPublicationController itemController = fxmlLoader.getController();
+                itemController.setData(pubs.get(i), myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                gridPane.add(anchorPane, column++, row); //(child,column,row)
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+     //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ END PUBLICATIONS METHODS  $$$$$$$$$$$$$$$$$$$$$$$$$$
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         customAuthBox = authenticatedUserBox;
         customSignBox = signinSignupBtnsBox;
         customUsername = username;
@@ -243,5 +357,21 @@ public class HomeController implements Initializable {
         System.out.println("SIGN OUT");
         cu.getUserInfo().clear();
         checkIfUserAuthenticated();
+    }
+
+    //$$$$$$$$$$$$$$$$$$$ START PUBLICATION METHODS $$$$$$$$$$$$$$$$$$$
+
+
+    @FXML
+    private void onActionAjouterP(ActionEvent event) throws IOException {
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("../views/AddPublication.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+
+        stage.setTitle("Ajouter Publication");
+        stage.setScene(new Scene(root1));
+        stage.show();
     }
 }
