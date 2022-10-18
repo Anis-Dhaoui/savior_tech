@@ -23,7 +23,7 @@
                <children>
                   <ImageView fx:id="imgprofile" fitHeight="95.0" fitWidth="74.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" smooth="false" style="-fx-image: radius;">
                      <image>
-                        <Image url="@../../images/jamila.jpg" />
+                        <Image url="@../../images/User-icon-512x330.png" />
                      </image>
                      <VBox.margin>
                         <Insets bottom="-10.0" left="50.0" right="10.0" top="10.0" />
