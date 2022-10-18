@@ -24,7 +24,7 @@
                <children>
                   <VBox prefHeight="100.0" prefWidth="439.0">
                      <children>
-                        <TextField fx:id="titreText" prefHeight="25.0" prefWidth="555.0" promptText="Titre" />
+                        <TextField fx:id="titreText" prefHeight="25.0" prefWidth="555.0" promptText="Titre" styleClass="input" stylesheets="@../css/Style.css" />
                         <TextField fx:id="descriptionText" alignment="TOP_LEFT" prefHeight="88.0" prefWidth="439.0" promptText="Description">
                            <cursor>
                               <Cursor fx:constant="MOVE" />
@@ -36,7 +36,7 @@
                   </VBox>
                   <VBox prefHeight="100.0" prefWidth="120.0">
                      <children>
-                        <Button fx:id="imageButton" mnemonicParsing="false" onAction="#OnClickAjouterImage" prefHeight="25.0" prefWidth="101.0" stylesheets="@../css/Style.css" text="Browse Image" />
+                        <Button fx:id="imageButton" mnemonicParsing="false" onAction="#OnClickAjouterImage" prefHeight="25.0" prefWidth="101.0" styleClass="cursor-hand" stylesheets="@../css/Style.css" text="Browse Image" />
                         <Button fx:id="ajouterPublication" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onClickAjouterPublication" prefHeight="25.0" prefWidth="101.0" text="Publier" />
                      </children>
                   </VBox>
