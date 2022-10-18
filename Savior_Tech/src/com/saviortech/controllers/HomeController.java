@@ -398,8 +398,29 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    
-        
-        
     }
+        //$$$$$$$$$$$$$$$$$$$ END PUBLICATION METHODS $$$$$$$$$$$$$$$$$$$
+    
+    
+        //$$$$$$$$$$$$$$$$$$$ START QUESTION/ANSWER  METHODS $$$$$$$$$$$$$$$$$$$
+
+    @FXML
+    private void showQA(MouseEvent event) {
+                FXMLLoader showEventLoader = new FXMLLoader();
+        showEventLoader.setLocation(HomeController.this.getClass().getResource("../views/QR/Question.fxml"));
+        try {
+            showEventLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Parent parent = showEventLoader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.setTitle("ALL EVENTS");
+        stage.setMaximized(true);
+        stage.show();
+    }
+    
+     //$$$$$$$$$$$$$$$$$$$ START QUESTION/ANSWER  METHODS $$$$$$$$$$$$$$$$$$$
 }
