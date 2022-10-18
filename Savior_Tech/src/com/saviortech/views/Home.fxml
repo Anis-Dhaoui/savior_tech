@@ -60,7 +60,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </JFXButton>
-                              <JFXButton onAction="#SignInMethod" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #03fc17; -fx-cursor: HAND;" text="SIGN IN">
+                              <JFXButton onAction="#SignInMethod" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #0fbcf9;" stylesheets="@../css/Style.css" text="SIGN IN">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
@@ -112,39 +112,7 @@
    <left>
       <VBox maxWidth="-Infinity" prefHeight="619.0" prefWidth="163.0" style="-fx-background-color: white; -fx-background-radius: 20px;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" styleClass="hover-border">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="40.0" />
-               </VBox.margin>
-               <children>
-                  <FontAwesomeIconView fill="#1d4e8d" glyphName="HOME" size="1.5EM" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="ACCEUIL">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="50.0" styleClass="hover-border">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <children>
-                  <FontAwesomeIconView fill="#1d4e8d" glyphName="CALENDAR" size="1.5EM" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #485460;" text="EVENEMENT">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="86.0" styleClass="hover-border">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="86.0" onMouseClicked="#ShowPubMethod" styleClass="hover-border">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>

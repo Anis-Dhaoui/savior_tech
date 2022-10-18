@@ -98,9 +98,6 @@ public class loginController implements Initializable {
             System.out.println(list);
             infoBox("Please enter correct usename and Password", null, "Failed");
         } else {
-            infoBox("Login Successful!", null, "SUCCESS");
-            System.out.println(list);
-
             CurrentUser cu = new CurrentUser();
             cu.setUserInfo(list);
             System.out.println(list);
