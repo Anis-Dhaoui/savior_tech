@@ -4,7 +4,6 @@
  */
 package com.saviortech.controllers;
 
-import com.jfoenix.controls.JFXButton;
 import com.saviortech.controllers.events.AddEventController;
 import com.saviortech.models.Commentaire;
 import com.saviortech.models.CurrentUser;
@@ -14,10 +13,6 @@ import com.saviortech.services.MyListener;
 import com.saviortech.services.ServiceCommentaire;
 import com.saviortech.services.ServicePublication;
 import com.saviortech.services.ServiceReaction;
-import static com.saviortech.views.HomePubController.idPub;
-import static com.saviortech.views.HomePubController.nbrCom;
-import static com.saviortech.views.HomePubController.nbrJ;
-import static com.saviortech.views.HomePubController.nbrJp;
 import com.saviortech.views.ItemPublicationController;
 import com.saviortech.views.ViewPublicationController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -36,7 +31,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
