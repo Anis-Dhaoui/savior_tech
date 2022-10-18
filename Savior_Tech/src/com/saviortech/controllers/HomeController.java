@@ -371,62 +371,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void ShowPubMethod(MouseEvent event) {
-         MyListener myListener = new MyListener() {
-            @Override
-            public void onClickListener(Publication pub) {
-                try {
-
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("../views/viewPublication.fxml"));
-                    Parent root2 = (Parent) fxmlLoader.load();
-
-                    Stage stage = new Stage();
-                    stage.setTitle("View publication");
-                    stage.setScene(new Scene(root2));
-                    stage.show();
-                    ViewPublicationController vp = fxmlLoader.getController();
-                    vp.setShowPublication(pub);
-                    idPub = pub.getIdPublication();
-                 
-
-                } catch (IOException ex) {
-                    ex.getMessage();
-                }
-
-            }
-
-        };
-        int column = 0;
-        int row = 1;
-        try {
-            for (int i = 0; i < pubs.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../views/itemPublication.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
-                List<Commentaire> coms = sc.afficher(pubs.get(i).getIdPublication());
-                nbrCom = coms.size();
-                List<Reaction> recs = sr.afficher(pubs.get(i).getIdPublication());
-             
-                nbrJ = recs.size();
-            
-                nbrJp = recs.size();
-                ItemPublicationController itemController = fxmlLoader.getController();
-                itemController.setData(pubs.get(i), myListener);
-
-                if (column == 3) {
-                    column = 0;
-                    row++;
-                }
-
-                gridPane.add(anchorPane, column++, row); //(child,column,row)
-
-                GridPane.setMargin(anchorPane, new Insets(10));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    
-        
+   
         
     }
 }
