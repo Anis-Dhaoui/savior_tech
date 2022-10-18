@@ -90,10 +90,9 @@ public class ServicePublication implements IServicePublication<Publication> {
         List<Publication> pub = new ArrayList<>();
         try {
 
-            String req = "SELECT TITRE,DESCRIPTION,IMAGE,DATE,NOMPRENOM,IDPUBLICATION\n"
+            String req = "SELECT TITRE,DESCRIPTION,IMAGE,DATE,FULLNAME,IDPUBLICATION\n"
                     + "FROM publication,utilisateur\n"
-                    + "WHERE utilisateur.IDUTILISATEUR = publication.IDUTILISATEUR "
-                    + "ORDER BY DATE DESC;";
+                    + "WHERE utilisateur.id = publication.IDUTILISATEUR";
             PreparedStatement ps = cnx.prepareStatement(req);
             ResultSet res = ps.executeQuery();
         
