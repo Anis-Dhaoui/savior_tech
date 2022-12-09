@@ -88,7 +88,7 @@ public class ViewPublicationController implements Initializable {
                 ItemCommentaireController itemComController = fxmlLoader.getController();
                 itemComController.setData(coms.get(i));
 
-                if (column == 1) {
+                if (column == 0) {
                     column = 0;
                     row++;
                 }
@@ -108,7 +108,7 @@ public class ViewPublicationController implements Initializable {
             JOptionPane.showMessageDialog(null, "le champ est vide!");
         } else {
 
-            //    sc.ajouter(new Commentaires(desComAjouter.getText(), null, 3, HomeController.idPub));
+            sc.ajouter(new Commentaires(null, desComAjouter.getText(), null));
             desComAjouter.clear();
             desComAjouter.setPromptText("Ecrivez un commentaire");
             JOptionPane.showMessageDialog(null, "Commentaire ajoutée !");
@@ -130,7 +130,7 @@ public class ViewPublicationController implements Initializable {
         if (response == JOptionPane.NO_OPTION) {
             System.out.println("No button clicked");
         } else if (response == JOptionPane.YES_OPTION) {
-            System.out.println(HomeController.idPub);
+            System.err.println(HomeController.idPub);
             sp.supprimer(HomeController.idPub);
         } else if (response == JOptionPane.CLOSED_OPTION) {
             System.out.println("JOptionPane closed");

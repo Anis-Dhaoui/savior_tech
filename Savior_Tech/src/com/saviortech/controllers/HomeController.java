@@ -307,7 +307,8 @@ public class HomeController implements Initializable {
                     //  stage.show();
                     ViewPublicationController vp = fxmlLoader.getController();
                     vp.setShowPublication(pub);
-                 
+                    idPub = pub.getId();
+                    System.out.println(idPub);
 
                 } catch (IOException ex) {
                     ex.getMessage();
@@ -325,14 +326,12 @@ public class HomeController implements Initializable {
                 AnchorPane anchorPane = fxmlLoader.load();
                 List<Commentaires> coms = sc.afficher(pubs.get(i).getId());
                 nbrCom = coms.size();
-                //    List<Reaction> recs = sr.afficher(pubs.get(i).getId());
+                List<Reactions> recs = sr.afficher(pubs.get(i).getId());
 
-                // nbrJ = recs.size();
-                //  nbrJp = recs.size();
+                nbrJ = recs.size();
+                nbrJp = recs.size();
                 ItemPublicationController itemController = fxmlLoader.getController();
                 itemController.setData(pubs.get(i), myListener);
-                idPub = pubs.get(i).getId();
-                     System.out.println(idPub);
 
                 if (column == 3) {
                     column = 0;
