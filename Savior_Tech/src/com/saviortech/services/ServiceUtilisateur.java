@@ -29,7 +29,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     @Override
     public void ajouter(Utilisateur o) {
         try {
-            String req = "INSERT INTO utilisateur(id, fullname, username, email, password, role, domain, interest, speciality) VALUES (?,?,?,?,?,?,?,?,?)";
+            String req = "INSERT INTO users(id, fullname, username, email, password, role, domain, interest, speciality) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setString(1,new UUIDGenerator().getUuid().toString());
             pst.setString(2, o.getFullname());
@@ -50,7 +50,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     @Override
     public void modifier(Utilisateur o) {
         try {
-            String req = "UPDATE utilisateur SET fullname=?, username=?, email=?, password=?, role=?, domain=?, interest=?, speciality=? where id=?";
+            String req = "UPDATE users SET fullname=?, username=?, email=?, password=?, role=?, domain=?, interest=?, speciality=? where id=?";
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setString(1, o.getFullname());
             pst.setString(2, o.getUsername());
@@ -71,7 +71,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     @Override
     public void supprimer(Utilisateur o) {
         try {
-            String req = "DELETE FROM utilisateur where id LIKE ?";
+            String req = "DELETE FROM users where id LIKE ?";
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setString(1, o.getId());
             pst.executeUpdate();
@@ -86,7 +86,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
 
         try {
-            String req = "SELECT * FROM utilisateur";
+            String req = "SELECT * FROM users";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet res = pst.executeQuery();
             while (res.next()) {
@@ -129,7 +129,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         // try-with-resource statement will auto close the connection.
 
         try {
-            String req = "SELECT id, fullname, username, email, role, domain, interest, speciality, admin from utilisateur where username = ? AND password = ?";
+            String req = "SELECT id, fullname, username, email, role, domain, interest, speciality, admin from users where username = ? AND password = ?";
             PreparedStatement pst = cnx.prepareStatement(req);
             // Step 2:Create a statement using connection object
 
@@ -152,7 +152,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
 
         public void updateUserPass(String newPass, String email) {
         try {
-            String req = "UPDATE utilisateur SET password = ? where email=?";
+            String req = "UPDATE users SET password = ? where email=?";
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setString(1, newPass);
             pst.setString(2, email);

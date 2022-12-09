@@ -92,7 +92,7 @@ public class InscriptionUtilisateurController implements Initializable {
         } else if (!cs.controlEmail(labelEmail.getText())) {
             PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "please type a valid email address");
         } else if (!cs.controlPassword(pass_field.getText())) {
-            PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "please type a valid passwords");
+            PopupMessage.showAlert(Alert.AlertType.ERROR, onAjouterClicked, "Required Fields", "Please type a strong password: \n At least 8 charachters long\n Started with capital letter\n Contains numeric charachter");
 
         } else {
             su.ajouter(new Utilisateur(labelFullname.getText(), labelUsername.getText(), labelEmail.getText(), hashedPass, LabelRole.getValue(), labelDomain.getValue(), labelInterest.getValue(), labelSpeciality.getValue()));
