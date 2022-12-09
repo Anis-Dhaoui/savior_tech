@@ -50,7 +50,7 @@ public class ServicePublication implements IServicePublication<Publications> {
             ps.setString(4, o.getImage());
             ps.setString(5, o.getStatut());
 
-            ps.setString(6, "9360d336-fc93-4829-94ba-42361754f27a");
+            ps.setString(6, "06093368-ae0a-477a-9738-4a6403026568");
 
             //    ps.setDate(7, (java.sql.Date) new Date());
             ps.executeUpdate();

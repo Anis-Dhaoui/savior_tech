@@ -70,8 +70,8 @@ public class EventCardController implements Initializable {
     public WritableImage implementImage(String imgUrl) throws MalformedURLException, IOException {
         BufferedImage deck;
         try {
-            //deck = ImageIO.read(new URL(imgUrl));
-            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
+            deck = ImageIO.read(new URL(imgUrl));
+//            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
         } catch (Exception e) {
             deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
         }
