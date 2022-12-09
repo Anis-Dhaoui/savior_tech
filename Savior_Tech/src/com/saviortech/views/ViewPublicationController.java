@@ -6,12 +6,12 @@ package com.saviortech.views;
 
 import com.jfoenix.controls.JFXButton;
 import com.saviortech.controllers.HomeController;
-import com.saviortech.models.Publication;
-import com.saviortech.models.Commentaire;
-import com.saviortech.models.Reaction;
+import com.saviortech.models.Publications;
+import com.saviortech.models.Commentaires;
+import com.saviortech.models.Reactions;
 import com.saviortech.services.ServiceCommentaire;
 import com.saviortech.services.ServicePublication;
-import com.saviortech.services.ServiceReaction;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -24,10 +24,13 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,15 +43,12 @@ public class ViewPublicationController implements Initializable {
     @FXML
     private Label showTitre;
     @FXML
-    private Label showDescription;
-    @FXML
-    private ScrollPane scrolPaneCom;
-    @FXML
+    private Text showDescription;
     private GridPane gridPaneCom;
 
     ServiceCommentaire sc = new ServiceCommentaire();
     ServicePublication sp = new ServicePublication();
-    ServiceReaction sr = new ServiceReaction();
+    // ServiceReaction sr = new ServiceReaction();
 
     @FXML
     private TextField desComAjouter;
@@ -68,12 +68,12 @@ public class ViewPublicationController implements Initializable {
 
     }
 
-    public void setShowPublication(Publication pub) {
-        
+    public void setShowPublication(Publications pub) {
+
         showTitre.setText(pub.getTitre());
         showDescription.setText(pub.getDescription());
 
-        List<Commentaire> coms = sc.afficher(pub.getIdPublication());
+        List<Commentaires> coms = sc.afficher(pub.getId());
         System.err.println(coms.size());
 
         int column = 0;
@@ -108,19 +108,19 @@ public class ViewPublicationController implements Initializable {
             JOptionPane.showMessageDialog(null, "le champ est vide!");
         } else {
 
-            sc.ajouter(new Commentaire(desComAjouter.getText(), null, 3, HomeController.idPub));
+            //    sc.ajouter(new Commentaires(desComAjouter.getText(), null, 3, HomeController.idPub));
             desComAjouter.clear();
             desComAjouter.setPromptText("Ecrivez un commentaire");
             JOptionPane.showMessageDialog(null, "Commentaire ajoutée !");
-              
+
         }
-       
+
     }
 
     @FXML
     private void onClickModifier(ActionEvent event) {
-       hboxModifier.setVisible(true);
-       textModif.setText(showDescription.getText());
+        hboxModifier.setVisible(true);
+        textModif.setText(showDescription.getText());
     }
 
     @FXML
@@ -130,7 +130,8 @@ public class ViewPublicationController implements Initializable {
         if (response == JOptionPane.NO_OPTION) {
             System.out.println("No button clicked");
         } else if (response == JOptionPane.YES_OPTION) {
-           sp.supprimer(new Publication(HomeController.idPub));
+            System.out.println(HomeController.idPub);
+            sp.supprimer(HomeController.idPub);
         } else if (response == JOptionPane.CLOSED_OPTION) {
             System.out.println("JOptionPane closed");
         }
@@ -138,23 +139,23 @@ public class ViewPublicationController implements Initializable {
 
     @FXML
     private void onModifier(ActionEvent event) {
-       
-       sp.modifier(new Publication(HomeController.idPub,textModif.getText()));
-       hboxModifier.setVisible(false);
-       JOptionPane.showMessageDialog(null, "Modifieé");
-     
+
+        //   sp.modifier(new Publications(HomeController.idPub,textModif.getText()));
+        hboxModifier.setVisible(false);
+        JOptionPane.showMessageDialog(null, "Modifieé");
+
     }
 
     @FXML
     private void onClickJaime(ActionEvent event) {
-        sr.ajouter(new Reaction("jaime", HomeController.idUtilisateur,HomeController.idPub));
-        JOptionPane.showMessageDialog(null,"J'aime");
+        //     sr.ajouter(new Reaction("jaime", HomeController.idUtilisateur,HomeController.idPub));
+        JOptionPane.showMessageDialog(null, "J'aime");
     }
 
     @FXML
     private void onClickJaimePas(ActionEvent event) {
-         sr.ajouter(new Reaction("jaimepas", HomeController.idUtilisateur,HomeController.idPub));
-         JOptionPane.showMessageDialog(null,"J'aime pas");
+        //   sr.ajouter(new Reaction("jaimepas", HomeController.idUtilisateur,HomeController.idPub));
+        JOptionPane.showMessageDialog(null, "J'aime pas");
     }
 
 }

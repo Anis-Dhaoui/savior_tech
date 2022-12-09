@@ -4,8 +4,9 @@
  */
 package com.saviortech.services;
 
-import com.saviortech.models.Publication;
-import com.saviortech.models.Reaction;
+import com.saviortech.models.Publications;
+
+import com.saviortech.models.Reactions;
 import com.saviortech.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,12 +19,12 @@ import java.util.List;
  *
  * @author Marwen
  */
-public class ServiceReaction implements InterfaceServiceReaction<Reaction> {
+public class ServiceReaction implements InterfaceServiceReaction<Reactions> {
 
     private Connection cnx = DataSource.getInstance().getCnx();
 
     @Override
-    public void ajouter(Reaction o) {
+    public void ajouter(Reactions o) {
 
         try {
             String req = "INSERT INTO reaction(REACTION,IDUTILISATEUR, IDPUBLICATION) "
@@ -31,9 +32,7 @@ public class ServiceReaction implements InterfaceServiceReaction<Reaction> {
                     + "VALUES (?, ?, ?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, o.getReaction());
-            ps.setInt(2, o.getIdUt());
-            ps.setInt(3, o.getIdPub());
-
+          
             ps.executeUpdate();
             System.out.println("ajoutée!");
         } catch (SQLException ex) {
@@ -42,8 +41,8 @@ public class ServiceReaction implements InterfaceServiceReaction<Reaction> {
     }
 
     @Override
-    public List<Reaction> afficher(int id) {
-        List<Reaction> pub = new ArrayList<>();
+    public List<Reactions> afficher(int id) {
+        List<Reactions> pub = new ArrayList<>();
         try {
 
             String req = "SELECT REACTION FROM `reaction` WHERE reaction.IDPUBLICATION = ?; ";
@@ -54,7 +53,7 @@ public class ServiceReaction implements InterfaceServiceReaction<Reaction> {
             ResultSet res = ps.executeQuery();
 
             while (res.next()) {
-                pub.add(new Reaction(res.getString(1)));
+              //  pub.add(new Reactions(res.getString(1)));
 
             }
 

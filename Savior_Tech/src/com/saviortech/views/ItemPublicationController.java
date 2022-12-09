@@ -5,7 +5,7 @@
 package com.saviortech.views;
 
 import com.saviortech.controllers.HomeController;
-import com.saviortech.models.Publication;
+import com.saviortech.models.Publications;
 
 import com.saviortech.services.MyListener;
 import java.awt.image.BufferedImage;
@@ -38,7 +38,7 @@ public class ItemPublicationController implements Initializable {
     private ImageView img;
     @FXML
     private Text titreLabel;
-    private Publication pub;
+    private Publications pub;
     private MyListener myListener;
     @FXML
     private Label nomUtilisateur;
@@ -48,25 +48,24 @@ public class ItemPublicationController implements Initializable {
     private Label nbrJ;
     @FXML
     private Label nbrJp;
- 
-   
-    public void setData(Publication pub, MyListener myListener ) throws MalformedURLException, IOException {
+
+    public void setData(Publications pub, MyListener myListener) throws MalformedURLException, IOException {
         this.pub = pub;
         this.myListener = myListener;
-      
-        if (pub.getImage() != null) {
+
+        /*  if (pub.getImage() == null) {
             BufferedImage deck = ImageIO.read(new URL(pub.getImage()));
             BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
             WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
             img.setImage(card);
         }
-
+         */
         titreLabel.setText(pub.getTitre());
-        datelabel.setText(pub.getDate());
-       nomUtilisateur.setText(pub.getNomPrenom());
-       this.nbrCom.setText("("+HomeController.nbrCom+")");
-       this.nbrJ.setText("("+HomeController.nbrJ+")");
-       this.nbrJp.setText("("+HomeController.nbrJp+")");
+        datelabel.setText("20/11/2022");
+        nomUtilisateur.setText("Marwen Zakraoui");
+        this.nbrCom.setText("(" + HomeController.nbrCom + ")");
+        this.nbrJ.setText("(" + HomeController.nbrJ + ")");
+        this.nbrJp.setText("(" + HomeController.nbrJp + ")");
 
     }
 
@@ -82,7 +81,5 @@ public class ItemPublicationController implements Initializable {
     private void click(MouseEvent event) {
         myListener.onClickListener(pub);
     }
-
-   
 
 }

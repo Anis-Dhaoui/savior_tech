@@ -4,7 +4,7 @@
  */
 package com.saviortech.controllers;
 
-import com.saviortech.models.Publication;
+import com.saviortech.models.Publications;
 import com.saviortech.services.ServicePublication;
 import java.awt.Component;
 import java.io.File;
@@ -79,8 +79,8 @@ public class AddPublicationController implements Initializable {
         }else{
             
         
-        sp.ajouter(new Publication(titreText.getText(), descriptionText.getText(), null,  3));
-        JOptionPane.showMessageDialog(null, "Publication ajoutée !");
+        sp.ajouter(new Publications(titreText.getText(), descriptionText.getText(), null, "active"));
+       
        
     }}
 

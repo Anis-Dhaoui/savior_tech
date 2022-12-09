@@ -5,7 +5,7 @@
 package com.saviortech.views;
 
 import com.saviortech.controllers.HomeController;
-import com.saviortech.models.Commentaire;
+import com.saviortech.models.Commentaires;
 import com.saviortech.services.ServiceCommentaire;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,9 +30,9 @@ public class ItemCommentaireController implements Initializable {
     @FXML
     private Button suppCom;
 ServiceCommentaire sc = new ServiceCommentaire();
-    public void setData(Commentaire com ) {
+    public void setData(Commentaires com ) {
 
-        nom.setText(com.getNom());
+        //nom.setText(com.getNom());
         des.setText(com.getDescription());
 
     }
