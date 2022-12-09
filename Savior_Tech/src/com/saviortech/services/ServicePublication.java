@@ -80,11 +80,13 @@ public class ServicePublication implements IServicePublication<Publications> {
     @Override
     public void supprimer(String id) {
         try {
-            String req = "UPDATE `publications` SET `statut`='Deactive' WHERE publications.id = ?";
+            String req = "UPDATE `publications` SET `statut`='Deactive' WHERE publications.id = ? ";
 
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(0, id);
+
+            ps.setString(1, id);
             ps.executeUpdate();
+            System.err.println(ps);
             System.out.println("supprimée!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -95,17 +97,15 @@ public class ServicePublication implements IServicePublication<Publications> {
         List pub = new ArrayList<>();
         try {
 
-            String req = "SELECT TITRE,DESCRIPTION,IMAGE,fullName\n"
+            String req = "SELECT  publications.id ,TITRE,DESCRIPTION,IMAGE,fullName\n"
                     + "FROM publications,users\n"
                     + "WHERE users.id = publications.UserId and publications.statut = 'active'  ";
             PreparedStatement ps = cnx.prepareStatement(req);
             ResultSet res = ps.executeQuery();
 
             while (res.next()) {
-                pub.add(new Publications(res.getString(1), res.getString(2), res.getString(3), res.getString(4)));
+                pub.add(new Publications(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5)));
             }
-
-            System.out.println("Puplication récupérées !");
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

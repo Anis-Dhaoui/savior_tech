@@ -35,14 +35,14 @@ public class ServiceCommentaire implements IServicePublication<Commentaires> {
         String dc = date;
 
         try {
-            String req = "INSERT INTO commentaire (ID , DESCRIPTION, createdAt ,PublucationId, UserId)"
+            String req = "INSERT INTO commentaires (id , DESCRIPTION, createdAt ,PublucationId, UserId)"
                     + " VALUES (?, ?, ?, ?)";
             // String rep = "INSERT INTO commentaire (idPublication,idUtilisateur,description,date) VALUES (?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(1, new UUIDGenerator().getUuid().toString());
             ps.setString(2, o.getDescription());
-            ps.setString(3, dc);
+            ps.setString(3, null);
             ps.setString(4, "07fda04f-fd03-4fa8-9934-db0900ac68ac");
             ps.setString(5, "9360d336-fc93-4829-94ba-42361754f27a");
             ps.executeUpdate();
@@ -55,13 +55,13 @@ public class ServiceCommentaire implements IServicePublication<Commentaires> {
     @Override
     public void modifier(Commentaires o) {
 
-        String rep = "UPDATE Commentaire SET description = ? where idCommentaire=?";
+        String rep = "UPDATE Commentaires SET description = ? where id=?";
     }
 
     @Override
     public void supprimer(String id) {
         try {
-            String req = "DELETE FROM commentaire where IDCOMMENTAIRE=?";
+            String req = "DELETE FROM commentaires where id=?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, id);
             ps.executeUpdate();
@@ -75,16 +75,17 @@ public class ServiceCommentaire implements IServicePublication<Commentaires> {
         List<Commentaires> com = new ArrayList<>();
         try {
 
-            String req = "SELECT commentaire.DESCRIPTION,commentaire.DATE,NOMPRENOM\n"
-                    + "                           FROM utilisateur,commentaire \n"
-                    + "                           WHERE utilisateur.IDUTILISATEUR = commentaire.IDUTILISATEUR AND commentaire.IDPUBLICATION = ? ";
+            String req = "SELECT commentaires.id,commentaires.description,users.fullName\n"
+                    + "                           FROM users,commentaires \n"
+                    + "                           WHERE users.id = commentaires.UserId AND commentaires.PublicationId = ? ";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, id);
             ResultSet res = ps.executeQuery();
 
             while (res.next()) {
-            //    com.add(new Commentaires(res.getString(1), res.getString(2), res.getString(3)));
-
+          //     com.add(new Commentaires(res.getString(1), res.getString(2), res.getString(3)));
+             com.add(new Commentaires(res.getString(1),res.getString(2),res.getString(3)));
+                System.out.println(com);
             }
 
             System.out.println("Commentaire récupérées !");

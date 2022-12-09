@@ -27,7 +27,7 @@ public class ServiceReaction implements InterfaceServiceReaction<Reactions> {
     public void ajouter(Reactions o) {
 
         try {
-            String req = "INSERT INTO reaction(REACTION,IDUTILISATEUR, IDPUBLICATION) "
+            String req = "INSERT INTO reactions(REACTION,IDUTILISATEUR, IDPUBLICATION) "
                     
                     + "VALUES (?, ?, ?)";
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -41,20 +41,21 @@ public class ServiceReaction implements InterfaceServiceReaction<Reactions> {
     }
 
     @Override
-    public List<Reactions> afficher(int id) {
+    public List<Reactions> afficher(String id) {
         List<Reactions> pub = new ArrayList<>();
         try {
 
-            String req = "SELECT REACTION FROM `reaction` WHERE reaction.IDPUBLICATION = ?; ";
+            String req = "SELECT * FROM `reactions` WHERE reactions.PublicationId = ? ";
                     
                    
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, id);
+            ps.setString(1, id);
             ResultSet res = ps.executeQuery();
 
             while (res.next()) {
-              //  pub.add(new Reactions(res.getString(1)));
-
+//               pub.add(new Reactions(res.getString(1)));
+              pub.add(new Reactions(null,res.getString(1)));
+                
             }
 
             System.out.println("Reaction récupérées !");

@@ -18,5 +18,5 @@ public interface InterfaceServiceReaction<T> {
 //
 //    public void supprimer(T o);
 //
-    public List<T> afficher(int id);
+    public List<T> afficher(String id);
 }
