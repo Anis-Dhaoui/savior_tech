@@ -5,10 +5,10 @@
 package com.saviortech.controllers;
 
 import com.saviortech.controllers.events.AddEventController;
-import com.saviortech.models.Commentaire;
+import com.saviortech.models.Commentaires;
 import com.saviortech.models.CurrentUser;
-import com.saviortech.models.Publication;
-import com.saviortech.models.Reaction;
+import com.saviortech.models.Publications;
+import com.saviortech.models.Reactions;
 import com.saviortech.services.MyListener;
 import com.saviortech.services.ServiceCommentaire;
 import com.saviortech.services.ServicePublication;
@@ -83,11 +83,11 @@ public class HomeController implements Initializable {
     ServicePublication sp = new ServicePublication();
     ServiceCommentaire sc = new ServiceCommentaire();
     ServiceReaction sr = new ServiceReaction();
-    private List<Publication> pubs = sp.afficher();
+    private List<Publications> pubs = sp.afficher();
 
     private Preferences prefs;
 
-    public static int idPub;
+    public static String idPub = "";
     public static int nbrCom = 0;
     public static int nbrJ = 0;
     public static int nbrJp = 0;
@@ -97,66 +97,12 @@ public class HomeController implements Initializable {
     static CurrentUser cu = new CurrentUser();
     @FXML
     private FontAwesomeIconView lougoutId;
+    @FXML
+    private Text msg;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ START PUBLICATIONS METHODS  $$$$$$$$$$$$$$$$$$$$$$$$$$
-        MyListener myListener = new MyListener() {
-            @Override
-            public void onClickListener(Publication pub) {
-                try {
-
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("../views/viewPublication.fxml"));
-                    Parent root2 = (Parent) fxmlLoader.load();
-
-                    Stage stage = new Stage();
-                    stage.setTitle("View publication");
-                    stage.setScene(new Scene(root2));
-                    stage.show();
-                    ViewPublicationController vp = fxmlLoader.getController();
-                    vp.setShowPublication(pub);
-                    idPub = pub.getIdPublication();
-
-                } catch (IOException ex) {
-                    ex.getMessage();
-                }
-
-            }
-
-        };
-        int column = 0;
-        int row = 1;
-        try {
-            for (int i = 0; i < pubs.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../views/itemPublication.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
-                List<Commentaire> coms = sc.afficher(pubs.get(i).getIdPublication());
-                nbrCom = coms.size();
-                List<Reaction> recs = sr.afficher(pubs.get(i).getIdPublication());
-
-                nbrJ = recs.size();
-
-                nbrJp = recs.size();
-                ItemPublicationController itemController = fxmlLoader.getController();
-                itemController.setData(pubs.get(i), myListener);
-
-                if (column == 3) {
-                    column = 0;
-                    row++;
-                }
-
-                gridPane.add(anchorPane, column++, row); //(child,column,row)
-
-                GridPane.setMargin(anchorPane, new Insets(10));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ END PUBLICATIONS METHODS  $$$$$$$$$$$$$$$$$$$$$$$$$$
         customAuthBox = authenticatedUserBox;
         customSignBox = signinSignupBtnsBox;
         customUsername = username;
@@ -331,29 +277,84 @@ public class HomeController implements Initializable {
     //$$$$$$$$$$$$$$$$$$$ START PUBLICATION METHODS $$$$$$$$$$$$$$$$$$$
     @FXML
     private void onActionAjouterP(ActionEvent event) throws IOException {
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        msg.setText("Ajouter Publication");
+        gridPane.getChildren().clear();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../views/AddPublication.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
+        gridPane.add(root1, 0, 4);
 
-        stage.setTitle("Ajouter Publication");
-        stage.setScene(new Scene(root1));
-        stage.show();
     }
 
     @FXML
     private void ShowPubMethod(MouseEvent event) {
-        
-    }
-        //$$$$$$$$$$$$$$$$$$$ END PUBLICATION METHODS $$$$$$$$$$$$$$$$$$$
-    
-    
-        //$$$$$$$$$$$$$$$$$$$ START QUESTION/ANSWER  METHODS $$$$$$$$$$$$$$$$$$$
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ START PUBLICATIONS METHODS  $$$$$$$$$$$$$$$$$$$$$$$$$$
+        gridPane.getChildren().clear();
+        msg.setText("Liste de Publication");
+        MyListener myListener = new MyListener() {
+            @Override
+            public void onClickListener(Publications pub) {
+                try {
 
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("../views/viewPublication.fxml"));
+                    Parent root2 = (Parent) fxmlLoader.load();
+                    gridPane.getChildren().clear();
+                    gridPane.add(root2, 3, 2);
+                    // Stage stage = new Stage();
+                    // stage.setTitle("View publication");
+                    // stage.setScene(new Scene(root2));
+                    //  stage.show();
+                    ViewPublicationController vp = fxmlLoader.getController();
+                    vp.setShowPublication(pub);
+                 
+
+                } catch (IOException ex) {
+                    ex.getMessage();
+                }
+
+            }
+
+        };
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < pubs.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("../views/itemPublication.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                List<Commentaires> coms = sc.afficher(pubs.get(i).getId());
+                nbrCom = coms.size();
+                //    List<Reaction> recs = sr.afficher(pubs.get(i).getId());
+
+                // nbrJ = recs.size();
+                //  nbrJp = recs.size();
+                ItemPublicationController itemController = fxmlLoader.getController();
+                itemController.setData(pubs.get(i), myListener);
+                idPub = pubs.get(i).getId();
+                     System.out.println(idPub);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                gridPane.add(anchorPane, column++, row); //(child,column,row)
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ END PUBLICATIONS METHODS  $$$$$$$$$$$$$$$$$$$$$$$$$$
+    }
+    //$$$$$$$$$$$$$$$$$$$ END PUBLICATION METHODS $$$$$$$$$$$$$$$$$$$
+
+    //$$$$$$$$$$$$$$$$$$$ START QUESTION/ANSWER  METHODS $$$$$$$$$$$$$$$$$$$
     @FXML
     private void showQA(MouseEvent event) {
-                FXMLLoader showEventLoader = new FXMLLoader();
+        FXMLLoader showEventLoader = new FXMLLoader();
         showEventLoader.setLocation(HomeController.this.getClass().getResource("../views/QR/Question.fxml"));
         try {
             showEventLoader.load();
@@ -368,6 +369,6 @@ public class HomeController implements Initializable {
         stage.setMaximized(true);
         stage.show();
     }
-    
-     //$$$$$$$$$$$$$$$$$$$ START QUESTION/ANSWER  METHODS $$$$$$$$$$$$$$$$$$$
+
+    //$$$$$$$$$$$$$$$$$$$ START QUESTION/ANSWER  METHODS $$$$$$$$$$$$$$$$$$$
 }

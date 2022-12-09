@@ -257,7 +257,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksan; -fx-font-weight: Bolder; -fx-font-size: 1.3em; -fx-fill: #485460;" text="Liste des Publications " wrappingWidth="161.43865966796875">
+                  <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksan; -fx-font-weight: Bolder; -fx-font-size: 1.3em; -fx-fill: #485460;" text="Liste des Publications " wrappingWidth="161.43865966796875">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

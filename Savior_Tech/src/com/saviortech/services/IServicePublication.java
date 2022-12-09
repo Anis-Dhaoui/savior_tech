@@ -13,7 +13,7 @@ import java.util.List;
 public interface IServicePublication <T> {
     public void ajouter (T o);
     public void modifier (T o);
-    public void supprimer (T o);
+    public void supprimer (String id);
     
            
 }

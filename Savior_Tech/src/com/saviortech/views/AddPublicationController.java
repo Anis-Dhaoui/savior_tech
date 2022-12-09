@@ -4,7 +4,8 @@
  */
 package com.saviortech.views;
 
-import com.saviortech.models.Publication;
+import com.jfoenix.controls.JFXTextArea;
+import com.saviortech.models.Publications;
 import com.saviortech.services.ServicePublication;
 import java.awt.Component;
 import java.io.File;
@@ -40,7 +41,7 @@ public class AddPublicationController implements Initializable {
     @FXML
     private TextField titreText;
     @FXML
-    private TextField descriptionText;
+    private JFXTextArea descriptionText;
     @FXML
     private Button imageButton;
     @FXML
@@ -56,12 +57,10 @@ public class AddPublicationController implements Initializable {
     @FXML
 
     private void OnClickAjouterImage(ActionEvent event) throws FileNotFoundException, IOException {
-      
+
         FileChooser chooser = new FileChooser();
         File file = chooser.showOpenDialog(null);
-        
-       
-        
+
         if (file != null) {
             System.out.println("You chose to open this file: "
                     + file.getAbsolutePath());
@@ -74,14 +73,13 @@ public class AddPublicationController implements Initializable {
     @FXML
     private void onClickAjouterPublication(ActionEvent event) {
         ServicePublication sp = new ServicePublication();
-        if((titreText.getText().isEmpty())||(descriptionText.getText().isEmpty())){
-           JOptionPane.showMessageDialog(null, "il y a un champ est vide!");  
-        }else{
-            
-        
-        sp.ajouter(new Publication(titreText.getText(), descriptionText.getText(), null,  3));
-        JOptionPane.showMessageDialog(null, "Publication ajoutée !");
-       
-    }}
+        if ((titreText.getText().isEmpty()) || (descriptionText.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "il y a un champ est vide!");
+        } else {
+
+            sp.ajouter(new Publications(titreText.getText(), descriptionText.getText(), null, "active"));
+
+        }
+    }
 
 }

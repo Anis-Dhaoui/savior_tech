@@ -4,10 +4,11 @@
  */
 package com.saviortech.services;
 
-import com.saviortech.models.Publication;
 import com.mysql.cj.x.protobuf.Mysqlx;
 import com.mysql.cj.xdevapi.PreparableStatement;
+import com.saviortech.models.Publications;
 import com.saviortech.utils.DataSource;
+import com.saviortech.utils.UUIDGenerator;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.sql.Connection;
@@ -25,45 +26,48 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.WritableImage;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
-public class ServicePublication implements IServicePublication<Publication> {
+public class ServicePublication implements IServicePublication<Publications> {
 
     private Connection cnx = DataSource.getInstance().getCnx();
 
     @Override
-    public void ajouter(Publication o) {
-        Date actuelle = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String date = dateFormat.format(actuelle);
+    public void ajouter(Publications o) {
+        java.util.Date actuelle = new java.util.Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd" + "00:00:00");
 
+        String date = dateFormat.format(actuelle);
         String dc = date;
-        System.err.println(dc);
         try {
-            String req = "INSERT INTO publication (titre,description,image,DATE,IDUTILISATEUR) values (?,?,?,?,?)";
+
+            String req = "INSERT INTO publications (id,titre,description,image,statut,UserId)"
+                    + " values (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, o.getTitre());
-            ps.setString(2, o.getDescription());
-            ps.setString(3, o.getImage());
-            ps.setString(4, dc);
-            ps.setInt(5, o.getIdUt());
+            ps.setString(1, new UUIDGenerator().getUuid().toString());
+            ps.setString(2, o.getTitre());
+            ps.setString(3, o.getDescription());
+            ps.setString(4, o.getImage());
+            ps.setString(5, o.getStatut());
+
+            ps.setString(6, "9360d336-fc93-4829-94ba-42361754f27a");
+
+            //    ps.setDate(7, (java.sql.Date) new Date());
             ps.executeUpdate();
-            System.out.println("Ajoutée!");
+            JOptionPane.showMessageDialog(null, "Publication ajoutée !");
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     @Override
-    public void modifier(Publication o) {
+    public void modifier(Publications o) {
 
         try {
-            String req = "UPDATE publication SET description=? where idPublication=?";
+            String req = "UPDATE publications SET description=? where id=?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            
             ps.setString(1, o.getDescription());
-            
-
-            ps.setInt(2, o.getIdPublication());
             ps.executeUpdate();
             System.out.println("Modifiée!");
 
@@ -74,11 +78,12 @@ public class ServicePublication implements IServicePublication<Publication> {
     }
 
     @Override
-    public void supprimer(Publication o) {
+    public void supprimer(String id) {
         try {
-            String req = "DELETE FROM publication where idPublication=?";
+            String req = "UPDATE `publications` SET `statut`='Deactive' WHERE publications.id = ?";
+
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, o.getIdPublication());
+            ps.setString(0, id);
             ps.executeUpdate();
             System.out.println("supprimée!");
         } catch (SQLException ex) {
@@ -86,20 +91,18 @@ public class ServicePublication implements IServicePublication<Publication> {
         }
     }
 
-    public List<Publication> afficher() {
-        List<Publication> pub = new ArrayList<>();
+    public List afficher() {
+        List pub = new ArrayList<>();
         try {
 
-            String req = "SELECT TITRE,DESCRIPTION,IMAGE,DATE,FULLNAME,IDPUBLICATION\n"
-                    + "FROM publication,utilisateur\n"
-                    + "WHERE utilisateur.id = publication.IDUTILISATEUR";
+            String req = "SELECT TITRE,DESCRIPTION,IMAGE,fullName\n"
+                    + "FROM publications,users\n"
+                    + "WHERE users.id = publications.UserId and publications.statut = 'active'  ";
             PreparedStatement ps = cnx.prepareStatement(req);
             ResultSet res = ps.executeQuery();
-        
 
             while (res.next()) {
-                pub.add(new Publication(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getInt(6)));
-
+                pub.add(new Publications(res.getString(1), res.getString(2), res.getString(3), res.getString(4)));
             }
 
             System.out.println("Puplication récupérées !");
