@@ -15,3 +15,153 @@
     -fx-background-color:beige;
     -fx-cursor:hand;
 }
+/*******************************************USERSTYLE***********************************************************/
+.login-pane{
+    -fx-background-color:beige;
+}
+.submitButton:hover {
+    -fx-background-color : #ffc21a !important;
+    -fx-cursor:hand;
+
+}
+
+#shp{
+    -fx-background-color:  #4169E1;
+}
+#shp:hover{
+    -fx-background-color: #ffc21a;
+}
+
+.submitclosing:hover{
+    -fx-background-color:#F02222 !important;
+    -fx-cursor:hand;
+}
+
+.buttonchange{
+
+    -fx-border-radius: 7px;
+    -fx-font-size: 1.4em;
+}
+
+.buttonchange:hover{
+    -fx-background-color :#FFFFFF !important;
+    -fx-cursor: hand;
+}
+.inscription:hover{
+    -fx-background-color: #42AEA1 !important;
+    -fx-cursor:hand;
+
+}
+.colId:hover{
+    -fx-background-color: gray !important;
+}
+.userTable{
+    -fx-background-color: red;
+}
+.FullName :hover{
+    -fx-background-color: gray !important;
+}
+.UserName :hover{
+    -fx-background-color: gray !important;
+}
+.Email :hover{
+    -fx-background-color: gray !important;
+}
+.Password :hover{
+    -fx-background-color: gray !important;
+}
+.role :hover{
+    -fx-background-color: gray !important;
+}
+.Domain :hover{
+    -fx-background-color: gray !important;
+}
+.Interest :hover{
+    -fx-background-color: gray !important;
+}
+.Speciality :hover{
+    -fx-background-color: gray !important;
+}
+.hover-border:hover{
+    -fx-border-color:#0fbcf9;
+    -fx-border-width:2px 0px 0px 2px;
+    -fx-background-color:beige;
+    -fx-cursor:hand;
+}
+.cursor-hand{
+    -fx-cursor:hand;
+}
+.hover-fade:hover{
+    -fx-background-color:#e2e2e2 !important;
+    -fx-cursor:hand;
+}
+.hover-btn{
+    -fx-background-color:beige;
+    -fx-cursor:hand;
+}
+
+#AnchorPane{
+   
+}
+#VBox1{
+    -fx-background-color :  #9370DB;
+}
+#setting11:hover{
+    -fx-background-color: #32CD32	;
+    
+}
+#setting1:hover{
+        -fx-background-color: #32CD32	;
+
+}
+#notification:hover{
+        -fx-background-color: #32CD32	;
+
+}
+#setting:hover{
+        -fx-background-color: #32CD32	;}
+#setting111:hover{
+        -fx-background-color: #32CD32	;}
+
+#editprofile:hover{
+    -fx-background-color: #9370DB;
+    
+}
+#anchorpass{
+    -fx-background-color: #696969	;	
+}
+#buttonpass{
+   -fx-background-color: #E9967A	;
+}
+
+
+/********************************EVENTS STYLE*****************************/
+
+#updateBtn, #addBtn{
+    -fx-background-color:  #11f533;
+    -fx-border-color: white;
+    -fx-border-radius: 5;
+}
+
+#updateBtn:hover, #addBtn:hover{
+    -fx-cursor: HAND;
+    -fx-border-color: gray;
+    -fx-text-fill: black;
+    -fx-opacity: 0.7;
+}
+
+.text-area {
+    -fx-font-family: Consolas;
+    -fx-font-size: 15;
+    -fx-text-fill: black;
+    -fx-display-caret:true;
+}
+
+.text-area .content {
+/*    -fx-background-color: gray;*/
+    -fx-padding: 10;
+}
+
+.text-area .scroll-bar:horizontal:disabled {
+    -fx-opacity: 0;
+}

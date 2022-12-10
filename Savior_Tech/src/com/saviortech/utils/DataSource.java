@@ -20,17 +20,20 @@ public class DataSource {
     private final String URL = "jdbc:mysql://localhost:3306/savior_tech_db?useTimezone=true&serverTimezone=UTC";
     private final String USERNAME = "root";
     private final String PASSWORD = "";
+//    private final String URL = "jdbc:mysql://db4free.net/:3306/savior_tech_db?useTimezone=true&serverTimezone=UTC";
+//    private final String USERNAME = "saviortech";
+//    private final String PASSWORD = "stpassword";
 
     private DataSource() {
         try {
             cnx = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.println("Connecting !");
+            System.out.println("Connected to MySQL DB Successfully !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public static DataSource getIstance() {
+    public static DataSource getInstance() {
         if (instance == null) {
             instance = new DataSource();
         }
@@ -38,8 +41,7 @@ public class DataSource {
     }
 
     public Connection getCnx() {
-        System.out.println(cnx);
-        System.out.println(instance);
+        System.out.println("LOADING...");
         return cnx;
     }
 }

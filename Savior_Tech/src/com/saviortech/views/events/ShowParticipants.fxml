@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="206.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.events.ShowParticipantsController">
+   <children>
+      <TableView fx:id="partTable" prefHeight="205.0" prefWidth="535.0" style="-fx-background-color: moccasin;">
+        <columns>
+          <TableColumn fx:id="colFullName" prefWidth="198.0" text="Full Name" />
+          <TableColumn fx:id="colRole" prefWidth="160.0" text="Role" />
+            <TableColumn fx:id="colSpeciality" prefWidth="176.0" text="Speciality" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

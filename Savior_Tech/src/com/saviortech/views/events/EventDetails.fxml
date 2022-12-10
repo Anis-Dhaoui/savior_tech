@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="782.0" style="-fx-background-color: #f6f6f6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.controllers.events.EventDetailsController">
+   <children>
+      <HBox fx:id="eventId" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #f6f6f6;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <VBox prefHeight="526.0" prefWidth="917.0">
+               <children>
+                  <Pane VBox.vgrow="ALWAYS">
+                     <children>
+                        <ImageView fx:id="phImage" fitHeight="226.0" fitWidth="479.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../../../../Downloads/images.jpg" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <HBox alignment="CENTER" layoutX="1.0" layoutY="183.0" prefHeight="45.0" prefWidth="479.0" style="-fx-background-color: rgba(0, 0, 0, 0.63);">
+                           <children>
+                              <Text fx:id="phTitle" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENT TITLE EVENT TITLE">
+                                 <font>
+                                    <Font name="Serif Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <Button fx:id="partBtn" layoutX="1.0" layoutY="6.0" mnemonicParsing="false" onAction="#participate" prefHeight="35.0" prefWidth="133.0" style="-fx-background-color: #ffbf10; -fx-cursor: HAND;" text="PARTICIPER">
+                           <font>
+                              <Font name="octicons" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <ScrollPane layoutX="7.0" layoutY="8.0" prefHeight="267.0" prefWidth="479.0">
+                           <content>
+                              <Text fx:id="phDescription" fontSmoothingType="LCD" lineSpacing="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, voluptua iracundia disputationi an pri, his utinam principes dignissim ad. Ne nec dolore oblique nusquam, cu luptatum volutpat delicatissimi has. Sed ad dicam platonem, mea eros illum elitr id, ei has similique constituto. Ea movet saperet rationibus sit, pri autem aliquip invidunt an. Consetetur omittantur consequuntur eos et. Eleifend praesent iudicabit no mea, tollit persequeris ex pri, tota splendide voluptaria in pri. Ad per tale aliquip, ei sit viris commune albucius. Eos aliquip scaevola ut, eum alii mentitum prodesset no, his ne suas atomorum. Et numquam deleniti ponderum vis, quod error at mei. Novum blandit adolescens sea te. Ea eum cetero scaevola.In his meis porro viris, illud imperdiet reprimique et vim. Feugiat atomorum reprehendunt vix ei, ei facete regione pri. Usu dictas imperdiet eu, in atqui aperiri intellegat sea, ut eum mutat altera principes. Te sit quaeque oportere, has modus inani ceteros ad. Impedit blandit deseruisse duo ea, ne graecis deleniti incorrupte usu. Ut mei splendide accommodare. An pri iisque meliore, eam ei splendide eloquentiam philosophia. Ne per meis eleifend electram. Ne eam porro aliquam invidunt. Minim docendi eloquentiam cum ad. Quo ea mazim ubique, ex est fuisset blandit scaevola. Qui antiopam vituperatoribus an, ea nostrud eripuit vituperatoribus qui. In eam diam nominati, per ea alia luptatum. Nam habemus electram democritum ut. Mei ea omnium admodum intellegat. Habeo atqui molestiae at mei, an nec ridens consequuntur. Quem nulla cum ei, his ipsum apeirian no, per at eius iriure aperiri. Sed dicam interesset ei. Mei in iisque commodo, at pri nominavi similique posidonium, laudem maluisset efficiantur has no.His verterem consectetuer consequuntur ne, no virtute atomorum usu. Eu quo nemore causae tacimates, eos viderer persequeris an. Cu molestie consulatu qui. Natum labores perfecto no ius, pri dico mundi inciderint id. Ei usu dico libris postea. Cu graeco doctus splendide qui, ei eum probo regione." wrappingWidth="463.7109375">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Text>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <VBox prefHeight="506.0" prefWidth="209.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="36.0" prefWidth="284.0" text="Event Details">
+                     <font>
+                        <Font name="Sitka Text Italic" size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Separator prefHeight="17.0" prefWidth="291.0">
+                     <effect>
+                        <Lighting bumpInput="$null" specularConstant="0.42">
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Separator>
+                  <AnchorPane prefHeight="453.0" prefWidth="275.0">
+                     <children>
+                        <Label fx:id="start" layoutX="59.0" layoutY="6.0" prefHeight="17.0" prefWidth="92.0" text="START DATE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="phStartDate" fill="#868282" layoutX="59.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="November 17, 2020 12:00 pm" wrappingWidth="194.298828125" />
+                        <FontAwesomeIconView fill="#ffbf10" glyphName="CALENDAR" layoutX="17.0" layoutY="31.0" size="25.0" />
+                        <Separator layoutX="13.0" layoutY="48.0" prefHeight="3.0" prefWidth="246.0" />
+                        <Label fx:id="end" layoutX="59.0" layoutY="60.0" prefHeight="17.0" prefWidth="92.0" text="END DATE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="phEndDate" fill="#868282" layoutX="59.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="November 17, 2020 12:00 pm" wrappingWidth="194.298828125" />
+                        <FontAwesomeIconView fill="#ffbf10" glyphName="CALENDAR" layoutX="17.0" layoutY="85.0" size="25.0" />
+                        <Separator layoutX="16.0" layoutY="102.0" prefHeight="3.0" prefWidth="246.0" />
+                        <Label fx:id="status" layoutX="60.0" layoutY="115.0" prefHeight="17.0" prefWidth="92.0" text="STATUS">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="phStatus" fill="#868282" layoutX="60.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active" wrappingWidth="194.298828125" />
+                        <FontAwesomeIconView fill="#ffbf10" glyphName="EYE" layoutX="17.0" layoutY="140.0" size="25.0" />
+                        <Separator layoutX="17.0" layoutY="157.0" prefHeight="3.0" prefWidth="246.0" />
+                        <Label fx:id="location" layoutX="59.0" layoutY="166.0" prefHeight="17.0" prefWidth="92.0" text="LOCATION">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="phLocation" fill="#868282" layoutX="59.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Siliana Elife" wrappingWidth="194.298828125" />
+                        <FontAwesomeIconView fill="#ffbf10" glyphName="MAP_MARKER" layoutX="22.0" layoutY="191.0" size="25.0" />
+                        <Separator layoutX="16.0" layoutY="208.0" prefHeight="3.0" prefWidth="246.0" />
+                        <Label fx:id="cater" layoutX="61.0" layoutY="220.0" prefHeight="17.0" prefWidth="92.0" text="CATEGORY">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="phCategory" fill="#868282" layoutX="61.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Web Developpement" wrappingWidth="194.298828125" />
+                        <FontAwesomeIconView fill="#ffbf10" glyphName="FOLDER_OPEN" layoutX="16.0" layoutY="245.0" size="25.0" />
+                        <Separator layoutX="15.0" layoutY="262.0" prefHeight="3.0" prefWidth="246.0" />
+                        <Label layoutX="61.0" layoutY="272.0" prefHeight="17.0" prefWidth="92.0" text="PRICE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="phPrice" fill="#868282" layoutX="61.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" wrappingWidth="31.298828125" />
+                        <FontAwesomeIconView fill="#ffbf10" glyphName="DOLLAR" layoutX="22.0" layoutY="297.0" size="25.0" />
+                        <Separator layoutX="15.0" layoutY="314.0" prefHeight="3.0" prefWidth="246.0" />
+                        <Label layoutX="63.0" layoutY="324.0" prefHeight="17.0" prefWidth="92.0" text="ORGONIZER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="phOrgonizer" fill="#868282" layoutX="63.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Centre Elife" wrappingWidth="194.298828125" />
+                        <FontAwesomeIconView fill="#ffbf10" glyphName="USER" layoutX="19.0" layoutY="349.0" size="25.0" />
+                        <Separator layoutX="17.0" layoutY="366.0" prefHeight="3.0" prefWidth="246.0" />
+                        <Label layoutX="63.0" layoutY="376.0" prefHeight="17.0" prefWidth="194.0" text="NUMBER OF PARTICIPANTS">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="phNbPart" fill="#868282" layoutX="63.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15" wrappingWidth="42.298828125" />
+                        <FontAwesomeIconView fill="#ffbf10" glyphName="GROUP" layoutX="16.0" layoutY="401.0" size="25.0" />
+                        <Separator layoutX="17.0" layoutY="418.0" prefHeight="3.0" prefWidth="246.0" />
+                        <Text fill="#868282" layoutX="76.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DT" wrappingWidth="31.298828125" />
+                        <Label layoutX="63.0" layoutY="431.0" prefHeight="17.0" prefWidth="194.0" text="PARTICIPANTS MAX">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="phMaxPart" fill="#868282" layoutX="63.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" wrappingWidth="194.298828125" />
+                        <FontAwesomeIconView fill="#ffbf10" glyphName="GROUP" layoutX="16.0" layoutY="456.0" size="25.0" />
+                        <Separator layoutX="17.0" layoutY="473.0" prefHeight="3.0" prefWidth="246.0" />
+                        <Text fx:id="phShowPart" fill="#07a7e1" layoutX="155.0" layoutY="410.0" onMouseClicked="#showParticipants" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: HAND;" text="Show Participants" wrappingWidth="98.13671875" />
+                     </children>
+                  </AnchorPane>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

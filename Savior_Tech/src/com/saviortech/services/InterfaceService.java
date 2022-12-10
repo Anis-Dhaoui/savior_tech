@@ -4,7 +4,10 @@
  */
 package com.saviortech.services;
 
+import com.saviortech.models.Participant;
+import com.saviortech.models.Utilisateur;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -14,9 +17,17 @@ public interface InterfaceService<T> {
 
     public void ajouter(T o);
 
-//    public void modifier(T o);
-//
-//    public void supprimer(T o);
-//
-    public List<T> afficher();
+    public void modifier(T o);
+
+    public void supprimer(String id);
+
+    public List<T> afficher(String category);
+
+    public int participantNumber(String x);
+
+    public ObservableList<Utilisateur> getParticipants(String id);
+
+    public boolean checkIfParticipated(String userId, String eventId);
+    
+    public ObservableList<String> getCategories();
 }
