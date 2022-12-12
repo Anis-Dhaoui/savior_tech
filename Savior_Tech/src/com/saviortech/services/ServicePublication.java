@@ -50,7 +50,7 @@ public class ServicePublication implements IServicePublication<Publications> {
             ps.setString(4, o.getImage());
             ps.setString(5, o.getStatut());
 
-            ps.setString(6, "431df4c4-879c-4b18-8c86-5b5aa7a40f4d");
+            ps.setString(6, "fc779137-e429-4bf1-be18-a2148adb47b2");
 
             //    ps.setDate(7, (java.sql.Date) new Date());
             ps.executeUpdate();
@@ -97,16 +97,16 @@ public class ServicePublication implements IServicePublication<Publications> {
         List pub = new ArrayList<>();
         try {
 
-            String req = "SELECT  publications.id ,TITRE,DESCRIPTION,IMAGE,fullName\n"
+            String req = "SELECT publications.id ,TITRE,DESCRIPTION,IMAGE,publications.createdAt,fullName\n"
                     + "FROM publications,users\n"
                     + "WHERE users.id = publications.UserId and publications.statut = 'active'  ";
             PreparedStatement ps = cnx.prepareStatement(req);
             ResultSet res = ps.executeQuery();
 
             while (res.next()) {
-                pub.add(new Publications(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5)));
+                pub.add(new Publications(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6)));
             }
-
+            System.out.println(pub);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
