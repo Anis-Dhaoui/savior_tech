@@ -80,6 +80,8 @@ public class AddPublicationController implements Initializable {
             
         
         sp.ajouter(new Publications(titreText.getText(), descriptionText.getText(), null, "active"));
+        this.titreText.setText("");
+        this.descriptionText.setText("");
        
        
     }}

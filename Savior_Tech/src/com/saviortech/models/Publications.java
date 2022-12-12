@@ -18,20 +18,24 @@ public class Publications {
     private String description;
     private String image;
     private String statut;
+    private String createdAt;
+    private String fullName;
 
-    public Publications(String id, String titre, String description, String image, String statut) {
+    public Publications(String id, String titre, String description, String image, String createdAt, String fullName) {
         this.id = id;
         this.titre = titre;
         this.description = description;
         this.image = image;
-        this.statut = statut;
+        this.createdAt = createdAt;
+        this.fullName = fullName;
     }
-   
+
     public Publications(String titre, String description, String image, String statut) {
         this.titre = titre;
         this.description = description;
         this.image = image;
         this.statut = statut;
+
     }
 
     public void affichier(String titre, String description, String image, String createdAt, String fullNAme) {
@@ -79,6 +83,22 @@ public class Publications {
 
     public String getStatut() {
         return statut;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     @Override
