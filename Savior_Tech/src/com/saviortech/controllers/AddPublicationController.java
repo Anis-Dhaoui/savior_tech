@@ -56,12 +56,10 @@ public class AddPublicationController implements Initializable {
     @FXML
 
     private void OnClickAjouterImage(ActionEvent event) throws FileNotFoundException, IOException {
-      
+
         FileChooser chooser = new FileChooser();
         File file = chooser.showOpenDialog(null);
-        
-       
-        
+
         if (file != null) {
             System.out.println("You chose to open this file: "
                     + file.getAbsolutePath());
@@ -74,14 +72,14 @@ public class AddPublicationController implements Initializable {
     @FXML
     private void onClickAjouterPublication(ActionEvent event) {
         ServicePublication sp = new ServicePublication();
-        if((titreText.getText().isEmpty())||(descriptionText.getText().isEmpty())){
-           JOptionPane.showMessageDialog(null, "il y a un champ est vide!");  
-        }else{
-            
-        
-        sp.ajouter(new Publications(titreText.getText(), descriptionText.getText(), null, "active"));
-       
-       
-    }}
+        if ((titreText.getText().isEmpty()) || (descriptionText.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "il y a un champ est vide!");
+        } else {
+
+            sp.ajouter(new Publications(titreText.getText(), descriptionText.getText(), null, "active"));
+    
+          
+        }
+    }
 
 }

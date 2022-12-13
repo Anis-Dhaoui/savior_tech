@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="54.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.views.ItemCommentaireController">
+<AnchorPane id="AnchorPane" prefHeight="61.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saviortech.views.ItemCommentaireController">
    <children>
       <VBox layoutX="52.0" layoutY="-52.0" prefHeight="75.0" prefWidth="270.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="nom" prefHeight="17.0" prefWidth="188.0" text="Zakraoui Marwen">
+                  <Label fx:id="nom" prefHeight="17.0" prefWidth="322.0" text="Zakraoui Marwen">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -29,8 +29,8 @@
             </HBox>
             <HBox prefHeight="20.0" prefWidth="320.0">
                <children>
-                  <Label fx:id="des" alignment="TOP_LEFT" prefHeight="37.0" prefWidth="270.0" text="........................." />
-                  <Button fx:id="suppCom" minWidth="43.0" mnemonicParsing="false" onAction="#onClickSupprimer" prefHeight="22.0" prefWidth="43.0">
+                  <Label fx:id="des" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="398.0" text="........................." />
+                  <Button fx:id="suppCom" minWidth="43.0" mnemonicParsing="false" onAction="#onClickSupprimer" prefHeight="27.0" prefWidth="44.0">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>

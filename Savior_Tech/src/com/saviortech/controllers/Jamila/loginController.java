@@ -89,7 +89,6 @@ public class loginController implements Initializable {
         }
 
         String username = tfusername.getText();
-
         String password = tfpassword.getText();
 
         ServiceUtilisateur auth = new ServiceUtilisateur();

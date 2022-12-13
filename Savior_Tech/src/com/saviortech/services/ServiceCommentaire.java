@@ -33,7 +33,6 @@ public class ServiceCommentaire implements IServicePublication<Commentaires> {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(actuelle);
         String dc = date;
-
         try {
             String req = "INSERT INTO commentaires (id , DESCRIPTION, createdAt ,PublucationId, UserId)"
                     + " VALUES (?, ?, ?, ?)";

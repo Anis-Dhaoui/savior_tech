@@ -29,29 +29,27 @@ public class ItemCommentaireController implements Initializable {
     private Label des;
     @FXML
     private Button suppCom;
-ServiceCommentaire sc = new ServiceCommentaire();
-    public void setData(Commentaires com ) {
+    ServiceCommentaire sc = new ServiceCommentaire();
 
-        //nom.setText(com.getNom());
+    public void setData(Commentaires com) {
+
+        nom.setText(com.getFullName());
         des.setText(com.getDescription());
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
-              suppCom.setVisible(true);
-      
-        
 
+        suppCom.setVisible(true);
 
         // TODO
     }
 
     @FXML
     private void onClickSupprimer(ActionEvent event) {
-        
-        JOptionPane.showMessageDialog(null,"idUt"+HomeController.idUtilisateur);
+
+        JOptionPane.showMessageDialog(null, "idUt" + HomeController.idUtilisateur);
     }
 
 }
