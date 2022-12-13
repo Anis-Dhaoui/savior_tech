@@ -5,6 +5,7 @@
 package com.saviortech.services;
 
 import com.saviortech.models.Commentaires;
+import com.saviortech.models.CurrentUser;
 import com.saviortech.utils.DataSource;
 import com.saviortech.utils.UUIDGenerator;
 import java.sql.Connection;
@@ -33,7 +34,7 @@ public class ServiceCommentaire implements IServicePublication<Commentaires> {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(actuelle);
         String dc = date;
-
+ CurrentUser s = new CurrentUser();
         try {
             String req = "INSERT INTO commentaires (id , DESCRIPTION, createdAt ,PublucationId, UserId)"
                     + " VALUES (?, ?, ?, ?)";
@@ -44,7 +45,7 @@ public class ServiceCommentaire implements IServicePublication<Commentaires> {
             ps.setString(2, o.getDescription());
             ps.setString(3, null);
             ps.setString(4, "d7a04dc5-9aff-46f4-bddd-917848c386aee");
-            ps.setString(5, "fc779137-e429-4bf1-be18-a2148adb47b2");
+            ps.setString(5, s.getUserInfo().get(0).getId());
             ps.executeUpdate();
             System.out.println("ajoutée!");
         } catch (SQLException ex) {

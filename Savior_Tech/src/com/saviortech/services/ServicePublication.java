@@ -6,6 +6,7 @@ package com.saviortech.services;
 
 import com.mysql.cj.x.protobuf.Mysqlx;
 import com.mysql.cj.xdevapi.PreparableStatement;
+import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Publications;
 import com.saviortech.utils.DataSource;
 import com.saviortech.utils.UUIDGenerator;
@@ -39,6 +40,8 @@ public class ServicePublication implements IServicePublication<Publications> {
 
         String date = dateFormat.format(actuelle);
         String dc = date;
+        CurrentUser s = new CurrentUser();
+   
         try {
 
             String req = "INSERT INTO publications (id,titre,description,image,statut,UserId)"
@@ -50,12 +53,12 @@ public class ServicePublication implements IServicePublication<Publications> {
             ps.setString(4, o.getImage());
             ps.setString(5, o.getStatut());
 
-            ps.setString(6, "fc779137-e429-4bf1-be18-a2148adb47b2");
+            ps.setString(6, s.getUserInfo().get(0).getId() );
 
             //    ps.setDate(7, (java.sql.Date) new Date());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Publication ajoutée !");
-
+             JOptionPane.showMessageDialog(null, "Publication ajoutée !");
+      
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
