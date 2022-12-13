@@ -40,7 +40,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import javafx.stage.Modality;
 /**
  * FXML Controller class
  *
@@ -102,6 +102,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
 
         customAuthBox = authenticatedUserBox;
         customSignBox = signinSignupBtnsBox;
@@ -363,11 +364,12 @@ public class HomeController implements Initializable {
 
         Parent parent = showEventLoader.getRoot();
         Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UTILITY);
         stage.setScene(new Scene(parent));
-        stage.setTitle("ALL EVENTS");
+        stage.setTitle("ALL Questions");
         stage.setMaximized(true);
         stage.show();
     }
 
-    //$$$$$$$$$$$$$$$$$$$ START QUESTION/ANSWER  METHODS $$$$$$$$$$$$$$$$$$$
 }

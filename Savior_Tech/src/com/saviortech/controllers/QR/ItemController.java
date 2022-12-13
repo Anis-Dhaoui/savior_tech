@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -84,22 +85,33 @@ public class ItemController implements Initializable {
     public void setJaim(String jaim) {
         this.jaim.setText(jaim);
     }
-    
+        public WritableImage implementImage(String imgUrl) throws MalformedURLException, IOException {
+        BufferedImage deck;
+        try {
+            deck = ImageIO.read(new URL(imgUrl));
+//            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
+        } catch (Exception e) {
+            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
+        }
+        BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
+        WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
+
+        return card;
+    }
     public void setData(Question question) throws IOException {
         
         this.question = question;
-         Date d = question.getDate();  
+         Date d = question.getCreatedAt();  
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
                 String strDate = dateFormat.format(d); 
-                id.setText(String.valueOf(question.getIdQuestion()));
+                id.setText(String.valueOf(question.getId()));
         titre.setText(question.getTitre());
        description.setText(question.getDescription());
         date.setText(strDate);
         if(question.getImage()!=null){
             image.setFitHeight(150);
             image.setFitWidth(400);
-        Image img = new Image(new FileInputStream(question.getImage()));
-        image.setImage(img);
+        image.setImage(implementImage(question.getImage()));
         }
 
     }
@@ -111,7 +123,7 @@ public class ItemController implements Initializable {
     @FXML
     private void Affiche(MouseEvent event) {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("../../views/QR/Statut.fxml"));
-      Static.setId(Integer.parseInt(id.getText())); 
+      Static.setId(id.getText()); 
       Static.setImg(question.getImage());
         try {
             Parent root = loader.load();
@@ -138,12 +150,12 @@ public class ItemController implements Initializable {
     private void jaime(ActionEvent event) {
         if(jaim.getText().equals("J'aime")){
         AimeService as=new AimeService();
-        as.ajouter(new AimeQuestion(Static.getIduser(),Integer.parseInt(id.getText())));
+        as.ajouter(new AimeQuestion(Static.getIduser(),id.getText()));
         jaim.setText("J'aime Pas");
         }
         else if(jaim.getText().equals("J'aime Pas")){
                    AimeService as=new AimeService();
-        as.supprimer(new AimeQuestion(Static.getIduser(),Integer.parseInt(id.getText())));    
+        as.supprimer(new AimeQuestion(Static.getIduser(),id.getText()));    
         jaim.setText("J'aime");
         
         }
@@ -209,7 +221,7 @@ public class ItemController implements Initializable {
     private void supprimer(ActionEvent event) {
         
             QuestionService qs=new QuestionService();
-            Question question= new Question(Integer.parseInt(id.getText()));
+            Question question= new Question(id.getText());
             qs.supprimer(question);
       Alert  alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Information");
@@ -249,7 +261,7 @@ public class ItemController implements Initializable {
         }
         else{
                 ReponseService rs = new ReponseService();
-                Reponse R=new Reponse(commentaire.getText(),Integer.parseInt(id.getText()),String.valueOf(Static.getIduser()));
+                Reponse R=new Reponse(commentaire.getText(),id.getText(),String.valueOf(Static.getIduser()));
                 rs.ajouter(R);
                           alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Information");

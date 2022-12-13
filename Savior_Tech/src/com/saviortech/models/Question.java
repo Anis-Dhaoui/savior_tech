@@ -1,7 +1,7 @@
 package com.saviortech.models;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-import java.util.Date;
+import java.sql.Date;
 import javafx.scene.control.TextArea;
 
 /*
@@ -14,49 +14,65 @@ import javafx.scene.control.TextArea;
  * @author SOMRANI
  */
 public class Question {
-    private int idQuestion;
-    private int iduser;
+    private String id;
+    private String IdUser;
     private String description;
-    private Date date;
+    private Date createdAt;
+    private Date updatedAt;
     private String titre;
     private String image;
+    private String status;
+    
+    public Question(String id) {
+        this.id = id;
+    }
 
-    public Question(int idQuestion) {
-        this.idQuestion = idQuestion;
+    public Question(String id, String IdUser, String description, Date createdAt, Date updatedAt, String titre, String image, String status) {
+        this.id = id;
+        this.IdUser = IdUser;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.titre = titre;
+        this.image = image;
+        this.status = status;
     }
 
    
- public Question( String description,  String titre, String image, int idQuestion) {
+ public Question( String description,  String titre, String image, String id) {
         this.description = description;
         this.titre = titre;
         this.image = image;
-        this.idQuestion=idQuestion;
+        this.id=id;
     }
- public Question( String description,  String titre, int idQuestion) {
+ public Question( String description,  String titre, String id) {
         this.description = description;
         this.titre = titre;
-        this.idQuestion=idQuestion;
+        this.id=id;
     }
 
- 
-
-    
-    public int getIduser() {
-        return iduser;
+    public String getStatus() {
+        return status;
     }
 
-    public void setIduser(int iduser) {
-        this.iduser = iduser;
-    }
-   
-
-
-    public int getIdQuestion() {
-        return idQuestion;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setIdQuestion(int idQuestion) {
-        this.idQuestion = idQuestion;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getIdUser() {
+        return IdUser;
+    }
+
+    public void setIdUser(String IdUser) {
+        this.IdUser = IdUser;
     }
 
     public String getDescription() {
@@ -67,12 +83,20 @@ public class Question {
         this.description = description;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getTitre() {
@@ -93,28 +117,19 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" + "idQuestion=" + idQuestion + ", description=" + description + ", date=" + date + ", titre=" + titre + ", image=" + image + '}';
+        return "Question{" + "id=" + id + ", IdUser=" + IdUser + ", description=" + description + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", titre=" + titre + ", image=" + image + '}';
     }
 
-    public Question(int iduser, String description,  String titre, String image) {
-        this.iduser=iduser;
+    public Question(String id, String description, String titre, String image, String status, Date createdAt, Date updatedAt, String IdUser) {
+        this.id = id;        
         this.description = description;
         this.titre = titre;
         this.image = image;
-    }
-       public Question(int iduser, String description,  String titre) {
-        this.iduser=iduser;
-        this.description = description;
-        this.titre = titre;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.IdUser = IdUser;
     }
 
-    public Question(int idQuestion, int iduser, String description, Date date, String titre, String image) {
-        this.idQuestion = idQuestion;
-        this.iduser = iduser;
-        this.description = description;
-        this.date = date;
-        this.titre = titre;
-        this.image = image;
-    }
     
 }

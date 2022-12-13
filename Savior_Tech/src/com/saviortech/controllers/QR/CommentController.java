@@ -63,10 +63,10 @@ public class CommentController implements Initializable {
  public void Data(Reponse reponse) throws IOException {
         
         this.reponse = reponse;
-         Date d = reponse.getDate();  
+         Date d = reponse.getCreatedAt();  
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
                 String strDate = dateFormat.format(d); 
-                id.setText(String.valueOf(reponse.getIdReponse()));
+                id.setText(reponse.getId());
         nom.setText(reponse.getIdUser());
        description.setText(reponse.getMessage());
        comment.setText(reponse.getMessage());
@@ -94,7 +94,7 @@ public class CommentController implements Initializable {
   
         try {
             ReponseService qs=new ReponseService();
-            Reponse rp= new Reponse(reponse.getIdReponse());
+            Reponse rp= new Reponse(reponse.getId());
             qs.supprimer(rp);
             JOptionPane.showMessageDialog(null, "Reponse Supprimée  !");
          
@@ -103,8 +103,8 @@ public class CommentController implements Initializable {
             date.getScene().setRoot(root);
             StatutController sc=loader.getController();
             List<Question> list = new QuestionService().afficher(Static.getId());
-             sc.setId(String.valueOf(list.get(0).getIdQuestion()));
-        sc.setDate(String.valueOf(list.get(0).getDate()));
+             sc.setId(String.valueOf(list.get(0).getId()));
+        sc.setDate(String.valueOf(list.get(0).getCreatedAt()));
         sc.setDescription(list.get(0).getDescription());
         sc.setTitre(list.get(0).getTitre());
         if(list.get(0).getImage()!=null){
@@ -135,7 +135,7 @@ public class CommentController implements Initializable {
         else{
         try {
         ReponseService rs = new ReponseService();
-                Reponse R=new Reponse(comment.getText(),reponse.getIdReponse());
+                Reponse R=new Reponse(comment.getText(),reponse.getId());
                 rs.modifier(R);
                 JOptionPane.showMessageDialog(null, "Mettre a jour Commentaire  !");
                  FXMLLoader loader = new FXMLLoader(getClass().getResource("../../views/QR/Statut.fxml"));
@@ -143,8 +143,8 @@ public class CommentController implements Initializable {
             date.getScene().setRoot(root);
             StatutController sc=loader.getController();
             List<Question> list = new QuestionService().afficher(Static.getId());
-                    sc.setId(String.valueOf(list.get(0).getIdQuestion()));
-        sc.setDate(String.valueOf(list.get(0).getDate()));
+                    sc.setId(String.valueOf(list.get(0).getId()));
+        sc.setDate(String.valueOf(list.get(0).getCreatedAt()));
         sc.setDescription(list.get(0).getDescription());
         sc.setTitre(list.get(0).getTitre());
         if(list.get(0).getImage()!=null){

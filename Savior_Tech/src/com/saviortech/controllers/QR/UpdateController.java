@@ -140,7 +140,7 @@ int i;
        
             QuestionService qs=new QuestionService();
             if(idimg.getText().equals(idimg1.getText())||idimg1.getText().isEmpty()){
-                qs.modifier(new Question(description.getText(), tittre.getText(),Integer.parseInt(id.getText())));
+                qs.modifier(new Question(description.getText(), tittre.getText(),id.getText()));
                 
             }
             else{
@@ -151,7 +151,7 @@ int i;
                 } catch (IOException ex) {
                     Logger.getLogger(UpdateController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                qs.modifier(new Question(description.getText(), tittre.getText(), idimg1.getText(),Integer.parseInt(id.getText())));
+                qs.modifier(new Question(description.getText(), tittre.getText(), idimg1.getText(),id.getText()));
             }
             Notifications notification=Notifications.create()
                     .title("Information")
@@ -167,8 +167,8 @@ int i;
             id.getScene().setRoot(root);
             StatutController sc=loader.getController();
             List<Question> list = new QuestionService().afficher(Static.getId());
-            sc.setId(String.valueOf(list.get(0).getIdQuestion()));
-            sc.setDate(String.valueOf(list.get(0).getDate()));
+            sc.setId(String.valueOf(list.get(0).getId()));
+            sc.setDate(String.valueOf(list.get(0).getCreatedAt()));
             sc.setDescription(list.get(0).getDescription());
             sc.setTitre(list.get(0).getTitre());
             if(list.get(0).getImage()!=null){
@@ -176,7 +176,7 @@ int i;
                 sc.image.setFitWidth(300);
                 Image img = new Image(new FileInputStream(list.get(0).getImage()));
                 sc.setImage(img);
-                 List<AimeQuestion> aq=new AimeService().afficher(Integer.parseInt(id.toString()),Static.getIduser());     
+                 List<AimeQuestion> aq=new AimeService().afficher(id.toString(),Static.getIduser());     
                 System.out.println(aq);
             }   } catch (IOException ex) {
             Logger.getLogger(UpdateController.class.getName()).log(Level.SEVERE, null, ex);

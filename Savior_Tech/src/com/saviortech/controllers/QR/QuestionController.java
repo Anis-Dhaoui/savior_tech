@@ -10,6 +10,7 @@ import com.saviortech.services.AimeService;
 import com.saviortech.services.QuestionService;
 import com.saviortech.utils.Static;
 import java.io.IOException;
+import java.sql.Date;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -82,9 +83,9 @@ public class QuestionController implements Initializable {
                 Pane anchorPane= fxmlLoader.load();
                 ItemController ItemController = fxmlLoader.getController();
                 ItemController.setData(es.get(i));
-                List<AimeQuestion> aq=new AimeService().afficher(es.get(i).getIdQuestion(),Static.getIduser());
+                List<AimeQuestion> aq=new AimeService().afficher(es.get(i).getId(),Static.getIduser());
                 for(int j =0;j<aq.size();j++){
-           if(aq.get(j).getIdQuestion()==es.get(i).getIdQuestion()){
+           if(aq.get(j).getIdQuestion()==es.get(i).getId()){
               ItemController.setJaim("J'aime Pas");
                
            }
@@ -137,7 +138,6 @@ public class QuestionController implements Initializable {
         }
     }
 
-    @FXML
     private void QR(MouseEvent event) {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("../../views/QR/Question.fxml"));
         try {

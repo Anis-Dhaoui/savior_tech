@@ -4,15 +4,17 @@
  */
 package com.saviortech.utils;
 
+import com.saviortech.models.CurrentUser;
+
 /**
  *
  * @author SOMRANI
  */
 public class Static {
-    private static int id;
+    private static String id;
     private static String img;
     private static String recherche;
-    private static int iduser=7;
+    private static String iduser;
     public static String getImg() {
         return img;
     }
@@ -21,11 +23,11 @@ public class Static {
         Static.img = img;
     }
 
-    public static int getId() {
+    public static String getId() {
         return id;
     }
 
-    public static void setId(int id) {
+    public static void setId(String id) {
         Static.id = id;
     }
 
@@ -37,12 +39,12 @@ public class Static {
         Static.recherche = recherche;
     }
 
-    public static int getIduser() {
+    public static String getIduser() {
         return iduser;
     }
 
-    public static void setIduser(int iduser) {
-        Static.iduser = iduser;
+    public static void setIduser(String iduser) {
+        Static.iduser = CurrentUser.userInfo.get(0).getId();
     }
     
 }

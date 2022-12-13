@@ -7,28 +7,60 @@ import java.util.Date;
  * @author SOMRANI
  */
 public class Reponse {
-    private int idReponse;
+    private String id;
     private String message;
-    private int idQuestion;
+    private String idQuestion;
     private String idUser;
-    private Date date;
+    private Date createdAt;
+    private Date updatedAt;
 
-    public Reponse( String message,int idReponse) {
+    public Reponse( String message,String id) {
         this.message = message;
-        this.idReponse = idReponse;
+        this.id = id;
         
     }
 
-    public Reponse(int idReponse) {
-        this.idReponse = idReponse;
+    public Reponse(String id) {
+        this.id = id;
     }
 
-    public int getIdReponse() {
-        return idReponse;
+    public Reponse(String id, String message, String idQuestion, String idUser, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.message = message;
+        this.idQuestion = idQuestion;
+        this.idUser = idUser;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public void setIdReponse(int idReponse) {
-        this.idReponse = idReponse;
+   
+    public Reponse(String message, String idQuestion, String idUser) {
+        this.message = message;
+        this.idQuestion = idQuestion;
+        this.idUser = idUser;
+    }
+
+    public Reponse(String id,String message, String idUser, Date createdAt) {
+        this.id = id;
+        this.message = message;
+        this.idUser = idUser;
+        this.createdAt = createdAt;
+    }
+
+    public Reponse(String id, String message, String idQuestion, String idUser, Date createdAt) {
+        this.id = id;
+        this.message = message;
+        this.idQuestion = idQuestion;
+        this.idUser = idUser;
+        this.createdAt = createdAt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMessage() {
@@ -39,11 +71,11 @@ public class Reponse {
         this.message = message;
     }
 
-    public int getIdQuestion() {
+    public String getIdQuestion() {
         return idQuestion;
     }
 
-    public void setIdQuestion(int idQuestion) {
+    public void setIdQuestion(String idQuestion) {
         this.idQuestion = idQuestion;
     }
 
@@ -55,39 +87,26 @@ public class Reponse {
         this.idUser = idUser;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Reponse(String message, int idQuestion, String idUser) {
-        this.message = message;
-        this.idQuestion = idQuestion;
-        this.idUser = idUser;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public Reponse(int idReponse,String message, String idUser, Date date) {
-        this.idReponse = idReponse;
-        this.message = message;
-        this.idUser = idUser;
-        this.date = date;
-    }
-
-    public Reponse(int idReponse, String message, int idQuestion, String idUser, Date date) {
-        this.idReponse = idReponse;
-        this.message = message;
-        this.idQuestion = idQuestion;
-        this.idUser = idUser;
-        this.date = date;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override
     public String toString() {
-        return "Reponse{" + "idReponse=" + idReponse + ", message=" + message + ", idQuestion=" + idQuestion + ", idUser=" + idUser + ", date=" + date + '}';
+        return "Reponse{" + "id=" + id + ", message=" + message + ", idQuestion=" + idQuestion + ", idUser=" + idUser + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
     }
-    
+
     
 }

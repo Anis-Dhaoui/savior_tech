@@ -4,8 +4,16 @@
  */
 package com.saviortech.services;
 
+<<<<<<< HEAD
+import com.saviortech.models.CurrentUser;
+import com.saviortech.models.Question;
+import static com.saviortech.services.ReponseService.cu;
+import com.saviortech.utils.DataSource;
+import com.saviortech.utils.UUIDGenerator;
+=======
 import com.saviortech.models.Question;
 import com.saviortech.utils.DataSource;
+>>>>>>> 77fb4c02681c9f94778674b3a156a780a8ad9b9a
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -25,18 +33,19 @@ import java.util.logging.Logger;
  */
 public class QuestionService implements QrService<Question> {
         private Connection cnx = DataSource.getInstance().getCnx();
+        static CurrentUser cu = new CurrentUser();
 
     @Override
     public List<Question> afficher() {
          List<Question> question = new ArrayList<>();
         
         try {
-            String req = "SELECT * FROM question Order by idQuestion desc";
+            String req = "SELECT * FROM questions Order by createdAt desc";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet res = pst.executeQuery();
             
             while(res.next()) {
-                question.add(new Question(res.getInt(1),res.getInt(2), res.getString(3), res.getDate(4), res.getString(5), res.getString(6)));
+                question.add(new Question(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6),res.getDate(7) , res.getString(8)));
 
             }
             
@@ -47,15 +56,15 @@ public class QuestionService implements QrService<Question> {
         return question;
     }
         @Override
-     public List<Question> afficher(int id) {
+     public List<Question> afficher(String id) {
          List<Question> question = new ArrayList<>();
         
         try {
-            String req = "SELECT * FROM question where idQuestion="+id+"";
+            String req = "SELECT * FROM questions where id="+id+"";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet res = pst.executeQuery();
             while(res.next()) {
-                question.add(new Question(res.getInt(1),res.getInt(2), res.getString(3), res.getDate(4), res.getString(5), res.getString(6)));
+                question.add(new Question(res.getString(1),res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6), res.getDate(7), res.getString(8)));
             }
             System.out.println("Question récupérées !");
         } catch (SQLException ex) {
@@ -68,11 +77,11 @@ public class QuestionService implements QrService<Question> {
          List<Question> question = new ArrayList<>();
         
         try {
-            String req = "SELECT * FROM question where description LIKE '%"+recherche+"%'";
+            String req = "SELECT * FROM questions where description LIKE '%"+recherche+"%'";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet res = pst.executeQuery();
             while(res.next()) {
-                question.add(new Question(res.getInt(1),res.getInt(2), res.getString(3), res.getDate(4), res.getString(5), res.getString(6)));
+                question.add(new Question(res.getString(1),res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getDate(6), res.getDate(7), res.getString(8)));
             }
             System.out.println("recherche récupérées !");
         } catch (SQLException ex) {
@@ -90,10 +99,10 @@ public class QuestionService implements QrService<Question> {
                 String date=strDate;
                 String req;
                 if(o.getImage()!=null){
-                req = "INSERT INTO question (idUser,description,date,titre,image) VALUES ('"+ o.getIduser()+"','"+o.getDescription()+"','"+date+"','"+o.getTitre()+"','"+o.getImage()+"')";
+                req = "INSERT INTO questions (id,description,titre,image,status,createdAt,updatedAt,UserId ) VALUES ('"+ new UUIDGenerator().getUuid().toString()+"','"+o.getDescription()+"','"+o.getTitre()+"','"+o.getImage()+"','actif','"+date+"',,'"+date+"','"+cu.getUserInfo().get(0).getId()+"')";
                 }
                 else{
-                  req = "INSERT INTO question (idUser,description,date,titre) VALUES ('"+ o.getIduser()+"','"+o.getDescription()+"','"+date+"','"+o.getTitre()+"')";
+                  req = "INSERT INTO questions (id,description,titre,image,status,createdAt,updatedAt,UserId) VALUES ('"+new UUIDGenerator().getUuid().toString()+"','"+o.getDescription()+"','"+o.getTitre()+"','null','actif','"+date+"',,'"+date+"','"+cu.getUserInfo().get(0).getId()+"')";
                   
                 }
                 Statement st = cnx.createStatement();
@@ -108,15 +117,15 @@ public class QuestionService implements QrService<Question> {
     public void supprimer(Question o) {
 
      try {
-           String req = "DELETE FROM question where idQuestion=?";
-           String req1 = "DELETE FROM reponse where idQuestion=?";
-           String req2 = "DELETE FROM aime where idQuestion=?";
+           String req = "DELETE FROM questions where id=?";
+           String req1 = "DELETE FROM reponses where idQuestion=?";
+           String req2 = "DELETE FROM aimes where idQuestion=?";
           PreparedStatement pst = cnx.prepareStatement(req);
           PreparedStatement pst1 = cnx.prepareStatement(req1);
           PreparedStatement pst2 = cnx.prepareStatement(req2);
-           pst.setInt(1, o.getIdQuestion());
-           pst1.setInt(1, o.getIdQuestion());
-           pst2.setInt(1, o.getIdQuestion());
+           pst.setString(1, o.getId());
+           pst1.setString(1, o.getId());
+           pst2.setString(1, o.getId());
            pst1.executeUpdate();
           pst2.executeUpdate();
           pst.executeUpdate();
@@ -133,12 +142,12 @@ public class QuestionService implements QrService<Question> {
                 PreparedStatement pst = null;
                 if(o.getImage()!=null){
                    
-                        String req = "UPDATE question SET description=?,titre=?,image=? where idQuestion =?";
+                        String req = "UPDATE questions SET description=?,titre=?,image=? where id =?";
                         pst = cnx.prepareStatement(req);
                         pst.setString(1, o.getDescription());
                         pst.setString(2, o.getTitre());
                         pst.setString(3, o.getImage());
-                        pst.setInt(4, o.getIdQuestion());
+                        pst.setString(4, o.getId());
                    
                 }
                 else{
@@ -147,7 +156,7 @@ public class QuestionService implements QrService<Question> {
                         pst = cnx.prepareStatement(req);
                         pst.setString(1, o.getDescription());
                         pst.setString(2, o.getTitre());
-                        pst.setInt(3, o.getIdQuestion());
+                        pst.setString(3, o.getId());
                    
                 }
                 

@@ -9,53 +9,49 @@ package com.saviortech.models;
  * @author SOMRANI
  */
 public class AimeQuestion {
-    private int idAime;
-    private int idQuestion;
-    private int idUser;
+    private String id;
+    private String idQuestion;
+    private String IdUser;
 
-    public AimeQuestion( int idUser,int idQuestion) {
-        this.idUser = idUser;
+    public AimeQuestion( String IdUser,String idQuestion) {
+        this.IdUser = IdUser;
         this.idQuestion = idQuestion;
     }
 
-    public AimeQuestion(int idAime, int idUser, int idQuestion) {
-        this.idAime = idAime;
-         this.idUser = idUser;
+    public AimeQuestion(String id, String IdUser, String idQuestion) {
+        this.id = id;
+         this.IdUser = IdUser;
         this.idQuestion = idQuestion;
        
     }
 
-    public AimeQuestion(int idQuestion) {
-        this.idQuestion = idQuestion;
+    public String getId() {
+        return id;
     }
 
-    public int getIdAime() {
-        return idAime;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setIdAime(int idAime) {
-        this.idAime = idAime;
-    }
-
-    public int getIdQuestion() {
+    public String getIdQuestion() {
         return idQuestion;
     }
 
-    public void setIdQuestion(int idQuestion) {
+    public void setIdQuestion(String idQuestion) {
         this.idQuestion = idQuestion;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public String getIdUser() {
+        return IdUser;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setIdUser(String IdUser) {
+        this.IdUser = IdUser;
     }
 
     @Override
     public String toString() {
-        return "AimeQuestion{" + "idAime=" + idAime + ", idQuestion=" + idQuestion + ", idUser=" + idUser + '}';
+        return "AimeQuestion{" + "id=" + id + ", idQuestion=" + idQuestion + ", IdUser=" + IdUser + '}';
     }
-    
+
 }

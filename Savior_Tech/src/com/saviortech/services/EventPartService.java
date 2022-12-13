@@ -33,7 +33,7 @@ public class EventPartService {
             public void ajouter(Events o) {
                 try {
                     String req = "INSERT INTO events ("
-                        + "event_id, event_title, event_image, event_category, event_description, event_start_date, event_end_date,"
+                        + "id, event_title, event_image, event_category, event_description, event_start_date, event_end_date,"
                         + "event_status, event_location, event_price,event_orgoniser, event_max_participant)"
                         + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
@@ -96,7 +96,7 @@ public class EventPartService {
             @Override
             public void supprimer(String evId) {
                 try {
-                    String req = "DELETE FROM events where event_id=" + evId;
+                    String req = "DELETE FROM events where id=" + evId;
                     PreparedStatement st = cnx.prepareStatement(req);
                     st.executeUpdate(req);
                     System.out.println("Event deleted successfully!");
@@ -125,7 +125,7 @@ public class EventPartService {
                 try {
                     String req = "UPDATE events SET event_title = ?, event_image = ?, event_category = ?, event_description = ?, event_start_date = ?, event_end_date = ?,"
                         + "event_status = ?, event_location = ?, event_price = ?, event_orgoniser = ?, event_max_participant = ?"
-                        + " WHERE event_id=?";
+                        + " WHERE id=?";
                     PreparedStatement pst = cnx.prepareStatement(req);
                     pst.setString(1, o.getEvent_title());
                     pst.setString(2, o.getEvent_image());
@@ -154,7 +154,7 @@ public class EventPartService {
             @Override
             public void ajouter(Participant o) {
                 try {
-                    String req = "INSERT INTO participant (user_id, event_id) VALUES (?,?)";
+                    String req = "INSERT INTO participant (UserId,id) VALUES (?,?)";
                     PreparedStatement pst = cnx.prepareStatement(req);
                     pst.setString(1, o.getUser_id());
                     pst.setString(2, o.getEvent_id());
@@ -170,7 +170,7 @@ public class EventPartService {
                 {
                     int part_nb = 0;
                     try {
-                        String req = "SELECT COUNT(*) FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id LIKE ?";
+                        String req = "SELECT COUNT(*) FROM utilisateur us INNER JOIN participant part ON part.UserId = us.id AND part.EventId LIKE ?";
                         PreparedStatement pst = cnx.prepareStatement(req);
                         pst.setString(1, nb);
                         ResultSet res = pst.executeQuery();
@@ -190,7 +190,7 @@ public class EventPartService {
                 ObservableList<Utilisateur> participantList = FXCollections.observableArrayList();
 
                 try {
-                    String req = "SELECT fullname, role, speciality FROM utilisateur us INNER JOIN participant part ON part.user_id = us.id AND part.event_id LIKE ?";
+                    String req = "SELECT fullname, role, speciality FROM utilisateur us INNER JOIN participant part ON part.UserId = us.id AND part.EventId LIKE ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
                     pst.setString(1, id);
                     ResultSet res = pst.executeQuery();
@@ -207,7 +207,7 @@ public class EventPartService {
             @Override
             public boolean checkIfParticipated(String userId, String eventId) {
                 try {
-                    String req = "SELECT * FROM participant WHERE user_id = ? and event_id = ?";
+                    String req = "SELECT * FROM participant WHERE UserId = ? and id = ?";
                     PreparedStatement pst = cnx.prepareStatement(req);
                     pst.setString(1, userId);
                     pst.setString(2, eventId);

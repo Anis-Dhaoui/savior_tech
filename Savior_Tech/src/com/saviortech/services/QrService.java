@@ -17,7 +17,7 @@ public interface QrService<T> {
    public void modifier(T o);
    public void supprimer(T o);
     public List<T> afficher();
-    public List<T> afficher(int id);
+    public List<T> afficher(String id);
     
     
 }

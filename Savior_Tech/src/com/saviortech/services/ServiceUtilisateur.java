@@ -137,7 +137,10 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             System.out.println(ex.getMessage());
         }
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 77fb4c02681c9f94778674b3a156a780a8ad9b9a
     public static void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

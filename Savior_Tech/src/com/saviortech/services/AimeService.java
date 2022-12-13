@@ -27,7 +27,7 @@ public class AimeService implements QrService<AimeQuestion>{
     @Override
     public void ajouter(AimeQuestion o) {
          try {
-                String req = "INSERT INTO aime (idUser,idQuestion) VALUES ('"+ o.getIdUser()+"','"+o.getIdQuestion()+"')";
+                String req = "INSERT INTO aimes (idUser,idQuestion) VALUES ('"+ o.getIdUser()+"','"+o.getIdQuestion()+"')";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("J'aime ajoutée !");
@@ -41,11 +41,11 @@ public class AimeService implements QrService<AimeQuestion>{
      List<AimeQuestion> AimeQuestion = new ArrayList<>();
         
         try {
-            String req = "SELECT * FROM aime";
+            String req = "SELECT * FROM aimes";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet res = pst.executeQuery();
             while(res.next()) {
-                AimeQuestion.add(new AimeQuestion(res.getInt(1),res.getInt(2),res.getInt(3)));
+                AimeQuestion.add(new AimeQuestion(res.getString(1),res.getString(2),res.getString(3)));
             }
             System.out.println("Question récupérées !");
         } catch (SQLException ex) {
@@ -54,15 +54,15 @@ public class AimeService implements QrService<AimeQuestion>{
         return AimeQuestion; 
     }
     
-    public List<AimeQuestion> afficher(int idQuestion ,int iduser) {
+    public List<AimeQuestion> afficher(String idQuestion ,String iduser) {
             List<AimeQuestion> AimeQuestion = new ArrayList<>();
         
         try {
-            String req = "SELECT * FROM aime where idQuestion="+idQuestion+" AND idUser="+iduser+"";
+            String req = "SELECT * FROM aimes where idQuestion="+idQuestion+" AND idUser="+iduser+"";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet res = pst.executeQuery();
             while(res.next()) {
-                AimeQuestion.add(new AimeQuestion(res.getInt(1),res.getInt(2),res.getInt(3)));
+                AimeQuestion.add(new AimeQuestion(res.getString(1),res.getString(2),res.getString(3)));
             }
             System.out.println("Question récupérées !");
         } catch (SQLException ex) {
@@ -76,10 +76,10 @@ public class AimeService implements QrService<AimeQuestion>{
     @Override
     public void supprimer(AimeQuestion o) {  
      try {
-           String req = "DELETE FROM aime where  idUser=? and idQuestion =?";
+           String req = "DELETE FROM aimes where  idUser=? and idQuestion =?";
           PreparedStatement pst = cnx.prepareStatement(req);
-          pst.setInt(1, o.getIdUser());
-           pst.setInt(2, o.getIdQuestion());
+          pst.setString(1, o.getIdUser());
+           pst.setString(2, o.getIdQuestion());
            
           pst.executeUpdate();
           System.out.println("Jaime supprimée !");
@@ -89,7 +89,7 @@ public class AimeService implements QrService<AimeQuestion>{
     }
 
     @Override
-    public List<AimeQuestion> afficher(int id) {
+    public List<AimeQuestion> afficher(String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

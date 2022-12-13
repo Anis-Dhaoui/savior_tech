@@ -1,7 +1,9 @@
 package com.saviortech.services;
 
+import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Reponse;
 import com.saviortech.utils.DataSource;
+import com.saviortech.utils.UUIDGenerator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +25,7 @@ import java.util.List;
  */
 public class ReponseService implements QrService<Reponse> {
  private Connection cnx = DataSource.getInstance().getCnx();
+ static CurrentUser cu = new CurrentUser();
     @Override
     public void ajouter(Reponse o) {
     try {
@@ -30,7 +33,7 @@ public class ReponseService implements QrService<Reponse> {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
                 String strDate = dateFormat.format(d);
                 String date=strDate;
-                String req = "INSERT INTO reponse (message,idQuestion,idUser,date) VALUES ('"+ o.getMessage()+"','"+o.getIdQuestion()+"','"+o.getIdUser()+"','"+date+"')";
+                String req = "INSERT INTO reponses (id,message,createdAt,updatedAt,questionId,UserId) VALUES ('"+ new UUIDGenerator().getUuid().toString()+"','"+ o.getMessage()+"','"+date+"','"+date+"','"+o.getIdQuestion()+"','"+cu.getUserInfo().get(0).getId()+"')";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Reponse ajoutée !");
@@ -39,15 +42,15 @@ public class ReponseService implements QrService<Reponse> {
         }}
 
  @Override
-    public List<Reponse> afficher(int id) {
+    public List<Reponse> afficher(String id) {
           List<Reponse> reponse = new ArrayList<>();
         
         try {
-            String req = "SELECT * FROM reponse where idQuestion="+id+"";
+            String req = "SELECT * FROM reponses where questionId ="+id+"";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet res = pst.executeQuery();
             while(res.next()) {
-                reponse.add(new Reponse(res.getInt(1), res.getString(2), res.getInt(3), res.getString(4), res.getDate(5)));
+                reponse.add(new Reponse(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getDate(5)));
             }
             System.out.println("Reponse récupérées !");
         } catch (SQLException ex) {
@@ -63,9 +66,9 @@ public class ReponseService implements QrService<Reponse> {
     @Override
     public void supprimer(Reponse o) {
       try {
-           String req = "DELETE FROM reponse where idReponse=?";
+           String req = "DELETE FROM reponses where id=?";
           PreparedStatement pst = cnx.prepareStatement(req);
-           pst.setInt(1, o.getIdReponse());
+           pst.setString(1, o.getId());
           pst.executeUpdate();
           System.out.println("Reponse Supprimée !");
     } catch (SQLException ex) {
@@ -75,10 +78,10 @@ public class ReponseService implements QrService<Reponse> {
     @Override
     public void modifier(Reponse o) {
          try {
-            String req = "UPDATE reponse SET message=? where idReponse=?";
+            String req = "UPDATE reponses SET message=? where id=?";
            PreparedStatement pst = cnx.prepareStatement(req);
            pst.setString(1, o.getMessage());
-           pst.setInt(2, o.getIdReponse());
+           pst.setString(2, o.getId());
            pst.executeUpdate();
           System.out.println("Réponse modifiée !");
        } catch (SQLException ex) {
