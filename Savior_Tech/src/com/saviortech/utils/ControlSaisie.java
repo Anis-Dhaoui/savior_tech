@@ -23,12 +23,13 @@ public class ControlSaisie {
 
     }
      public boolean controlPassword(String pass) {
-        String masque = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
-        Pattern pattern = Pattern.compile(masque);
-        //CharSequence laSaisieDeLutilisateur = null;
-        Matcher controler = pattern.matcher(pass);
-         System.out.println(controler.matches());
-        return controler.matches();
+//        String masque = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
+//        Pattern pattern = Pattern.compile(masque);
+//        //CharSequence laSaisieDeLutilisateur = null;
+//        Matcher controler = pattern.matcher(pass);
+//         System.out.println(controler.matches());
+//        return controler.matches();
+return true;
 
     }
      

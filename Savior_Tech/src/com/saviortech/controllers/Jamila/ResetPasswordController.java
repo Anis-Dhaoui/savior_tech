@@ -48,7 +48,7 @@ public class ResetPasswordController implements Initializable {
     private void resetMyPassword(ActionEvent event) throws MessagingException {
         EmailSender eSender = new EmailSender();
         ServiceUtilisateur su = new ServiceUtilisateur();
-        su.updateUserPass(new PasswordHash().getMd5(generatedPassword), idemail.getText());
+        su.updateUserPass(new PasswordHash().getHashedPass(generatedPassword), idemail.getText());
         eSender.sendEmail(idemail.getText(), "Reset Password", newPassword);
         
         JOptionPane.showMessageDialog(null, "A new password has been sent to: " + idemail.getText());

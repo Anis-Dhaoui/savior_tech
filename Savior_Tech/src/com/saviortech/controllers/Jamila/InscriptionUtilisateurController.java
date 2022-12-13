@@ -83,7 +83,7 @@ public class InscriptionUtilisateurController implements Initializable {
 
         ServiceUtilisateur su = new ServiceUtilisateur();
         ControlSaisie cs = new ControlSaisie();
-        String hashedPass = new PasswordHash().getMd5(pass_field.getText());
+        String hashedPass = new PasswordHash().getHashedPass(pass_field.getText());
         Window onAjouterClicked = inscription.getScene().getWindow();
         if (labelUsername.getText().isEmpty() || labelFullname.getText().isEmpty() || labelEmail.getText().isEmpty() || pass_field.getText().isEmpty()
                 || this.LabelRole.getValue()==null || labelDomain.getValue()==null || labelInterest.getValue()==null || labelSpeciality.getValue()==null) {
