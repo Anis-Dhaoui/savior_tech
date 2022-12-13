@@ -81,7 +81,7 @@ List<Question> es = new QuestionService().afficher();
     @FXML
     private TextArea description;
     @FXML
-    private Text id;
+    private TextField id;
     @FXML
     private JFXButton btn;
     @FXML
@@ -90,8 +90,6 @@ List<Question> es = new QuestionService().afficher();
     private Text idimg;
     File file;
     int i;
-    @FXML
-    private Text idimg1;
     @Override
     
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,10 +99,6 @@ List<Question> es = new QuestionService().afficher();
 
 
 
-    @FXML
-    private void pub(MouseEvent event) {
-
-    }
     @FXML
     private void upload(ActionEvent event) throws IOException {
         final FileChooser fileChooser = new FileChooser();
@@ -137,6 +131,7 @@ List<Question> es = new QuestionService().afficher();
          
     }
 
+    @FXML
     private void Ajouter(ActionEvent event) {
          QuestionService qs = new QuestionService();
          if(tittre.getText().isEmpty()||description.getText().isEmpty()){
@@ -189,7 +184,6 @@ List<Question> es = new QuestionService().afficher();
         }
     }
 
-    @FXML
     private void QR(MouseEvent event) {
        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../views/QR/Question.fxml"));
         try {
@@ -202,9 +196,6 @@ List<Question> es = new QuestionService().afficher();
 
     }
 
-    @FXML
-    private void update(ActionEvent event) {
-    }
 
 
 

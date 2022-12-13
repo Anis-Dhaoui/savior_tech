@@ -12,9 +12,11 @@ import com.saviortech.services.AimeService;
 import com.saviortech.services.QuestionService;
 import com.saviortech.services.ReponseService;
 import com.saviortech.utils.Static;
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,6 +25,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +40,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -47,6 +51,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
 import javax.management.Notification;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
@@ -180,6 +185,19 @@ public class StatutController implements Initializable {
         secondStage.setScene(scene);
         secondStage.show();
     }
+            public WritableImage implementImage(String imgUrl) throws MalformedURLException, IOException {
+        BufferedImage deck;
+        try {
+            deck = ImageIO.read(new URL(imgUrl));
+//            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
+        } catch (Exception e) {
+            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
+        }
+        BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
+        WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
+
+        return card;
+    }
     @FXML
     private void comenter(ActionEvent event) {
         Alert alert;
@@ -193,7 +211,7 @@ public class StatutController implements Initializable {
         }
         else{
                 ReponseService rs = new ReponseService();
-                Reponse R=new Reponse(commentaire.getText(),Static.getId(), String.valueOf(Static.getIduser()));
+                Reponse R=new Reponse(commentaire.getText(),Static.getId(), Static.getIduser());
                 rs.ajouter(R);
                  Notifications notification=Notifications.create()
                 .title("Information")  
@@ -215,8 +233,8 @@ public class StatutController implements Initializable {
                 if(Static.getImg()!=null){
                     dpc.image.setFitHeight(100);
                     dpc.image.setFitWidth(300);
-                    Image img = new Image(new FileInputStream(Static.getImg()));
-                    dpc.setImage(img);
+                
+                    dpc.setImage(implementImage(question.getImage()));
                     
                     
                 }       } catch (IOException ex) {

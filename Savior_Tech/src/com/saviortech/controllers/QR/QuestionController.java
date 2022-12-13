@@ -138,7 +138,6 @@ public class QuestionController implements Initializable {
         }
     }
 
-    @FXML
     private void QR(MouseEvent event) {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("../../views/QR/Question.fxml"));
         try {

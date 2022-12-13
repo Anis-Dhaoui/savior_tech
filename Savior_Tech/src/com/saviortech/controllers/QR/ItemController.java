@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -84,7 +85,19 @@ public class ItemController implements Initializable {
     public void setJaim(String jaim) {
         this.jaim.setText(jaim);
     }
-    
+        public WritableImage implementImage(String imgUrl) throws MalformedURLException, IOException {
+        BufferedImage deck;
+        try {
+            deck = ImageIO.read(new URL(imgUrl));
+//            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
+        } catch (Exception e) {
+            deck = ImageIO.read(getClass().getResourceAsStream("../../images/inscription.jpg"));
+        }
+        BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
+        WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
+
+        return card;
+    }
     public void setData(Question question) throws IOException {
         
         this.question = question;
@@ -98,8 +111,7 @@ public class ItemController implements Initializable {
         if(question.getImage()!=null){
             image.setFitHeight(150);
             image.setFitWidth(400);
-        Image img = new Image(new FileInputStream(question.getImage()));
-        image.setImage(img);
+        image.setImage(implementImage(question.getImage()));
         }
 
     }

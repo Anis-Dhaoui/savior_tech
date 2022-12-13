@@ -31,7 +31,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         try {
             String req = "INSERT INTO users(id, fullname, username, email, password, role, domain, interest, speciality) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setString(1,new UUIDGenerator().getUuid().toString());
+            pst.setString(1, new UUIDGenerator().getUuid().toString());
             pst.setString(2, o.getFullname());
             pst.setString(3, o.getUsername());
             pst.setString(4, o.getEmail());
@@ -45,7 +45,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }  
+    }
 
     @Override
     public void modifier(Utilisateur o) {
@@ -98,59 +98,34 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         }
         return userList;
     }
-
-
-
-    /*
-    public void auth(Utilisateur o) {
-        boolean isAuthenticated = false;
-
-        try {
-            String req = "SELECT id from utilisisateur where username = ? AND password = ?";
-            PreparedStatement pst = cnx.prepareStatement(req);
-
-            pst.setString(1, o.getUsername());
-            pst.setString(2, o.getPassword());
-
-            ResultSet res = pst.executeQuery();
-
-            System.out.println(res);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        System.out.println("*************TESTING****************");
-    }
-     */
     public List<Utilisateur> validate(String username, String password) throws SQLException {
         List<Utilisateur> userData = new ArrayList<>();
-        // Step 1: Establishing a Connection and 
-        // try-with-resource statement will auto close the connection.
+        
+            try {
+                String req = "SELECT id, fullname, username, password, email, role, domain, interest, speciality, admin from users where username = ?";
+                PreparedStatement pst = cnx.prepareStatement(req);
+                // Step 2:Create a statement using connection object
 
-        try {
-            String req = "SELECT id, fullname, username, email, role, domain, interest, speciality, admin from users where username = ? AND password = ?";
-            PreparedStatement pst = cnx.prepareStatement(req);
-            // Step 2:Create a statement using connection object
+                pst.setString(1, username);
 
-            pst.setString(1, username);
-            pst.setString(2, password);
+                ResultSet res = pst.executeQuery();
 
-            ResultSet res = pst.executeQuery();
+                while (res.next()) {
+                    System.out.println(PasswordHash.checkPass(password, res.getString(4)));
+                    if(PasswordHash.checkPass(password, res.getString(4))){
+                        userData.add(new Utilisateur(res.getString(1), res.getString(2), res.getString(3), res.getString(5), res.getString(6), res.getString(7), res.getString(8), res.getString(9), res.getByte(10)));
+                    }
+                }
+                System.out.println(userData);
 
-            while(res.next()) {
-                userData.add(new Utilisateur(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8), res.getByte(9)));
+            } catch (SQLException e) {
+                // print SQL exception information
+                printSQLException(e);
             }
-            System.out.println(userData);
-
-        } catch (SQLException e) {
-            // print SQL exception information
-            printSQLException(e);
-        }
         return userData;
     }
 
-        public void updateUserPass(String newPass, String email) {
+    public void updateUserPass(String newPass, String email) {
         try {
             String req = "UPDATE users SET password = ? where email=?";
             PreparedStatement pst = cnx.prepareStatement(req);
@@ -162,7 +137,6 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             System.out.println(ex.getMessage());
         }
     }
-    
     public static void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {
@@ -178,4 +152,4 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             }
         }
     }
- }
+}

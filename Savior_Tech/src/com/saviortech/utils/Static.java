@@ -4,6 +4,8 @@
  */
 package com.saviortech.utils;
 
+import com.saviortech.models.CurrentUser;
+
 /**
  *
  * @author SOMRANI
@@ -42,7 +44,7 @@ public class Static {
     }
 
     public static void setIduser(String iduser) {
-        Static.iduser = iduser;
+        Static.iduser = CurrentUser.userInfo.get(0).getId();
     }
     
 }

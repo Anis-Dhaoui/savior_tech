@@ -27,6 +27,17 @@ public class Question {
         this.id = id;
     }
 
+    public Question(String id, String IdUser, String description, Date createdAt, Date updatedAt, String titre, String image, String status) {
+        this.id = id;
+        this.IdUser = IdUser;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.titre = titre;
+        this.image = image;
+        this.status = status;
+    }
+
    
  public Question( String description,  String titre, String image, String id) {
         this.description = description;

@@ -9,7 +9,7 @@ import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Utilisateur;
 import com.saviortech.services.ServiceUtilisateur;
 
-import static com.saviortech.utils.PasswordHash.getMd5;
+import static com.saviortech.utils.PasswordHash.getHashedPass;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -89,7 +89,8 @@ public class loginController implements Initializable {
         }
 
         String username = tfusername.getText();
-        String password = getMd5(tfpassword.getText());
+
+        String password = tfpassword.getText();
 
         ServiceUtilisateur auth = new ServiceUtilisateur();
         List<Utilisateur> list = auth.validate(username, password);

@@ -4,8 +4,11 @@
  */
 package com.saviortech.services;
 
+import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Question;
+import static com.saviortech.services.ReponseService.cu;
 import com.saviortech.utils.DataSource;
+import com.saviortech.utils.UUIDGenerator;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -25,6 +28,7 @@ import java.util.logging.Logger;
  */
 public class QuestionService implements QrService<Question> {
         private Connection cnx = DataSource.getInstance().getCnx();
+        static CurrentUser cu = new CurrentUser();
 
     @Override
     public List<Question> afficher() {
@@ -90,10 +94,10 @@ public class QuestionService implements QrService<Question> {
                 String date=strDate;
                 String req;
                 if(o.getImage()!=null){
-                req = "INSERT INTO questions (idUser,description,date,titre,image) VALUES ('"+ o.getIdUser()+"','"+o.getDescription()+"','"+date+"','"+o.getTitre()+"','"+o.getImage()+"')";
+                req = "INSERT INTO questions (id,description,titre,image,status,createdAt,updatedAt,UserId ) VALUES ('"+ new UUIDGenerator().getUuid().toString()+"','"+o.getDescription()+"','"+o.getTitre()+"','"+o.getImage()+"','actif','"+date+"',,'"+date+"','"+cu.getUserInfo().get(0).getId()+"')";
                 }
                 else{
-                  req = "INSERT INTO questions (idUser,description,date,titre) VALUES ('"+ o.getIdUser()+"','"+o.getDescription()+"','"+date+"','"+o.getTitre()+"')";
+                  req = "INSERT INTO questions (id,description,titre,image,status,createdAt,updatedAt,UserId) VALUES ('"+new UUIDGenerator().getUuid().toString()+"','"+o.getDescription()+"','"+o.getTitre()+"','null','actif','"+date+"',,'"+date+"','"+cu.getUserInfo().get(0).getId()+"')";
                   
                 }
                 Statement st = cnx.createStatement();

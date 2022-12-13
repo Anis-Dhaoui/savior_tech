@@ -1,7 +1,9 @@
 package com.saviortech.services;
 
+import com.saviortech.models.CurrentUser;
 import com.saviortech.models.Reponse;
 import com.saviortech.utils.DataSource;
+import com.saviortech.utils.UUIDGenerator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +25,7 @@ import java.util.List;
  */
 public class ReponseService implements QrService<Reponse> {
  private Connection cnx = DataSource.getInstance().getCnx();
+ static CurrentUser cu = new CurrentUser();
     @Override
     public void ajouter(Reponse o) {
     try {
@@ -30,7 +33,7 @@ public class ReponseService implements QrService<Reponse> {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
                 String strDate = dateFormat.format(d);
                 String date=strDate;
-                String req = "INSERT INTO reponses (message,idQuestion,idUser,date) VALUES ('"+ o.getMessage()+"','"+o.getIdQuestion()+"','"+o.getIdUser()+"','"+date+"')";
+                String req = "INSERT INTO reponses (id,message,createdAt,updatedAt,questionId,UserId) VALUES ('"+ new UUIDGenerator().getUuid().toString()+"','"+ o.getMessage()+"','"+date+"','"+date+"','"+o.getIdQuestion()+"','"+cu.getUserInfo().get(0).getId()+"')";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Reponse ajoutée !");
@@ -43,7 +46,7 @@ public class ReponseService implements QrService<Reponse> {
           List<Reponse> reponse = new ArrayList<>();
         
         try {
-            String req = "SELECT * FROM reponses where idQuestion="+id+"";
+            String req = "SELECT * FROM reponses where questionId ="+id+"";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet res = pst.executeQuery();
             while(res.next()) {

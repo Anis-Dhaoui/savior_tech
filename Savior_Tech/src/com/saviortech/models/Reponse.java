@@ -24,6 +24,15 @@ public class Reponse {
         this.id = id;
     }
 
+    public Reponse(String id, String message, String idQuestion, String idUser, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.message = message;
+        this.idQuestion = idQuestion;
+        this.idUser = idUser;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
    
     public Reponse(String message, String idQuestion, String idUser) {
         this.message = message;

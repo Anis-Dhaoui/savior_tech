@@ -11,12 +11,13 @@ import com.saviortech.services.EventPartService;
 import com.saviortech.services.ServiceUtilisateur;
 import com.saviortech.utils.EmailSender;
 import com.saviortech.utils.PasswordGenerator;
+import com.saviortech.utils.PasswordHash;
 import com.saviortech.utils.UUIDGenerator;
 import java.sql.SQLException;
 import javax.mail.MessagingException;
 
 /**
- *
+ * $2a$08$wSYaMQ8GV8rCuO7shkIIOus71qaEgp3uiiCs9PXgQ9q66e9/lpS2
  * @author freec
  */
 public class Main {
@@ -27,6 +28,8 @@ public class Main {
         ServiceUtilisateur su = new ServiceUtilisateur();
 
         String generatedPassword = PasswordGenerator.getRandomPassword();
+        
+//        PasswordHash.getHashedPass("jamila");
 
         String newPassword = "<h1> Your new password is " + generatedPassword + " </h1>";
         
