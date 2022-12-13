@@ -43,8 +43,8 @@ public class ServiceCommentaire implements IServicePublication<Commentaires> {
             ps.setString(1, new UUIDGenerator().getUuid().toString());
             ps.setString(2, o.getDescription());
             ps.setString(3, null);
-            ps.setString(4, "07fda04f-fd03-4fa8-9934-db0900ac68ac");
-            ps.setString(5, "9360d336-fc93-4829-94ba-42361754f27a");
+            ps.setString(4, "d7a04dc5-9aff-46f4-bddd-917848c386aee");
+            ps.setString(5, "fc779137-e429-4bf1-be18-a2148adb47b2");
             ps.executeUpdate();
             System.out.println("ajoutée!");
         } catch (SQLException ex) {
@@ -75,20 +75,20 @@ public class ServiceCommentaire implements IServicePublication<Commentaires> {
         List<Commentaires> com = new ArrayList<>();
         try {
 
-            String req = "SELECT commentaires.id,commentaires.description,users.fullName\n"
+            String req = "SELECT commentaires.id,commentaires.description,fullName\n"
                     + "                           FROM users,commentaires \n"
-                    + "                           WHERE users.id = commentaires.UserId AND commentaires.PublicationId = ? ";
+                    + "                           WHERE users.id = commentaires.UserId AND commentaires.PublicationId = 'd7a04dc5-9aff-46f4-bddd-917848c386ae' ";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, id);
+           // ps.setString(1, id);
             ResultSet res = ps.executeQuery();
 
             while (res.next()) {
           //     com.add(new Commentaires(res.getString(1), res.getString(2), res.getString(3)));
              com.add(new Commentaires(res.getString(1),res.getString(2),res.getString(3)));
-                System.out.println(com);
+                
             }
 
-            System.out.println("Commentaire récupérées !");
+            System.out.println(com);
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

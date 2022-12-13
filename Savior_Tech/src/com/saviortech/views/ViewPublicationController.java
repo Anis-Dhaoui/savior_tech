@@ -44,6 +44,7 @@ public class ViewPublicationController implements Initializable {
     private Label showTitre;
     @FXML
     private Text showDescription;
+    @FXML
     private GridPane gridPaneCom;
 
     ServiceCommentaire sc = new ServiceCommentaire();
@@ -74,13 +75,13 @@ public class ViewPublicationController implements Initializable {
         showDescription.setText(pub.getDescription());
 
         List<Commentaires> coms = sc.afficher(pub.getId());
-        System.err.println(coms.size());
+        System.err.println(coms);
 
         int column = 0;
         int row = 1;
         try {
 
-            for (int i = 0; i < coms.size(); i++) {
+            for (int i = 0; i <= coms.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("itemCommentaire.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
@@ -93,7 +94,7 @@ public class ViewPublicationController implements Initializable {
                     row++;
                 }
                 gridPaneCom.add(anchorPane, column++, row); //(child,column,row)
-                gridPaneCom.setMargin(anchorPane, new Insets(10));
+              gridPaneCom.setMargin(anchorPane, new Insets(10));
 
             }
         } catch (IOException e) {

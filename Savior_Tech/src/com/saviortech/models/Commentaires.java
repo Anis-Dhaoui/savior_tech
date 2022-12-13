@@ -14,21 +14,25 @@ public class Commentaires {
 
     private String id;
     private String description;
-    private String createdAt;
+    private String fullName;
 
-    public Commentaires(String id, String description, String createdAt) {
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+
+    public Commentaires(String id, String description, String fullName) {
         this.id = id;
         this.description = description;
-        this.createdAt = createdAt;
+       
+        this.fullName = fullName;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
+   
 
     public String getId() {
         return id;
@@ -48,7 +52,8 @@ public class Commentaires {
 
     @Override
     public String toString() {
-        return "Commentaires{" + "id=" + id + ", description=" + description + ", date=" + '}';
+        return "Commentaires{" + "id=" + id + ", description=" + description + ", fullName=" + fullName + '}';
     }
 
+   
 }

@@ -103,6 +103,8 @@ public class Publications {
 
     @Override
     public String toString() {
-        return "Publication{" + "id=" + id + ", titre=" + titre + ", description=" + description + ", image=" + image + ", statut=" + statut + '}';
+        return "Publications{" + "id=" + id + ", titre=" + titre + ", description=" + description + ", image=" + image + ", statut=" + statut + ", createdAt=" + createdAt + ", fullName=" + fullName + '}';
     }
+
+   
 }

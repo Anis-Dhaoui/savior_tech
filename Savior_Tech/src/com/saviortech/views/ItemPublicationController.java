@@ -53,13 +53,13 @@ public class ItemPublicationController implements Initializable {
         this.pub = pub;
         this.myListener = myListener;
 
-        if (pub.getImage() != null) {
+        /*if (pub.getImage() != null) {
             BufferedImage deck = ImageIO.read(new URL(pub.getImage()));
             BufferedImage tempCard = deck.getSubimage(0, 0, deck.getWidth(), deck.getHeight());
             WritableImage card = SwingFXUtils.toFXImage(tempCard, null);
             img.setImage(card);
         }
-
+*/
         titreLabel.setText(pub.getTitre());
         datelabel.setText(pub.getCreatedAt());
         nomUtilisateur.setText(pub.getFullName());
